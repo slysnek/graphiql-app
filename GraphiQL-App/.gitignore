@@ -12,6 +12,9 @@ dist
 coverage
 dist-ssr
 *.local
+.env
+.env.js
+.env.json
 
 # Editor directories and files
 .vscode/*
