@@ -1,3 +1,7 @@
 export default function Header() {
-  return <div>Hello from header</div>;
+  const isUserLogged = true;
+  if (isUserLogged) {
+    return <div>Hello from header</div>;
+  }
+  return <div>Header without sign-out button with links to log-in/signUp</div>;
 }
