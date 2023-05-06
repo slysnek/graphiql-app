@@ -4,6 +4,7 @@ import './index.css';
 import { WrappedApp } from './app/App';
 import { store } from './store/reduxStore';
 import { Provider } from 'react-redux';
+import './firebase';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

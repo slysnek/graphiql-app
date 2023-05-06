@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface UserState {
-  email: string | null;
-  token: string | null;
-  id: string | null;
+export interface UserState {
+  email: string;
+  token: string;
+  id: string;
   isLogged: boolean;
 }
 
 const initialState = {
-  email: null,
-  token: null,
-  id: null,
+  email: '',
+  token: '',
+  id: '',
   isLogged: false,
 } as UserState;
 
@@ -28,7 +28,7 @@ const userSlice = createSlice({
       };
     },
     exitUser: (state) => {
-      return { ...state, email: null, token: null, id: null, isLogged: false };
+      return { ...state, email: '', token: '', id: '', isLogged: false };
     },
   },
 });
