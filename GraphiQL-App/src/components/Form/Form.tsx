@@ -1,12 +1,15 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { signInWithGoogle } from '../../firebase';
 
 interface FormProps {
   typeForm: string;
+  onclickSubmit: (email: string, password: string) => Promise<void>;
 }
 
 const schemaValidation = yup.object({
+  name: yup.string().required('Name is required').min(4, 'at least 4 letters'),
   email: yup.string().required('Email is required').email('Email is not valid'),
   password: yup
     .string()
@@ -39,6 +42,14 @@ function Form(props: FormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {props.typeForm !== 'login' && (
+        <div>
+          <label htmlFor="nickName">E-mail</label>
+          <input placeholder="Enter your name" type="text" id="nickName" {...register('name')} />
+          <div className="error-box error-name">{errors.name?.message}</div>
+        </div>
+      )}
+
       <div>
         <label htmlFor="emailInput">E-mail</label>
         <input placeholder="Enter e-mail..." type="email" id="emailInput" {...register('email')} />
@@ -70,6 +81,9 @@ function Form(props: FormProps) {
       )}
 
       <button type="submit">{props.typeForm !== 'login' ? 'Create User' : 'Log In'}</button>
+      <button type="button">
+        {props.typeForm === 'login' ? 'Create with Google' : 'Log In with Google'}
+      </button>
     </form>
   );
 }

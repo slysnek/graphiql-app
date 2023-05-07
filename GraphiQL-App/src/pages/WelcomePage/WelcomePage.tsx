@@ -1,11 +1,11 @@
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function WelcomePage() {
   const isUserLogged = true;
   if (isUserLogged) {
     return <div>Hello from welcomePage</div>;
   }
-  return redirect('/login');
+  return <Navigate to="/login" replace />;
 }
 
 export default WelcomePage;
