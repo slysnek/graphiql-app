@@ -19,7 +19,6 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID,
 };
-console.log(firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -42,40 +41,37 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    if (err instanceof Error) {
-      return { error: err.message };
-    }
-    return { error: 'error with creating via google' };
+    if (err instanceof Error) throw new Error(err.message);
+    return { errorFB: 'unexpected Error signIn with Google' };
   }
 };
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     const data = await signInWithEmailAndPassword(auth, email, password);
-    console.log(data);
+    console.log('data firebase.ts', data);
+    return data;
   } catch (err) {
-    if (err instanceof Error) {
-      return { error: err.message };
-    }
-    return { error: 'error with log in via e-mail and password' };
+    if (err instanceof Error) throw new Error(err.message);
+    return { errorFB: 'unexpected Error logIn email and password' };
   }
 };
 
-const registerWithEmailAndPassword = async (name: string, email: string, password: string) => {
+const registerWithEmailAndPassword = async (email: string, password: string, name: string) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+    const { user } = res;
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
       name,
       authProvider: 'local',
       email,
     });
+    // console.log(user.accessToken);
+    return user;
   } catch (err) {
-    if (err instanceof Error) {
-      return { error: err.message };
-    }
-    return { error: 'error with log in via e-mail and password' };
+    if (err instanceof Error) throw new Error(err.message);
+    return { errorFB: 'unexpected Error register with email and password' };
   }
 };
 

@@ -1,9 +1,16 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 function WelcomePage() {
   const isUserLogged = true;
   if (isUserLogged) {
-    return <div>Hello from welcomePage</div>;
+    return (
+      <div>
+        <p>Hello from welcomePage</p>
+        <button type="button">
+          <NavLink to="/home">Start QL</NavLink>
+        </button>
+      </div>
+    );
   }
   return <Navigate to="/login" replace />;
 }
