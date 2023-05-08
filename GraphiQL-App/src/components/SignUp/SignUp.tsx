@@ -5,6 +5,7 @@ import { setUser } from '../../store/slices/userSlice';
 import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Form from '../Form/Form';
+import setUserName from '../../helpers/setUserName';
 
 function SignUp() {
   const dispatch = useAppDispatch();
@@ -35,9 +36,11 @@ function SignUp() {
             email: user.email,
             token: user.refreshToken,
             id: user.uid,
+            name: '',
             isLogged: true,
           })
         );
+        setUserName;
         navigate('/welcome', { replace: true });
       }
     } catch (e) {

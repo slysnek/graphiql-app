@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooksRedux';
-import { setUser } from '../../store/slices/userSlice';
+import { exitUser, setUser } from '../../store/slices/userSlice';
 import { auth, logInWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Form from '../Form/Form';
+import setUserName from '../../helpers/setUserName';
 
 function LogIn() {
   const dispatch = useAppDispatch();
@@ -22,8 +23,14 @@ function LogIn() {
     if (user) {
       setIsLoading(false);
       setIsError(false);
+      <Navigate to="/welcome" replace />;
 
       return;
+    }
+    if (!user) {
+      setIsError(true);
+      setIsLoading(false);
+      dispatch(exitUser());
     }
   }, [loading, user]);
 
@@ -37,8 +44,10 @@ function LogIn() {
             token: user.refreshToken,
             id: user.uid,
             isLogged: true,
+            name: '',
           })
         );
+        setUserName;
         navigate('/welcome', { replace: true });
       }
       console.log('data logIn', data);
