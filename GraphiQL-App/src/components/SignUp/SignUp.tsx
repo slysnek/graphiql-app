@@ -6,6 +6,7 @@ import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Form from '../Form/Form';
 import setUserName from '../../helpers/setUserName';
+import Grid from '@mui/material/Grid/Grid';
 
 function SignUp() {
   const dispatch = useAppDispatch();
@@ -60,12 +61,22 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h2>Sign Up Form</h2>
-      {isLoading && <p>Loading...</p>}
+    <Grid container item xs={12} direction="column" justifyContent="center" alignItems="center">
+      <Grid item>
+        <h2>Sign Up Form</h2>
+      </Grid>
+      {isLoading && (
+        <Grid item>
+          <p>Loading...</p>
+        </Grid>
+      )}
       <Form typeForm="signUp" onclickLogIn={handleSignUp} />
-      {isError && <p>Error in Sign Up...{`${error}`}</p>}
-    </div>
+      {isError && (
+        <Grid item>
+          <p>Error in Sign Up...{`${error}`}</p>
+        </Grid>
+      )}
+    </Grid>
   );
 }
 

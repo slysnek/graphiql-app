@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
+import { useAppDispatch } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
 import { auth, logInWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Box } from '@mui/material';
 
 import Form from '../Form/Form';
 import setUserName from '../../helpers/setUserName';
@@ -63,12 +64,29 @@ function LogIn() {
     }
   };
   return (
-    <div>
-      <h2>Log In form</h2>
-      {isLoading && <p>Loading...</p>}
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <Box sx={{ m: 'auto' }}>
+        <h2>Log In form</h2>
+      </Box>
+      {isLoading && (
+        <Box>
+          <p>Loading...</p>
+        </Box>
+      )}
       <Form typeForm="login" onclickSubmit={handleLogin} />
-      {isError && <p>Error in Sign Up...{`${error}`}</p>}
-    </div>
+      {isError && (
+        <Box>
+          <p>Error in Sign Up...{`${error}`}</p>
+        </Box>
+      )}
+    </Box>
   );
 }
 

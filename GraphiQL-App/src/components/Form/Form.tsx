@@ -1,8 +1,11 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signInWithGoogle } from '../../firebase';
-import { NavLink } from 'react-router-dom';
+import { InputAdornment, TextField, IconButton, Button, Grid } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 interface FormProps {
   typeForm: string;
@@ -38,7 +41,7 @@ type FormDataSignUp = yup.InferType<typeof schemaValidation>;
 
 function Form(props: FormProps) {
   const {
-    register,
+    control,
     formState: { errors },
     handleSubmit,
     reset,
@@ -61,55 +64,158 @@ function Form(props: FormProps) {
     reset();
   };
 
-  return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {props.typeForm !== 'login' && (
-          <div>
-            <label htmlFor="nickName">Name</label>
-            <input
-              placeholder="Enter your name"
-              type="text"
-              id="nickName"
-              {...register('nameField')}
-            />
-            <div className="error-box error-name">{errors.nameField?.message}</div>
-          </div>
-        )}
+  const [showPass, setShowPass] = useState(false);
+  const [showPassConfirm, setShowPassConfirm] = useState(false);
 
-        <div>
-          <label htmlFor="emailInput">E-mail</label>
-          <input placeholder="Enter e-mail..." id="emailInput" {...register('email')} />
-          <div className="error-box error-email">{errors.email?.message}</div>
-        </div>
-        <div>
-          <label htmlFor="passwordInput">Password</label>
-          <input
-            placeholder="Enter password..."
-            type="password"
-            id="passwordInput"
-            {...register('password')}
-          />
-          <div className="error-box error-password">{errors.password?.message}</div>
-        </div>
-        {props.typeForm !== 'login' && (
-          <div>
-            <label htmlFor="passwordConfirm">Confirm Password</label>
-            <input
-              id="passwordConfirm"
-              type="password"
-              placeholder="Confirm password..."
-              {...register('passwordConfirm')}
+  return (
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      xs={12}
+      sx={{
+        m: '1%',
+        width: '50%',
+        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px',
+        p: '1%',
+        borderRadius: '10px',
+      }}
+    >
+      <Grid
+        container
+        direction="column"
+        item
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          padding: '10px',
+        }}
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className="form_container">
+          {props.typeForm !== 'login' && (
+            <Grid item xs={12} sx={{ padding: '5px 0', width: '100%' }}>
+              <Controller
+                name="nameField"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Nick name"
+                    variant="outlined"
+                    error={!!errors.nameField}
+                    helperText={errors.nameField ? errors.nameField.message : ''}
+                  />
+                )}
+              />
+            </Grid>
+          )}
+          <Grid item xs={12} sx={{ padding: '5px 0', width: '100%' }}>
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="E-mail"
+                  variant="outlined"
+                  error={!!errors.email}
+                  helperText={errors.email ? errors.email.message : ''}
+                />
+              )}
             />
-            <div className="error-box error-confirm">{errors.passwordConfirm?.message}</div>
-          </div>
-        )}
-        <button type="submit">{props.typeForm !== 'login' ? 'Create User' : 'Log In'} </button>
-      </form>
-      <button type="button" onClick={signInWithGoogle}>
-        {props.typeForm === 'login' ? 'LogIn with Google' : 'Create with Google'}
-      </button>
-    </>
+          </Grid>
+          <Grid item xs={12} sx={{ padding: '5px 0' }}>
+            <Controller
+              name="password"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Password"
+                  type={showPass ? 'text' : 'password'}
+                  variant="outlined"
+                  error={!!errors.password}
+                  helperText={errors.password ? errors.password.message : ''}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={() => setShowPass(!showPass)}>
+                          {showPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              )}
+            />
+          </Grid>
+
+          {props.typeForm !== 'login' && (
+            <Grid item xs={12} sx={{ padding: '5px 0' }}>
+              <Controller
+                name="passwordConfirm"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Confirm Password"
+                    type={showPassConfirm ? 'text' : 'password'}
+                    variant="outlined"
+                    error={!!errors.passwordConfirm}
+                    helperText={errors.passwordConfirm ? errors.passwordConfirm.message : ''}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={() => setShowPassConfirm(!showPassConfirm)}>
+                            {showPassConfirm ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                )}
+              />
+            </Grid>
+          )}
+          <Grid item xs={10} sx={{ padding: '5px 0', justifyContent: 'center', m: 'auto' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{
+                borderRadius: 10,
+              }}
+            >
+              {props.typeForm !== 'login' ? 'Create User' : 'Log In'}{' '}
+            </Button>
+          </Grid>
+        </form>
+      </Grid>
+      <Grid item xs={8} sx={{ p: '3px', m: 'auto' }}>
+        <span>OR</span>
+      </Grid>
+      <Grid item xs={10} sx={{ margin: '5px auto' }}>
+        <Button
+          type="button"
+          variant="contained"
+          onClick={signInWithGoogle}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#21b6ae',
+            padding: '5px 10px',
+            fontSize: '1rem',
+          }}
+        >
+          {props.typeForm === 'login' ? 'LogIn with Google' : 'Create with Google'}
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
 
