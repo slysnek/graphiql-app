@@ -12,7 +12,7 @@ function Home() {
   useEffect(() => {
     if (!user) dispatch(exitUser());
   }, [user]);
-  const isUserLogged = useAppSelector((state) => state.userAuth.isLogged);
+  const isUserLogged = useAppSelector((state) => state.userAuth.email);
 
   if (isUserLogged) {
     return <div>This is a home page</div>;

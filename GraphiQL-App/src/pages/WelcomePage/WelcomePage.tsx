@@ -1,4 +1,4 @@
-import { Navigate, NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import { useEffect } from 'react';
@@ -7,15 +7,22 @@ import { exitUser } from '../../store/slices/userSlice';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
   useEffect(() => {
     if (!user) dispatch(exitUser());
+    // navigate('/login', { replace: true });
   }, [user]);
-  const isUserLogged = useAppSelector((state) => state.userAuth.isLogged);
+
+  const isUserLogged = useAppSelector((state) => {
+    return state.userAuth.email;
+  });
 
   if (isUserLogged) {
-    const userName = useAppSelector((state) => state.userAuth.name);
+    const userName = useAppSelector((state) => {
+      return state.userAuth.name;
+    });
     console.log(userName);
     return (
       <div>

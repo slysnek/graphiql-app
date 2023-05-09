@@ -5,7 +5,6 @@ export interface UserState {
   token: string;
   id: string;
   name: string;
-  isLogged: boolean;
 }
 
 const initialState = {
@@ -13,7 +12,6 @@ const initialState = {
   token: '',
   id: '',
   name: '',
-  isLogged: false,
 } as UserState;
 
 const userSlice = createSlice({
@@ -26,7 +24,6 @@ const userSlice = createSlice({
         email: action.payload.email,
         token: action.payload.token,
         id: action.payload.id,
-        isLogged: action.payload.isLogged,
       };
     },
     setName: (state, action: PayloadAction<UserState>) => {

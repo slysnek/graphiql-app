@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useAppDispatch } from '../../store/hooksRedux';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
 import { auth, logInWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -23,8 +23,16 @@ function LogIn() {
     if (user) {
       setIsLoading(false);
       setIsError(false);
-      <Navigate to="/welcome" replace />;
-
+      dispatch(
+        setUser({
+          email: user && user.email ? user.email : '',
+          token: user ? user.refreshToken : '',
+          id: user ? user.uid : '',
+          name: '',
+        })
+      );
+      setUserName;
+      navigate('/welcome', { replace: true });
       return;
     }
     if (!user) {
@@ -43,7 +51,6 @@ function LogIn() {
             email: user.email,
             token: user.refreshToken,
             id: user.uid,
-            isLogged: true,
             name: '',
           })
         );
@@ -55,7 +62,6 @@ function LogIn() {
       console.log('error with login from login component');
     }
   };
-
   return (
     <div>
       <h2>Log In form</h2>

@@ -22,6 +22,16 @@ function SignUp() {
     if (user) {
       setIsLoading(false);
       setIsError(false);
+      dispatch(
+        setUser({
+          email: user && user.email ? user.email : '',
+          token: user ? user.refreshToken : '',
+          id: user ? user.uid : '',
+          name: '',
+        })
+      );
+      setUserName;
+      navigate('/welcome', { replace: true });
 
       return;
     }
@@ -37,7 +47,6 @@ function SignUp() {
             token: user.refreshToken,
             id: user.uid,
             name: '',
-            isLogged: true,
           })
         );
         setUserName;
