@@ -103,6 +103,7 @@ function Form(props: FormProps) {
                   <TextField
                     {...field}
                     label="Nick name"
+                    fullWidth
                     variant="outlined"
                     error={!!errors.nameField}
                     helperText={errors.nameField ? errors.nameField.message : ''}
@@ -120,6 +121,7 @@ function Form(props: FormProps) {
                 <TextField
                   {...field}
                   label="E-mail"
+                  fullWidth
                   variant="outlined"
                   error={!!errors.email}
                   helperText={errors.email ? errors.email.message : ''}
@@ -136,6 +138,7 @@ function Form(props: FormProps) {
                 <TextField
                   {...field}
                   label="Password"
+                  fullWidth
                   type={showPass ? 'text' : 'password'}
                   variant="outlined"
                   error={!!errors.password}
@@ -164,6 +167,7 @@ function Form(props: FormProps) {
                   <TextField
                     {...field}
                     label="Confirm Password"
+                    fullWidth
                     type={showPassConfirm ? 'text' : 'password'}
                     variant="outlined"
                     error={!!errors.passwordConfirm}
@@ -196,17 +200,19 @@ function Form(props: FormProps) {
           </Grid>
         </form>
       </Grid>
-      <Grid item xs={8} sx={{ p: '3px', m: 'auto' }}>
+      <Grid item xs={8} sx={{ p: '3px', m: 'auto', color: 'steelblue' }}>
         <span>OR</span>
       </Grid>
-      <Grid item xs={10} sx={{ margin: '5px auto' }}>
+      <Grid item xs={10}>
         <Button
           type="button"
           variant="contained"
           onClick={signInWithGoogle}
-          style={{
-            borderRadius: 10,
-            backgroundColor: '#21b6ae',
+          sx={{
+            margin: '5px auto',
+            borderRadius: '10px',
+            backgroundColor: 'steelblue',
+            border: '1px solid #8E8C7F',
             padding: '5px 10px',
             fontSize: '1rem',
           }}

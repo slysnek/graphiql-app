@@ -5,23 +5,24 @@ import { setUser } from '../../store/slices/userSlice';
 import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Form from '../Form/Form';
-import Grid from '@mui/material/Grid/Grid';
+import { Grid, Typography } from '@mui/material';
 
 function SignUp() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    if (loading) {
-      setIsLoading(true);
+    if (!loading) {
+      setIsLoading(false);
+      setErrorMessage('');
       return;
     }
     if (user) {
       setIsLoading(false);
-      setIsError(false);
+      setErrorMessage('');
       dispatch(
         setUser({
           email: user && user.email ? user.email : '',
@@ -38,6 +39,7 @@ function SignUp() {
 
   const handleSignUp = async (email: string, password: string, name: string) => {
     try {
+      setIsLoading(true);
       const data = await registerWithEmailAndPassword(email, password, name);
       if (!(data instanceof Error) && user && user.email) {
         dispatch(
@@ -48,19 +50,29 @@ function SignUp() {
             name: '',
           })
         );
+        setIsLoading(false);
+        setErrorMessage('');
         navigate('/welcome', { replace: true });
       }
     } catch (e) {
-      setIsError(true);
-      if (e instanceof Error) console.log(e.message);
-      console.log('error with login from login component');
+      setIsLoading(false);
+      if (e instanceof Error) {
+        console.log(e.message);
+        setErrorMessage(e.message);
+      }
+      {
+        setErrorMessage('Failed login. Please check input data.');
+        console.log('error with login from login component');
+      }
     }
   };
 
   return (
     <Grid container item xs={12} direction="column" justifyContent="center" alignItems="center">
       <Grid item>
-        <h2>Sign Up Form</h2>
+        <Typography variant="h5" component="h2" color="steelblue">
+          Sign Up Form
+        </Typography>
       </Grid>
       {isLoading && (
         <Grid item>
@@ -68,9 +80,9 @@ function SignUp() {
         </Grid>
       )}
       <Form typeForm="signUp" onclickLogIn={handleSignUp} />
-      {isError && (
+      {error && (
         <Grid item>
-          <p>Error in Sign Up...{`${error}`}</p>
+          <p>Error in Sign Up...{errorMessage}</p>
         </Grid>
       )}
     </Grid>
