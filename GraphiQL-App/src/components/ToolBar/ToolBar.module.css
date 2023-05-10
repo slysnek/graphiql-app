@@ -1,5 +1,5 @@
 :root {
-	--card-background-color: rgb(241, 242, 244);
+	--card-background-color: rgb(255, 255, 255);
 }
 
 *,
@@ -16,7 +16,7 @@
 
 .card {
 	height: 100%;
-	padding: 1.5rem;
+	padding: 1.0rem;
 }
 
 .svg {
