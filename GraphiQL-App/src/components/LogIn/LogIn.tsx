@@ -7,7 +7,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Box } from '@mui/material';
 
 import Form from '../Form/Form';
-import setUserName from '../../helpers/setUserName';
 
 function LogIn() {
   const dispatch = useAppDispatch();
@@ -32,7 +31,6 @@ function LogIn() {
           name: '',
         })
       );
-      setUserName;
       navigate('/welcome', { replace: true });
       return;
     }
@@ -55,7 +53,6 @@ function LogIn() {
             name: '',
           })
         );
-        setUserName;
         navigate('/welcome', { replace: true });
       }
       console.log('data logIn', data);

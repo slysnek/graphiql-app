@@ -49,7 +49,6 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     const data = await signInWithEmailAndPassword(auth, email, password);
-    console.log('data firebase.ts', data);
     return data;
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);
@@ -67,7 +66,6 @@ const registerWithEmailAndPassword = async (email: string, password: string, nam
       authProvider: 'local',
       email,
     });
-    // console.log(user.accessToken);
     return user;
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);

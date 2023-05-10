@@ -1,40 +1,66 @@
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase';
+import { db, auth } from '../../firebase';
+import { query, collection, getDocs, where } from 'firebase/firestore';
+
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-import { exitUser } from '../../store/slices/userSlice';
+import { exitUser, setName, UserState } from '../../store/slices/userSlice';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
   const [user] = useAuthState(auth);
+  const initialData = useAppSelector((state) => state.userAuth);
 
   useEffect(() => {
     if (!user) dispatch(exitUser());
-    // navigate('/login', { replace: true });
+    setUserName(initialData);
   }, [user]);
 
-  const isUserLogged = useAppSelector((state) => {
-    return state.userAuth.email;
+  async function setUserName(info: UserState) {
+    try {
+      const q = query(collection(db, 'users'), where('uid', '==', user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+      dispatch(
+        setName({
+          ...info,
+          name: data.name,
+        })
+      );
+    } catch (err) {
+      dispatch(
+        setName({
+          ...info,
+          name: '',
+        })
+      );
+    }
+  }
+
+  const userName = useAppSelector((state) => {
+    return state.userAuth.name;
   });
 
-  if (isUserLogged) {
-    const userName = useAppSelector((state) => {
-      return state.userAuth.name;
-    });
-    console.log(userName);
-    return (
-      <div>
-        <p>Hello from welcomePage {userName}</p>
-        <p>Here will be some info about authors</p>
-        <button type="button">
-          <NavLink to="/home">Start QL</NavLink>
-        </button>
-      </div>
-    );
-  }
-  return <Navigate to="/login" replace />;
+  return (
+    <div>
+      <h3>
+        Hello from welcomePage {userName ? <span>{userName}</span> : <span>Unregister user</span>}
+      </h3>
+      <p>Here will be some info about authors</p>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vero exercitationem
+        nulla molestiae quis excepturi. Nam est blanditiis ipsa iusto rem ipsum voluptatem magnam
+        eveniet consectetur aliquid beatae, autem similique.
+      </p>
+
+      <button type="button">
+        <NavLink to="/home">Start QL</NavLink>
+      </button>
+      {/* button Home only for test - delete after end creating welcome page */}
+    </div>
+  );
 }
 
 export default WelcomePage;

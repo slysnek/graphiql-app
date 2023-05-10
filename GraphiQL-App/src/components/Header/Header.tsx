@@ -8,37 +8,41 @@ export default function Header() {
   const isUserLogged = useAppSelector((state) => {
     return state.userAuth.email;
   });
+  const handleExitByClick = () => {
+    dispatch(exitUser());
+    logout();
+  };
 
-  if (isUserLogged) {
-    return (
-      <header className="header">
-        <nav>
-          <ul>
+  return (
+    <header className="header">
+      <nav>
+        <ul>
+          <li>
+            {/*home and welcome - only for test - delete after creating sticky header*/}
+            <NavLink to="/home">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/welcome">Welcome</NavLink>
+          </li>
+          {!isUserLogged && (
             <li>
-              <NavLink to="/home">Home</NavLink>
+              <NavLink to="/login">Sign In</NavLink>
             </li>
+          )}
+          {!isUserLogged && (
             <li>
-              <NavLink to="/welcome">Welcome</NavLink>
+              <NavLink to="/register">Sign Up</NavLink>
             </li>
+          )}
+          {isUserLogged && (
             <li>
-              <NavLink to="/login">LogIn</NavLink>
+              <button type="button" onClick={handleExitByClick}>
+                Exit
+              </button>
             </li>
-            <li>
-              <NavLink to="/register">SignUp</NavLink>
-            </li>
-          </ul>
-        </nav>
-        <button
-          type="button"
-          onClick={() => {
-            dispatch(exitUser());
-            logout();
-          }}
-        >
-          Exit
-        </button>
-      </header>
-    );
-  }
-  return <div>Header without sign-out button with links to log-in/signUp</div>;
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
 }

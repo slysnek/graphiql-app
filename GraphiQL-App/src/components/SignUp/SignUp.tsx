@@ -5,7 +5,6 @@ import { setUser } from '../../store/slices/userSlice';
 import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Form from '../Form/Form';
-import setUserName from '../../helpers/setUserName';
 import Grid from '@mui/material/Grid/Grid';
 
 function SignUp() {
@@ -31,7 +30,6 @@ function SignUp() {
           name: '',
         })
       );
-      setUserName;
       navigate('/welcome', { replace: true });
 
       return;
@@ -50,7 +48,6 @@ function SignUp() {
             name: '',
           })
         );
-        setUserName;
         navigate('/welcome', { replace: true });
       }
     } catch (e) {

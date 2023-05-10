@@ -6,7 +6,6 @@ function SignUpPage() {
   return (
     <Grid
       container
-      xs={12}
       sx={{
         display: 'flex',
         alignItems: 'center',

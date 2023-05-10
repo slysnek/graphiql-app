@@ -72,7 +72,6 @@ function Form(props: FormProps) {
       container
       direction="column"
       justifyContent="center"
-      xs={12}
       sx={{
         m: '1%',
         width: '50%',
