@@ -1,24 +1,22 @@
+import { useState } from 'react';
+
 import styles from './Operation.module.css';
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import CMEditor from '../CMEditor/CMEditor';
 
-export const Operation = () => (
-  <div className={styles.container}>
-    <div className={styles.card}>
-      <h3>Operation</h3>
-      <Button variant="contained" startIcon={<PlayArrowIcon />}>
-        Query
-      </Button>
-      <svg
-        className={styles.svg}
-        preserveAspectRatio="none"
-        stroke="currentColor"
-        fill="none"
-        viewBox="0 0 200 200"
-        aria-hidden="true"
-      >
-        <path vectorEffect="non-scaling-stroke" strokeWidth="2" d="M0 0l200 200M0 200L200 0"></path>
-      </svg>
+export function Operation() {
+  const [code, setCode] = useState('console.log');
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <span>Operation</span>
+        <Button variant="contained" startIcon={<PlayArrowIcon />}>
+          Query
+        </Button>
+        <CMEditor />
+      </div>
     </div>
-  </div>
-);
+  );
+}

@@ -13,6 +13,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@codemirror/state": "^6.2.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^4.5.8",
@@ -20,6 +21,8 @@
     "@mui/material": "^5.12.3",
     "@reduxjs/toolkit": "^1.9.5",
     "allotment": "^1.19.0",
+    "cm6-graphql": "^0.0.6",
+    "codemirror": "^6.0.1",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "localforage": "^1.10.0",
