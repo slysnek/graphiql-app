@@ -10,7 +10,7 @@ import styles from './ToolBar.module.css';
 export const ToolBar = () => {
   const dispatch = useAppDispatch();
   const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
-  let tooltipTitle = docPanVisible ? 'Hide documentation explorer' : 'Show documentation explorer';
+  const tooltipTitle = docPanVisible ? 'Hide documentation explorer' : 'Show documentation explorer';
 
   return (
     <div className={styles.container}>
