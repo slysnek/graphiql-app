@@ -1,7 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import docPaneStateSlice from './slices/docPaneStateSlice';
+
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    docPaneState: docPaneStateSlice,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
