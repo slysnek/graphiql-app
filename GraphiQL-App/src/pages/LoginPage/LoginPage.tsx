@@ -5,7 +5,7 @@ import LogIn from '../../components/LogIn/LogIn';
 
 function LoginPage() {
   return (
-    <Container component="main" maxWidth="xl">
+    <Container component="main" maxWidth="xl" className="margin-sticky">
       <Box
         sx={{
           display: 'flex',

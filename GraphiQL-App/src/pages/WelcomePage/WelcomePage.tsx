@@ -44,7 +44,7 @@ function WelcomePage() {
   });
 
   return (
-    <div>
+    <div className="margin-sticky" style={{ minHeight: '300px' }}>
       <h3>
         Hello from welcomePage {userName ? <span>{userName}</span> : <span>Unregister user</span>}
       </h3>

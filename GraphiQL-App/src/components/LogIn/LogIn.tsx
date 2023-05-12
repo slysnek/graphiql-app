@@ -85,7 +85,7 @@ function LogIn() {
         </Box>
       )}
       <Form typeForm="login" onclickSubmit={handleLogin} />
-      {error && (
+      {errorMessage && (
         <Box className="error-box">
           <p>Error at LogIn Page...{errorMessage}</p>
         </Box>

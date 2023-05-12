@@ -1,0 +1,45 @@
+.header {
+  background: rgba(63, 174, 196, 0.4);
+  height: 60px;
+  transition: all easy 0.3s;
+  border-radius: 5px;
+}
+
+.header-logo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin: 5px;
+}
+
+.header-logo__box {
+  transition: all ease-in 0.3s;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.header-logo__box:hover,
+.header-logo__box:target {
+  cursor: pointer;
+  transform: scale(1.02);
+  box-shadow: 0px 3px 29px -5px rgba(238, 133, 73, 0.9);
+}
+
+.header .isSticky {
+  position: fixed;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+  background: rgba(63, 174, 196, 1);
+  height: 50px;
+  padding: 8px 0;
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

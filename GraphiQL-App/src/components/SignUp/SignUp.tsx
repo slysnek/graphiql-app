@@ -61,8 +61,8 @@ function SignUp() {
         setErrorMessage(e.message);
       }
       {
-        setErrorMessage('Failed login. Please check input data.');
-        console.log('error with login from login component');
+        setErrorMessage('Failed sign Up. Please check input data.');
+        console.log('error with sign up from signUp component');
       }
     }
   };
@@ -80,7 +80,7 @@ function SignUp() {
         </Grid>
       )}
       <Form typeForm="signUp" onclickLogIn={handleSignUp} />
-      {error && (
+      {errorMessage && (
         <Grid item>
           <p>Error in Sign Up...{errorMessage}</p>
         </Grid>

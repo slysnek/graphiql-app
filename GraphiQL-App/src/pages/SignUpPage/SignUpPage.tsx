@@ -5,14 +5,17 @@ import Grid from '@mui/material/Grid/Grid';
 function SignUpPage() {
   return (
     <Grid
-      container
       sx={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 'auto',
+        mt: '80px',
         textAlign: 'center',
       }}
+      component="main"
+      className="margin-sticky"
+      container
     >
       <SignUp />
       <Grid item xs={12} sx={{ fontWeight: '500', fontSize: '1.2rem' }}>

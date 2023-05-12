@@ -15,7 +15,8 @@ function Home() {
   const isUserLogged = useAppSelector((state) => state.userAuth.email);
 
   if (isUserLogged) {
-    return <div>This is a home page</div>;
+    return <div className="margin-sticky">This is a home page</div>;
+    // className margin-sticky is required for sticky header - write it for parent element at Home
   }
   return <Navigate to="/login" replace />;
 }
