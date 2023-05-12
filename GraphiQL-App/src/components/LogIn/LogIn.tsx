@@ -42,13 +42,14 @@ function LogIn() {
   const handleLogin = async (email: string, password: string) => {
     try {
       setIsLoading(true);
+      console.log(user, error, loading);
       const data = await logInWithEmailAndPassword(email, password);
-      if (!(data instanceof Error) && user && user.email) {
+      if (data && data.user && data.user.email) {
         dispatch(
           setUser({
-            email: user.email,
-            token: user.refreshToken,
-            id: user.uid,
+            email: data.user.email,
+            token: data.user.refreshToken,
+            id: data.user.uid,
             name: '',
           })
         );
@@ -58,7 +59,7 @@ function LogIn() {
       console.log('data logIn', data);
     } catch (e) {
       setIsLoading(false);
-      console.log('error with login from login component');
+      if (e instanceof Error) console.log('error with login from login component', e.message);
       setErrormessage('Failed LogIn. Please, correct your input data!');
     }
   };

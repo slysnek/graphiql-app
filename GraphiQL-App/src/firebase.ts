@@ -42,7 +42,6 @@ const signInWithGoogle = async () => {
     }
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);
-    return { errorFB: 'unexpected Error signIn with Google' };
   }
 };
 
@@ -52,7 +51,6 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
     return data;
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);
-    return { errorFB: 'unexpected Error logIn email and password' };
   }
 };
 
@@ -69,7 +67,6 @@ const registerWithEmailAndPassword = async (email: string, password: string, nam
     return user;
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);
-    return { errorFB: 'unexpected Error register with email and password' };
   }
 };
 

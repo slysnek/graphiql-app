@@ -41,12 +41,12 @@ function SignUp() {
     try {
       setIsLoading(true);
       const data = await registerWithEmailAndPassword(email, password, name);
-      if (!(data instanceof Error) && user && user.email) {
+      if (data && data.email) {
         dispatch(
           setUser({
-            email: user.email,
-            token: user.refreshToken,
-            id: user.uid,
+            email: data.email,
+            token: data.refreshToken,
+            id: data.uid,
             name: '',
           })
         );
