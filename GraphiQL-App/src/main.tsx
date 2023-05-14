@@ -4,11 +4,15 @@ import './index.css';
 import { WrappedApp } from './app/App';
 import { store } from './store/reduxStore';
 import { Provider } from 'react-redux';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { client } from './services/graphqlClient';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <WrappedApp />
+      <ApolloProvider client={client}>
+        <WrappedApp />
+      </ApolloProvider>
     </Provider>
   </React.StrictMode>
 );
