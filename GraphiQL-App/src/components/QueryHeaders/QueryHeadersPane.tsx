@@ -1,9 +1,9 @@
-import styles from './OperationBottomPane.module.css';
+import styles from './QueryHeadersPane.module.css';
 
-export const OperationBottomPane = () => (
+export const QueryHeadersPane = () => (
   <div className={styles.container}>
     <div className={styles.card}>
-      <h3>Variables/Headers</h3>
+      <h3>Headers</h3>
       <svg
         className={styles.svg}
         preserveAspectRatio="none"

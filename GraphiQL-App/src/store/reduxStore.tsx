@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import docPaneStateSlice from './slices/docPaneStateSlice';
+import queryPanelStateSlice from './slices/queryPanelStateSlice';
 
 export const store = configureStore({
   reducer: {
     docPaneState: docPaneStateSlice,
+    queryPanelState: queryPanelStateSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

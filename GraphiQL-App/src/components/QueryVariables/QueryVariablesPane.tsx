@@ -1,9 +1,9 @@
-import styles from './Response.module.css';
+import styles from './QueryVariablesPane.module.css';
 
-export const Response = () => (
+export const QueryVariablesPane = () => (
   <div className={styles.container}>
     <div className={styles.card}>
-      <h3>Response</h3>
+      <h3>Variables</h3>
       <svg
         className={styles.svg}
         preserveAspectRatio="none"
