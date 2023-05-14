@@ -17,8 +17,8 @@ export function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<SignUpPage />} />
           <Route path="welcome" element={<WelcomePage />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
