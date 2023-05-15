@@ -67,7 +67,6 @@ const registerWithEmailAndPassword = async (email: string, password: string, nam
     return user;
   } catch (err) {
     if (err instanceof Error) {
-      console.log(err.message);
       throw new Error(
         err.message
           .replace(/Firebase:/, '')

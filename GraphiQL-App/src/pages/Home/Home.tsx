@@ -24,8 +24,6 @@ function Home() {
         name: '',
       })
     );
-    console.log('data-', data);
-    console.log('user-', user);
   }, [user]);
 
   return <div className="margin-sticky">This is a home page</div>;
