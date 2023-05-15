@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { db, auth } from '../../firebase';
+import { db, auth } from '../../helpers/firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
 
 import { useEffect } from 'react';

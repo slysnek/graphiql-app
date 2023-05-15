@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { exitUser } from '../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-import { logout } from '../../firebase';
+import { logout } from '../../helpers/firebase';
 import { AppBar, Typography, Toolbar, SvgIcon, Container, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';

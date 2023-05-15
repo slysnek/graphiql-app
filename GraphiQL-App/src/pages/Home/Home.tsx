@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../helpers/firebase';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser } from '../../store/slices/userSlice';
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooksRedux';
 import { setUser } from '../../store/slices/userSlice';
-import { auth, registerWithEmailAndPassword } from '../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../helpers/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Form from '../Form/Form';
 import { Grid, Typography } from '@mui/material';

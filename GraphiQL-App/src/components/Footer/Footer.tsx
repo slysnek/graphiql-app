@@ -42,7 +42,7 @@ function Footer() {
                 target="_blank"
                 startIcon={<GitHubIcon color="secondary" />}
               >
-                <span className="non_visible">Slyshek</span>
+                <span className="non_visible">Slysnek</span>
               </Button>
               <Button
                 href="https://github.com/skuzema"
@@ -72,12 +72,12 @@ function Footer() {
                 CopyRight &#169;
               </Typography>
               <Typography color="white" variant="subtitle1">
-                {`${new Date().getFullYear()}`}
+                2023
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={4} sx={{ textAlign: 'center' }}>
-            <Button href="https://rs.school/react/">
+            <Button href="https://rs.school/react/" sx={{ pt: 0, pb: 0 }}>
               <img src={RSLogo} alt="React Course" className="footer_logo" />
             </Button>
           </Grid>
@@ -88,6 +88,3 @@ function Footer() {
 }
 
 export default Footer;
-
-/*Footer should contain a link to the authors' github, the year the application was created, course logo with link to the course.
-Footer is displayed on all pages of the application. */

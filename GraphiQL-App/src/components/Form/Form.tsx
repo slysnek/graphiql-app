@@ -1,43 +1,13 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { signInWithGoogle } from '../../firebase';
+import { signInWithGoogle } from '../../helpers/firebase';
 import { InputAdornment, TextField, IconButton, Button, Grid } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-interface FormProps {
-  typeForm: string;
-  onclickSubmit?: (email: string, password: string) => Promise<void>;
-  onclickLogIn?: (email: string, password: string, name: string) => Promise<void>;
-}
-
-const schemaValidation = yup.object({
-  nameField: yup.string().required('Name is required').min(4, 'at least 4 letters'),
-  email: yup.string().required('Email is required').email('Email is not valid'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(8, 'at least 8 letters')
-    .matches(/^(?=.*[A-Z]).+$/, 'at least one capital letter')
-    .matches(/^(?=.*\d).+$/, 'at least one digit')
-    .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'at least one special character'),
-  passwordConfirm: yup.string().oneOf([yup.ref('password')], "passwords don't matches"),
-});
-
-const schemaValidationLogIn = yup.object({
-  email: yup.string().required('Email is required').email('Email is not valid'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(8, 'at least 8 letters')
-    .matches(/^(?=.*[A-Z]).+$/, 'at least one capital letter')
-    .matches(/^(?=.*\d).+$/, 'at least one digit')
-    .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'at least one special character'),
-});
-
-type FormDataSignUp = yup.InferType<typeof schemaValidation>;
+import { FormProps, FormDataSignUp } from '../../types/interfaces';
+import { schemaValidation, schemaValidationLogIn } from '../../helpers/schemaValidate';
 
 function Form(props: FormProps) {
   const {
