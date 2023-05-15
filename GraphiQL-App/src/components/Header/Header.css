@@ -1,8 +1,10 @@
 .header {
   background: rgba(63, 174, 196, 0.4);
   height: 60px;
-  transition: all easy 0.3s;
+  min-height: 50px;
+  transition: all easy 1s;
   border-radius: 5px;
+  background-color: rgba(63, 174, 196, 0.5);
 }
 
 .header-logo {
@@ -26,20 +28,20 @@
 }
 
 .header .isSticky {
-  position: fixed;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
   background: rgba(63, 174, 196, 1);
-  height: 50px;
+  height: 60px;
   padding: 8px 0;
   backdrop-filter: blur(10px);
-  animation: slideDown 1s ease-out;
+  transition: background-color ease-in 1s;
+  /* animation: slideDown 1s ease-out; */
 }
 
-@keyframes slideDown {
+/* @keyframes slideDown {
   from {
     transform: translateY(-100%);
   }
   to {
     transform: translateY(0);
   }
-}
+} */

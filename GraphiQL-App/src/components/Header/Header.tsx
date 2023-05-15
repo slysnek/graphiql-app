@@ -2,13 +2,20 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { exitUser } from '../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-import { logout } from '../../helpers/firebase';
+import { auth, logout } from '../../helpers/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 import { AppBar, Typography, Toolbar, Container, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(false);
+  const [user] = useAuthState(auth);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +25,12 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   });
 
-  const navigate = useNavigate();
-
-  const dispatch = useAppDispatch();
-
-  const isUserLogged = useAppSelector((state) => {
-    return state.userAuth.email;
-  });
+  useEffect(() => {
+    if (user) {
+      setIsUserLogged(true);
+    }
+    setIsUserLogged(false);
+  }, [user]);
 
   const handleExitByClick = () => {
     dispatch(exitUser());
@@ -32,24 +38,7 @@ export default function Header() {
   };
 
   return (
-    <AppBar
-      position={sticky ? 'fixed' : 'static'}
-      className={sticky ? 'header' : 'header isSticky'}
-      sx={
-        sticky
-          ? {
-              minHeight: '50px',
-              backgroundColor: `rgba(63, 174, 196, 1)`,
-              alignItems: 'center',
-              transition: 'all easy 1s',
-            }
-          : {
-              minHeight: '50px',
-              backgroundColor: `rgba(63, 174, 196, 0.5)`,
-              transition: 'all easy 1s',
-            }
-      }
-    >
+    <AppBar position="fixed" className={sticky ? 'header' : 'header isSticky'}>
       <Container fixed>
         <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box
