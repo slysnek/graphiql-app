@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { exitUser } from '../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { logout } from '../../helpers/firebase';
-import { AppBar, Typography, Toolbar, SvgIcon, Container, Box, Button } from '@mui/material';
+import { AppBar, Typography, Toolbar, Container, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
 
@@ -69,7 +69,6 @@ export default function Header() {
             </Typography>
           </Box>
           <Box>
-            {/*home and welcome - only for test - delete after creating sticky header*/}
             <Button
               color="secondary"
               onClick={() => {
