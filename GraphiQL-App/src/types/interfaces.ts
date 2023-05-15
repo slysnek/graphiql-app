@@ -8,3 +8,7 @@ export interface FormProps {
   onclickSubmit?: (email: string, password: string) => Promise<void>;
   onclickLogIn?: (email: string, password: string, name: string) => Promise<void>;
 }
+
+export interface DocPaneState {
+  visible: boolean;
+}
