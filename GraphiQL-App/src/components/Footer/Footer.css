@@ -1,0 +1,29 @@
+.footer_logo {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  border-radius: 10px;
+  transition: all ease 0.3s;
+}
+.footer_logo:hover,
+.footer_logo:focus,
+.footer_logo:target {
+  cursor: pointer;
+  transform: scale(1.03);
+  box-shadow: 0px 0px 20px 0px rgba(217, 128, 210, 0.76);
+}
+
+.GH_link {
+  padding: 0 5px;
+  border-radius: 10px;
+  transition: all ease 0.3s;
+}
+
+.GH_link:hover,
+.GH_link:target,
+.GH_link:focus {
+  cursor: pointer;
+  transform: scale(1.03);
+  box-shadow: 0px 0px 20px 0px rgba(217, 128, 210, 0.76);
+}

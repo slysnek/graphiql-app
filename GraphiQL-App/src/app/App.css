@@ -1,4 +1,8 @@
-h1{
+h1 {
   background-color: lightblue;
   text-align: center;
+}
+
+.margin-sticky {
+  margin-top: 60px;
 }
