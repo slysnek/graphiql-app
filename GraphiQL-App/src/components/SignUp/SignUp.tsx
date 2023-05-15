@@ -72,8 +72,7 @@ function SignUp() {
         setErrorMessage(e.message);
       }
       {
-        const message = JSON.stringify(e).replace(/error/g, '').replace(/{/g, '').replace(/}/g, '');
-        setErrorMessage(`Failed! ${message}`);
+        setErrorMessage('Failed login');
       }
     }
   };
