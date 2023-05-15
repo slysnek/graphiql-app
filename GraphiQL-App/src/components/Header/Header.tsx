@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { exitUser } from '../../store/slices/userSlice';
+import { exitUser, setUser } from '../../store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { auth, logout } from '../../helpers/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 
 import { AppBar, Typography, Toolbar, Container, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
@@ -11,8 +11,7 @@ import './Header.css';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
-  const [isUserLogged, setIsUserLogged] = useState(false);
-  const [user] = useAuthState(auth);
+  const isUserLogged = useAppSelector((state) => state.userAuth.email);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -26,11 +25,26 @@ export default function Header() {
   });
 
   useEffect(() => {
-    if (user) {
-      setIsUserLogged(true);
-    }
-    setIsUserLogged(false);
-  }, [user]);
+    const listenLogged = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        dispatch(
+          setUser({
+            email: currentUser.email ? currentUser.email : '',
+            id: currentUser.uid,
+            name: '',
+            token: currentUser.refreshToken,
+          })
+        );
+      }
+      if (!currentUser) {
+        dispatch(exitUser());
+      }
+    });
+
+    return () => {
+      listenLogged();
+    };
+  }, []);
 
   const handleExitByClick = () => {
     dispatch(exitUser());

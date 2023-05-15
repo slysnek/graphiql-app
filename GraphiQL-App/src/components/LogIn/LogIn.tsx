@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
 import { auth, logInWithEmailAndPassword } from '../../helpers/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
+
 import { Box, Typography } from '@mui/material';
 
 import Form from '../Form/Form';
@@ -13,35 +15,44 @@ function LogIn() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [user, loading, error] = useAuthState(auth);
-  const [errorMessage, setErrormessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (!loading) {
-      setIsLoading(false);
-      return;
-    }
-    if (user) {
-      setIsLoading(false);
-      dispatch(
-        setUser({
-          email: user && user.email ? user.email : '',
-          token: user ? user.refreshToken : '',
-          id: user ? user.uid : '',
-          name: '',
-        })
-      );
-      navigate('/welcome', { replace: true });
-      return;
-    }
-    if (!user) {
-      setIsLoading(false);
+    const listenAuth = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setIsLoading(true);
+        dispatch(
+          setUser({
+            email: currentUser && currentUser.email ? currentUser.email : '',
+            token: currentUser ? currentUser.refreshToken : '',
+            id: currentUser ? currentUser.uid : '',
+            name: '',
+          })
+        );
+        setIsLoading(false);
+        navigate('/welcome', { replace: true });
+      }
       dispatch(exitUser());
+      setIsLoading(false);
+    });
+
+    return () => {
+      listenAuth();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!error) {
+      setErrorMessage('');
+      return;
     }
-  }, [loading, user]);
+    setErrorMessage(error.message);
+  }, [error]);
 
   const handleLogin = async (email: string, password: string) => {
     try {
       setIsLoading(true);
+      setErrorMessage('');
       const data = await logInWithEmailAndPassword(email, password);
       if (data && data.user && data.user.email) {
         dispatch(
@@ -57,7 +68,9 @@ function LogIn() {
       }
     } catch (e) {
       setIsLoading(false);
-      setErrormessage('Failed LogIn. Please, correct your input data!');
+      if (e instanceof Error) {
+        setErrorMessage(`Failed LogIn. ${e.message}`);
+      }
     }
   };
   return (

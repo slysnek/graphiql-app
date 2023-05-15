@@ -66,7 +66,16 @@ const registerWithEmailAndPassword = async (email: string, password: string, nam
     });
     return user;
   } catch (err) {
-    if (err instanceof Error) throw new Error(err.message);
+    if (err instanceof Error) {
+      console.log(err.message);
+      throw new Error(
+        err.message
+          .replace(/Firebase:/, '')
+          .replace(/-/gi, ' ')
+          .replace('Error', '')
+          .replace(/auth\//, '')
+      );
+    }
   }
 };
 

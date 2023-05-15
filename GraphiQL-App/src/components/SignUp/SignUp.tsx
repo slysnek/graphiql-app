@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooksRedux';
-import { setUser } from '../../store/slices/userSlice';
+import { setUser, exitUser } from '../../store/slices/userSlice';
 import { auth, registerWithEmailAndPassword } from '../../helpers/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import Form from '../Form/Form';
 import { Grid, Typography } from '@mui/material';
 
@@ -12,34 +13,45 @@ function SignUp() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [user, loading, error] = useAuthState(auth);
+  const [, , error] = useAuthState(auth);
 
   useEffect(() => {
-    if (!loading) {
+    const listenAuth = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setIsLoading(true);
+        dispatch(
+          setUser({
+            email: currentUser && currentUser.email ? currentUser.email : '',
+            token: currentUser ? currentUser.refreshToken : '',
+            id: currentUser ? currentUser.uid : '',
+            name: '',
+          })
+        );
+        setIsLoading(false);
+        navigate('/welcome', { replace: true });
+      }
+      dispatch(exitUser());
       setIsLoading(false);
       setErrorMessage('');
-      return;
-    }
-    if (user) {
-      setIsLoading(false);
-      setErrorMessage('');
-      dispatch(
-        setUser({
-          email: user && user.email ? user.email : '',
-          token: user ? user.refreshToken : '',
-          id: user ? user.uid : '',
-          name: '',
-        })
-      );
-      navigate('/welcome', { replace: true });
+    });
 
+    return () => {
+      listenAuth();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!error) {
+      setErrorMessage('');
       return;
     }
-  }, [loading, user]);
+    setErrorMessage(error.message);
+  }, [error]);
 
   const handleSignUp = async (email: string, password: string, name: string) => {
     try {
       setIsLoading(true);
+      setErrorMessage('');
       const data = await registerWithEmailAndPassword(email, password, name);
       if (data && data.email) {
         dispatch(
@@ -60,7 +72,8 @@ function SignUp() {
         setErrorMessage(e.message);
       }
       {
-        setErrorMessage('Failed sign Up. Please check input data.');
+        const message = JSON.stringify(e).replace(/error/g, '').replace(/{/g, '').replace(/}/g, '');
+        setErrorMessage(`Failed! ${message}`);
       }
     }
   };
@@ -80,7 +93,7 @@ function SignUp() {
       <Form typeForm="signUp" onclickLogIn={handleSignUp} />
       {errorMessage && (
         <Grid item>
-          <p>Error in Sign Up...{errorMessage}</p>
+          <p>{errorMessage}</p>
         </Grid>
       )}
     </Grid>
