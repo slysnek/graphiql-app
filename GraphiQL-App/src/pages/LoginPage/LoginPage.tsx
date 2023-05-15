@@ -13,12 +13,13 @@ function LoginPage() {
           alignItems: 'center',
           justifyContent: 'center',
           margin: 'auto',
+          mt: '60px',
           textAlign: 'center',
           width: '60%',
         }}
       >
         <LogIn />
-        <Box sx={{ fontWeight: '500', fontSize: '1.2rem', width: '100%' }}>
+        <Box sx={{ fontWeight: '500', fontSize: '1.2rem', width: '100%', mt: '20px' }}>
           <Typography variant="h6" component="p">
             Don't have an account? <Link to="/register">Register now</Link>
           </Typography>

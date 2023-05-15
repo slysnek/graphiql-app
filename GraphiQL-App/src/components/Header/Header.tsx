@@ -18,7 +18,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setSticky(window.scrollY > 40);
+      setSticky(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -52,70 +52,68 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="fixed" className={sticky ? 'header' : 'header isSticky'}>
-      <Container fixed>
-        <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Box
-            className="header-logo__box"
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              padding: '',
-            }}
+    <header className={sticky ? 'header isSticky' : 'header'}>
+      <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box
+          className="header-logo__box"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '',
+          }}
+          onClick={() => {
+            navigate('/', { replace: true });
+          }}
+        >
+          <img className="header-logo" src={logoImg} alt="GraphiQL Logo" />
+          <Typography variant="h6" component="h1" sx={{ backgroundColor: 'inherit' }}>
+            GraphiQL
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            color="secondary"
             onClick={() => {
-              navigate('/', { replace: true });
+              navigate('/home', { replace: true });
             }}
           >
-            <img className="header-logo" src={logoImg} alt="GraphiQL Logo" />
-            <Typography variant="h6" component="h1" sx={{ backgroundColor: 'inherit' }}>
-              GraphiQL
-            </Typography>
-          </Box>
-          <Box>
+            Home
+          </Button>
+          <Button
+            color="secondary"
+            onClick={() => {
+              navigate('/welcome', { replace: true });
+            }}
+          >
+            Welcome
+          </Button>
+          {!isUserLogged && (
             <Button
               color="secondary"
               onClick={() => {
-                navigate('/home', { replace: true });
+                navigate('/login', { replace: true });
               }}
             >
-              Home
+              Sign In
             </Button>
+          )}
+          {!isUserLogged && (
             <Button
               color="secondary"
               onClick={() => {
-                navigate('/welcome', { replace: true });
+                navigate('/register', { replace: true });
               }}
             >
-              Welcome
+              Sign Up
             </Button>
-            {!isUserLogged && (
-              <Button
-                color="secondary"
-                onClick={() => {
-                  navigate('/login', { replace: true });
-                }}
-              >
-                Sign In
-              </Button>
-            )}
-            {!isUserLogged && (
-              <Button
-                color="secondary"
-                onClick={() => {
-                  navigate('/register', { replace: true });
-                }}
-              >
-                Sign Up
-              </Button>
-            )}
-            {isUserLogged && (
-              <Button onClick={handleExitByClick} color="secondary">
-                Exit
-              </Button>
-            )}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          )}
+          {isUserLogged && (
+            <Button onClick={handleExitByClick} color="secondary">
+              Exit
+            </Button>
+          )}
+        </Box>
+      </Toolbar>
+    </header>
   );
 }

@@ -81,10 +81,10 @@ function LogIn() {
         justifyContent: 'center',
         flexDirection: 'column',
         width: '100%',
-        minHeight: '500',
+        minHeight: '400px',
       }}
     >
-      <Box sx={{ m: 'auto' }}>
+      <Box sx={{ m: 'auto', mt: '40px', mb: '2rem' }}>
         <Typography variant="h6" component="h2" color="steelblue">
           Log In form
         </Typography>

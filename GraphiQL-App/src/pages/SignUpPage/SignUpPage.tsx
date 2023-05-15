@@ -10,8 +10,9 @@ function SignUpPage() {
         alignItems: 'center',
         justifyContent: 'center',
         margin: 'auto',
-        mt: '80px',
+        mt: '60px',
         textAlign: 'center',
+        width: '60%',
       }}
       component="main"
       className="margin-sticky"

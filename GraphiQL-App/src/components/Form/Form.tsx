@@ -30,7 +30,6 @@ function Form(props: FormProps) {
     } else {
       props.onclickLogIn && props.onclickLogIn(data.email, data.password, data.nameField);
     }
-
     reset();
   };
 
@@ -161,7 +160,7 @@ function Form(props: FormProps) {
               type="submit"
               variant="contained"
               color="primary"
-              style={{
+              sx={{
                 borderRadius: 10,
               }}
             >
@@ -179,7 +178,7 @@ function Form(props: FormProps) {
           variant="contained"
           onClick={signInWithGoogle}
           sx={{
-            margin: '5px auto',
+            margin: '10px auto',
             borderRadius: '10px',
             backgroundColor: 'steelblue',
             border: '1px solid #8E8C7F',
