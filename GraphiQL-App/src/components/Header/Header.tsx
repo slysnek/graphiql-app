@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { auth, logout } from '../../helpers/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import { AppBar, Typography, Toolbar, Container, Box, Button } from '@mui/material';
+import { Typography, Toolbar, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
 
