@@ -57,12 +57,10 @@ function SignUp() {
     } catch (e) {
       setIsLoading(false);
       if (e instanceof Error) {
-        console.log(e.message);
         setErrorMessage(e.message);
       }
       {
         setErrorMessage('Failed sign Up. Please check input data.');
-        console.log('error with sign up from signUp component');
       }
     }
   };

@@ -42,7 +42,6 @@ function LogIn() {
   const handleLogin = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      console.log(user, error, loading);
       const data = await logInWithEmailAndPassword(email, password);
       if (data && data.user && data.user.email) {
         dispatch(
@@ -56,10 +55,8 @@ function LogIn() {
         setIsLoading(false);
         navigate('/welcome', { replace: true });
       }
-      console.log('data logIn', data);
     } catch (e) {
       setIsLoading(false);
-      if (e instanceof Error) console.log('error with login from login component', e.message);
       setErrormessage('Failed LogIn. Please, correct your input data!');
     }
   };
