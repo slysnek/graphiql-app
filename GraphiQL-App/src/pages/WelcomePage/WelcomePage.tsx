@@ -46,7 +46,11 @@ function WelcomePage() {
   return (
     <div className="margin-sticky" style={{ minHeight: '300px' }}>
       <h3>
-        Hello from welcomePage {userName ? <span>{userName}</span> : <span>Unregister user</span>}
+        {userName ? (
+          <span>Hello dear {userName}</span>
+        ) : (
+          <span>Please, logged In for get access to QL editor</span>
+        )}
       </h3>
       <p>Here will be some info about authors</p>
       <p>
@@ -58,7 +62,6 @@ function WelcomePage() {
       <button type="button">
         <NavLink to="/home">Start QL</NavLink>
       </button>
-      {/* button Home only for test - delete after end creating welcome page */}
     </div>
   );
 }
