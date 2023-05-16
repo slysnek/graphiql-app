@@ -4,6 +4,8 @@ import type { RootState } from '../reduxStore';
 import { QueryParameters } from '../../types/interfaces';
 
 const initialState: QueryParameters = {
+  isRequested: false,
+  isLoaded: false,
   body: '',
   variables: '',
   headers: '',

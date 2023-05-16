@@ -9,6 +9,8 @@ export interface QueryPanelState {
 }
 
 export interface QueryParameters {
+  isRequested: boolean;
+  isLoaded: boolean;
   body?: string;
   variables?: string;
   headers?: string;

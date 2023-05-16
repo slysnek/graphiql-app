@@ -24,13 +24,13 @@ export function QueryHeadersPane() {
         <h3>Headers</h3>
         <TextField
           value={queryParameters.headers}
-          label="Headers"
           id="outlined-multiline-flexible"
           multiline
           fullWidth
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             handleRequestFieldChange(event.target.value);
           }}
+          inputProps={{ style: { fontSize: 20 } }}
         />
       </div>
     </div>

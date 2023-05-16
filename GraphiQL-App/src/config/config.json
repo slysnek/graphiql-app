@@ -1,5 +1,5 @@
 {
-  "BASE_URL": "https://countries.trevorblades.com",
+  "BASE_URL": "https://swapi-graphql.netlify.app/.netlify/functions/index",
   "QUERY_PANEL_INIT_SIZE": 50,
   "QUERY_PANEL_HEIGHT": 300
 }

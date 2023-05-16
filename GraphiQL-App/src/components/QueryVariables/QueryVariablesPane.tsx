@@ -23,7 +23,6 @@ export function QueryVariablesPane() {
       <div className={styles.card}>
         <h3>Variables</h3>
         <TextField
-          label="Variables"
           value={queryParameters.variables}
           id="outlined-multiline-flexible"
           multiline
@@ -31,6 +30,7 @@ export function QueryVariablesPane() {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             handleRequestFieldChange(event.target.value);
           }}
+          inputProps={{ style: { fontSize: 20 } }}
         />
       </div>
     </div>
