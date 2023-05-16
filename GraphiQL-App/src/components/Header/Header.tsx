@@ -8,6 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { Typography, Toolbar, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
+import { useTranslation } from 'react-i18next';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
@@ -15,6 +16,7 @@ export default function Header() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +87,7 @@ export default function Header() {
               navigate('/welcome', { replace: true });
             }}
           >
-            Welcome
+            {t('main.header')}
           </Button>
           {!isUserLogged && (
             <Button
