@@ -18,5 +18,9 @@
     "author_1": "Petted dogs. ( ͡° ͜ʖ ͡° )",
     "author_2": "Petted hamsters. (´⊙ω⊙`)",
     "author_3": "Petted cats. (๑´• .̫ •ू`๑)"
+  },
+  "loginPage":{
+    "haveNoAcc": "Don't have an account?",
+    "register": "Register now!"
   }
 }
