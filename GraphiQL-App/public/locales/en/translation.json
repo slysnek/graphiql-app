@@ -15,9 +15,9 @@
     "greeting": "Hello,",
     "requestToLogIn": "Please, log in or sign up to get access to GraphQL editor.",
     "authors": "Authors:",
-    "author_1": "Petted dogs. ( ͡° ͜ʖ ͡° )",
-    "author_2": "Petted hamsters. (´⊙ω⊙`)",
-    "author_3": "Petted cats. (๑´• .̫ •ू`๑)"
+    "author_1": "( ͡° ͜ʖ ͡° )",
+    "author_2": "(´⊙ω⊙`)",
+    "author_3": "(๑´• .̫ •ू`๑)"
   },
   "loginPage":{
     "haveNoAcc": "Don't have an account?",
