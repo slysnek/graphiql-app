@@ -22,5 +22,10 @@
   "loginPage":{
     "haveNoAcc": "Don't have an account?",
     "register": "Register now!"
+  },
+  "loginForm":{
+    "header": "Log in using your credentials: ",
+    "loading": "Loading...",
+    "error": "An error has occured at Login Page. Details: "
   }
 }
