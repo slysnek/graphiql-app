@@ -58,10 +58,6 @@ export default function Header() {
   return (
     <header className={sticky ? 'header isSticky' : 'header'}>
       <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Box>
-          <Button color='primary' style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('en')) }}>EN</Button>
-          <Button color='primary' style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('ru')) }}>RU</Button>
-        </Box>
         <Box
           className="header-logo__box"
           sx={{
@@ -120,6 +116,10 @@ export default function Header() {
               {t('header.exit')}
             </Button>
           )}
+        </Box>
+        <Box>
+          <Button color='primary' style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('en')) }}>EN</Button>
+          <Button color='primary' style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('ru')) }}>RU</Button>
         </Box>
       </Toolbar>
     </header>
