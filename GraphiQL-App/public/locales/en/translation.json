@@ -40,5 +40,17 @@
     "googleCreate": "Create new account with Google",
     "login": "Log in",
     "create": "Create new account"
+  },
+  "errors":{
+    "nickname": "Nickname is required",
+    "nicknameMin": "Should be at least 4 characters",
+    "email": "Email is required",
+    "emailValid": "Email should be valid",
+    "password": "Password is required",
+    "passwordMin": "Should be at least 8 characters",
+    "passwordCap": "Should be at least 1 capitalized letter",
+    "passwordDigit": "Should be at least 1 digit",
+    "passwordChar": "Should be at least 1 special character",
+    "passwordMatch": "Passwords don't match"
   }
 }

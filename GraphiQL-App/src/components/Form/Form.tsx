@@ -77,7 +77,7 @@ function Form(props: FormProps) {
                     fullWidth
                     variant="outlined"
                     error={!!errors.nameField}
-                    helperText={errors.nameField ? errors.nameField.message : ''}
+                    helperText={errors.nameField ? t(`${errors.nameField.message}`) : ''}
                   />
                 )}
               />
@@ -95,7 +95,7 @@ function Form(props: FormProps) {
                   fullWidth
                   variant="outlined"
                   error={!!errors.email}
-                  helperText={errors.email ? errors.email.message : ''}
+                  helperText={errors.email ? t(`${errors.email.message}`) : ''}
                 />
               )}
             />
@@ -113,7 +113,7 @@ function Form(props: FormProps) {
                   type={showPass ? 'text' : 'password'}
                   variant="outlined"
                   error={!!errors.password}
-                  helperText={errors.password ? errors.password.message : ''}
+                  helperText={errors.password ? t(`${errors.password.message}`) : ''}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -142,7 +142,7 @@ function Form(props: FormProps) {
                     type={showPassConfirm ? 'text' : 'password'}
                     variant="outlined"
                     error={!!errors.passwordConfirm}
-                    helperText={errors.passwordConfirm ? errors.passwordConfirm.message : ''}
+                    helperText={errors.passwordConfirm ? t(`${errors.passwordConfirm.message}`) : ''}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">

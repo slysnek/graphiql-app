@@ -1,25 +1,27 @@
 import * as yup from 'yup';
 
+//error messages are typed like keys to i18n 
+//straight queries to i18n from this objest don't work for some reason
 export const schemaValidation = yup.object({
-  nameField: yup.string().required('Name is required').min(4, 'at least 4 letters'),
-  email: yup.string().required('Email is required').email('Email is not valid'),
+  nameField: yup.string().required('errors.nickname').min(4, 'errors.nicknameMin'),
+  email: yup.string().required('errors.email').email('errors.emailValid'),
   password: yup
     .string()
-    .required('Password is required')
-    .min(8, 'at least 8 letters')
-    .matches(/^(?=.*[A-Z]).+$/, 'at least one capital letter')
-    .matches(/^(?=.*\d).+$/, 'at least one digit')
-    .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'at least one special character'),
-  passwordConfirm: yup.string().oneOf([yup.ref('password')], "passwords don't matches"),
+    .required('errors.password')
+    .min(8, 'errors.passwordMin')
+    .matches(/^(?=.*[A-Z]).+$/, 'errors.passwordCap')
+    .matches(/^(?=.*\d).+$/, 'errors.passwordDigit')
+    .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'errors.passwordChar'),
+  passwordConfirm: yup.string().oneOf([yup.ref('password')], "errors.passwordMatch"),
 });
 
 export const schemaValidationLogIn = yup.object({
-  email: yup.string().required('Email is required').email('Email is not valid'),
+  email: yup.string().required('errors.email').email('errors.emailValid'),
   password: yup
     .string()
-    .required('Password is required')
-    .min(8, 'at least 8 letters')
-    .matches(/^(?=.*[A-Z]).+$/, 'at least one capital letter')
-    .matches(/^(?=.*\d).+$/, 'at least one digit')
-    .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'at least one special character'),
+    .required('errors.password')
+    .min(8, 'errors.passwordMin')
+    .matches(/^(?=.*[A-Z]).+$/, 'errors.passwordCap')
+    .matches(/^(?=.*\d).+$/, 'errors.passwordDigit')
+    .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'errors.passwordChar'),
 });
