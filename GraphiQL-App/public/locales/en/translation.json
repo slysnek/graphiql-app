@@ -10,5 +10,13 @@
     "gone": "There is nothing here...",
     "notFound":"Oops! The page you're looking for is not found or never existed in the first place.",
     "back": "Take me back!"
+  },
+  "welcomePage": {
+    "greeting": "Hello,",
+    "requestToLogIn": "Please, log in or sign up to get access to GraphQL editor.",
+    "authors": "Authors:",
+    "author_1": "Petted dogs. ( ͡° ͜ʖ ͡° )",
+    "author_2": "Petted hamsters. (´⊙ω⊙`)",
+    "author_3": "Petted cats. (๑´• .̫ •ू`๑)"
   }
 }
