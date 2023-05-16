@@ -1,5 +1,9 @@
 {
   "header": {
-    "welcome": "Welcome *"
+    "editor": "Editor",
+    "info": "Info",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "exit": "Exit"
   }
 }
