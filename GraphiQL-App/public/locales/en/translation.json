@@ -5,5 +5,10 @@
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "exit": "Exit"
+  },
+  "404": {
+    "gone": "There is nothing here...",
+    "notFound":"Oops! The page you're looking for is not found or never existed in the first place.",
+    "back": "Take me back!"
   }
 }
