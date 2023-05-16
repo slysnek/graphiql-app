@@ -118,8 +118,8 @@ export default function Header() {
           )}
         </Box>
         <Box>
-          <Button color='primary' style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('en')) }}>EN</Button>
-          <Button color='primary' style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('ru')) }}>RU</Button>
+          <Button color={language === 'en' ? 'secondary' : 'primary'} style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('en')) }}>EN</Button>
+          <Button color={language === 'ru' ? 'secondary' : 'primary'} style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('ru')) }}>RU</Button>
         </Box>
       </Toolbar>
     </header>
