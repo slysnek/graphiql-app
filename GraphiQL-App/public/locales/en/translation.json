@@ -2,7 +2,7 @@
   "header": {
     "editor": "Editor",
     "info": "Info",
-    "signIn": "Sign In",
+    "signIn": "Log In",
     "signUp": "Sign Up",
     "exit": "Exit"
   },
@@ -23,9 +23,22 @@
     "haveNoAcc": "Don't have an account?",
     "register": "Register now!"
   },
+  "signUpPage":{
+    "haveAnAcc": "Already have account?",
+    "login": "Log in"
+  },
   "loginForm":{
     "header": "Log in using your credentials: ",
     "loading": "Loading...",
-    "error": "An error has occured at Login Page. Details: "
+    "error": "An error has occured at Login Page. Details: ",
+    "nickname": "Create your nickname",
+    "email": "Your e-mail",
+    "password": "Password",
+    "confirmPassword": "Confirm your password",
+    "or": "or",
+    "googleLogin": "Log in via Google Account",
+    "googleCreate": "Create new account with Google",
+    "login": "Log in",
+    "create": "Create new account"
   }
 }

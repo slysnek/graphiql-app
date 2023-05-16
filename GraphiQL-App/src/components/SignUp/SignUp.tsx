@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import Form from '../Form/Form';
 import { Grid, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 function SignUp() {
   const dispatch = useAppDispatch();
@@ -14,6 +15,7 @@ function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [, , error] = useAuthState(auth);
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -81,18 +83,18 @@ function SignUp() {
     <Grid container item xs={12} direction="column" justifyContent="center" alignItems="center">
       <Grid item>
         <Typography variant="h5" component="h2" color="steelblue" sx={{ mt: '40px' }}>
-          Sign Up Form
+        {t('loginForm.create')}
         </Typography>
       </Grid>
       {isLoading && (
         <Grid item>
-          <p>Loading...</p>
+          <p>{t('loginForm.loading')}</p>
         </Grid>
       )}
       <Form typeForm="signUp" onclickLogIn={handleSignUp} />
       {errorMessage && (
         <Grid item>
-          <p>{errorMessage}</p>
+          <p>{t('loginForm.error')}{errorMessage}</p>
         </Grid>
       )}
     </Grid>
