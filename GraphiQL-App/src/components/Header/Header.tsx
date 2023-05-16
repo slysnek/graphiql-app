@@ -9,10 +9,12 @@ import { Typography, Toolbar, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
 import { useTranslation } from 'react-i18next';
+import { setLang } from '../../store/slices/langSlice';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
   const isUserLogged = useAppSelector((state) => state.userAuth.email);
+  const language = useAppSelector((state) => state.langState.language)
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -71,6 +73,10 @@ export default function Header() {
           <Typography variant="h6" component="h1" sx={{ backgroundColor: 'inherit' }}>
             GraphiQL
           </Typography>
+        </Box>
+        <Box>
+          <Button color='primary' style={ {fontWeight: language === 'EN' ? 'bold' : 'normal'}} onClick={() => {dispatch(setLang('EN'))}}>EN</Button>
+          <Button color='primary' style={ {fontWeight: language === 'RU' ? 'bold' : 'normal'}} onClick={() => {dispatch(setLang('RU'))}}>RU</Button>
         </Box>
         <Box>
           <Button
