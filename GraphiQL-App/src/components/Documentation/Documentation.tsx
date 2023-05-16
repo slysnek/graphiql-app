@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import styles from './Documentation.module.css';
 
-export const Documentation = () => (
+export const Documentation = () => {
+  const { t, i18n } = useTranslation()
+  return(
   <div className={styles.container}>
     <div className={styles.card}>
-      <h3>Documentation</h3>
+      <h3>{t('editorPage.documentation')}</h3>
       <svg
         className={styles.svg}
         preserveAspectRatio="none"
@@ -15,5 +18,6 @@ export const Documentation = () => (
         <path vectorEffect="non-scaling-stroke" strokeWidth="2" d="M0 0l200 200M0 200L200 0"></path>
       </svg>
     </div>
-  </div>
-);
+  </div>)
+;
+}

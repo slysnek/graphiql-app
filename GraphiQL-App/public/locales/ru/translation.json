@@ -52,5 +52,14 @@
     "passwordDigit": "В пароле должна быть минимум одна заглавная цифра",
     "passwordChar": "В пароле должен быть минимум один спецсимвол",
     "passwordMatch": "Пароли не совпадают"
+  },
+  "editorPage":{
+    "documentation": "Документация",
+    "variablesHeaders": "Переменные/Заголовки",
+    "response": "Ответ",
+    "showDocumentation": "Показать документацию",
+    "hideDocumentation": "Скрыть документацию",
+    "operation": "Операция",
+    "query": "Выполнить запрос"
   }
 }

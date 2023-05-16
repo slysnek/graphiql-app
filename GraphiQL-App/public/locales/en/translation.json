@@ -52,5 +52,14 @@
     "passwordDigit": "Should be at least 1 digit",
     "passwordChar": "Should be at least 1 special character",
     "passwordMatch": "Passwords don't match"
+  },
+  "editorPage":{
+    "documentation": "Documentation",
+    "variablesHeaders": "Variables/Headers",
+    "response": "Response",
+    "showDocumentation": "Show Documentation",
+    "hideDocumentation": "Hide Documentation",
+    "operation": "Operation",
+    "query": "Make a query"
   }
 }

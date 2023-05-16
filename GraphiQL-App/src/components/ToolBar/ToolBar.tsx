@@ -6,11 +6,14 @@ import { setDocPaneState } from '../../store/slices/docPaneStateSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 
 import styles from './ToolBar.module.css';
+import { useTranslation } from 'react-i18next';
 
 export const ToolBar = () => {
+
+  const { t, i18n } = useTranslation()
   const dispatch = useAppDispatch();
   const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
-  const tooltipTitle = docPanVisible ? 'Hide documentation explorer' : 'Show documentation explorer';
+  const tooltipTitle = docPanVisible ? t('editorPage.hideDocumentation') : t('editorPage.showDocumentation');
 
   return (
     <div className={styles.container}>
