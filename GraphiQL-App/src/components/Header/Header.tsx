@@ -58,6 +58,10 @@ export default function Header() {
   return (
     <header className={sticky ? 'header isSticky' : 'header'}>
       <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box>
+          <Button color='primary' style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('en')) }}>EN</Button>
+          <Button color='primary' style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('ru')) }}>RU</Button>
+        </Box>
         <Box
           className="header-logo__box"
           sx={{
@@ -75,17 +79,13 @@ export default function Header() {
           </Typography>
         </Box>
         <Box>
-          <Button color='primary' style={ {fontWeight: language === 'EN' ? 'bold' : 'normal'}} onClick={() => {dispatch(setLang('EN'))}}>EN</Button>
-          <Button color='primary' style={ {fontWeight: language === 'RU' ? 'bold' : 'normal'}} onClick={() => {dispatch(setLang('RU'))}}>RU</Button>
-        </Box>
-        <Box>
           <Button
             color="secondary"
             onClick={() => {
               navigate('/home', { replace: true });
             }}
           >
-            Home
+            {t('header.editor')}
           </Button>
           <Button
             color="secondary"
@@ -93,7 +93,7 @@ export default function Header() {
               navigate('/welcome', { replace: true });
             }}
           >
-            {t('main.header')}
+            {t('header.info')}
           </Button>
           {!isUserLogged && (
             <Button
@@ -102,7 +102,7 @@ export default function Header() {
                 navigate('/login', { replace: true });
               }}
             >
-              Sign In
+              {t('header.signIn')}
             </Button>
           )}
           {!isUserLogged && (
@@ -112,12 +112,12 @@ export default function Header() {
                 navigate('/register', { replace: true });
               }}
             >
-              Sign Up
+              {t('header.signUp')}
             </Button>
           )}
           {isUserLogged && (
             <Button onClick={handleExitByClick} color="secondary">
-              Exit
+              {t('header.exit')}
             </Button>
           )}
         </Box>
