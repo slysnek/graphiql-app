@@ -21,6 +21,7 @@ function LogIn() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const { t, i18n } = useTranslation();
+  console.log(successMessage);
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -34,7 +35,7 @@ function LogIn() {
             name: '',
           })
         );
-        setSuccessMessage(`User's still logged in. Redirecting...`);
+        setSuccessMessage(t('loginForm.successStillLogged').toString());
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
@@ -73,7 +74,7 @@ function LogIn() {
           })
         );
         setIsLoading(false);
-        setSuccessMessage('Success!');
+        setSuccessMessage(t('loginForm.successMessage').toString());
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
@@ -84,7 +85,7 @@ function LogIn() {
       if (e instanceof Error) {
         setErrorMessage(`${e.message}`);
       } else {
-        setErrorMessage('Error via log in. Check your data!');
+        setErrorMessage(t('loginForm.undefinedError').toString());
       }
     }
   };
@@ -94,13 +95,13 @@ function LogIn() {
       setIsLoading(true);
       await signInWithGoogle();
       setErrorMessage('');
-      setSuccessMessage('Success');
+      setSuccessMessage(t('loginForm.successMessage').toString());
       setIsLoading(false);
     } catch (e) {
       if (e instanceof Error) {
         setErrorMessage(e.message);
       } else {
-        setErrorMessage('Error! Failed log in with Google!');
+        setErrorMessage(t('loginForm.errorGoogle').toString());
       }
     }
   };

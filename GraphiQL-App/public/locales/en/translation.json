@@ -4,11 +4,11 @@
     "info": "Info",
     "signIn": "Log In",
     "signUp": "Sign Up",
-    "exit": "Exit"
+    "exit": "Log Out"
   },
   "404": {
     "gone": "There is nothing here...",
-    "notFound":"Oops! The page you're looking for is not found or never existed in the first place.",
+    "notFound": "Oops! The page you're looking for is not found or never existed in the first place.",
     "back": "Take me back!"
   },
   "welcomePage": {
@@ -19,17 +19,19 @@
     "author_2": "(´⊙ω⊙`)",
     "author_3": "(๑´• .̫ •ू`๑)"
   },
-  "loginPage":{
+  "loginPage": {
     "haveNoAcc": "Don't have an account?",
     "register": "Register now!"
   },
-  "signUpPage":{
+  "signUpPage": {
     "haveAnAcc": "Already have account?",
     "login": "Log in"
   },
-  "loginForm":{
+  "loginForm": {
     "header": "Log in using your credentials: ",
     "loading": "Loading...",
+    "successMessage": "Success!",
+    "successStillLogged": "User's still logged in. Redirecting...",
     "error": "An error has occured at Login Page. Details: ",
     "nickname": "Create your nickname",
     "email": "Your e-mail",
@@ -39,9 +41,11 @@
     "googleLogin": "Log in via Google Account",
     "googleCreate": "Create new account with Google",
     "login": "Log in",
-    "create": "Create new account"
+    "create": "Create new account",
+    "errorGoogle": "Error! Failed log in with Google!",
+    "undefinedError": "Error via log in. Check your data!"
   },
-  "errors":{
+  "errors": {
     "nickname": "Nickname is required",
     "nicknameMin": "Should be at least 4 characters",
     "email": "Email is required",
@@ -53,7 +57,7 @@
     "passwordChar": "Should be at least 1 special character",
     "passwordMatch": "Passwords don't match"
   },
-  "editorPage":{
+  "editorPage": {
     "documentation": "Documentation",
     "variablesHeaders": "Variables/Headers",
     "response": "Response",
