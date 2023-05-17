@@ -10,8 +10,6 @@ import {
 } from 'firebase/auth';
 
 import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
-import { useAppDispatch } from '../store/hooksRedux';
-import { setUser } from '../store/slices/userSlice';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -43,7 +41,10 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    if (err instanceof Error) throw new Error(err.message);
+    if (err instanceof Error)
+      throw new Error(
+        err.message.replace(/Firebase:|Error|auth\/|\(|\)/gi, '').replace(/-/gi, ' ')
+      );
   }
 };
 
@@ -52,7 +53,10 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
     const data = await signInWithEmailAndPassword(auth, email, password);
     return data;
   } catch (err) {
-    if (err instanceof Error) throw new Error(err.message);
+    if (err instanceof Error)
+      throw new Error(
+        err.message.replace(/Firebase:|Error|auth\/|\(|\)/gi, '').replace(/-/gi, ' ')
+      );
   }
 };
 
@@ -70,11 +74,7 @@ const registerWithEmailAndPassword = async (email: string, password: string, nam
   } catch (err) {
     if (err instanceof Error) {
       throw new Error(
-        err.message
-          .replace(/Firebase:/, '')
-          .replace(/-/gi, ' ')
-          .replace('Error', '')
-          .replace(/auth\//, '')
+        err.message.replace(/Firebase:|Error|auth\/|\(|\)/gi, '').replace(/-/gi, ' ')
       );
     }
   }

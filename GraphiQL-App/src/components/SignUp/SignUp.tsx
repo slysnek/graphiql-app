@@ -31,11 +31,11 @@ function SignUp() {
             name: '',
           })
         );
-        setSuccessMessage(`User's still logged in`);
+        setSuccessMessage(`User's still logged in. Redirecting...`);
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 2000);
+        }, 1000);
       }
       dispatch(exitUser());
       setSuccessMessage('');
@@ -52,7 +52,6 @@ function SignUp() {
       setErrorMessage('');
       return;
     }
-    setErrorMessage(error.message);
   }, [error]);
 
   const handleSignUp = async (email: string, password: string, name: string) => {
@@ -74,17 +73,12 @@ function SignUp() {
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 2000);
+        }, 1000);
       }
     } catch (e) {
       setIsLoading(false);
       if (e instanceof Error) {
-        setErrorMessage(
-          e.message
-            .replace('Error:', '')
-            .replace('.', '')
-            .replace(/\[|\]|\(|\)|\{|\}/g, '')
-        );
+        setErrorMessage(e.message);
       } else {
         setErrorMessage('Failed register. Check your data!');
       }
@@ -94,8 +88,8 @@ function SignUp() {
   const signUpGoogle = async () => {
     try {
       setIsLoading(true);
-      setErrorMessage('');
       await signInWithGoogle();
+      setErrorMessage('');
       setSuccessMessage('Success');
       setIsLoading(false);
     } catch (e) {
