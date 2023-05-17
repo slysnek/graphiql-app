@@ -9,12 +9,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Box, Typography } from '@mui/material';
 
 import Form from '../Form/Form';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function LogIn() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [user, loading, error] = useAuthState(auth);
+  const [, , error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -89,15 +90,11 @@ function LogIn() {
           Log In form
         </Typography>
       </Box>
-      {isLoading && (
-        <Box className="loader">
-          <p>Loading...</p>
-        </Box>
-      )}
+      {isLoading && <LoadingSpinner loading={isLoading} />}
       <Form typeForm="login" onclickSubmit={handleLogin} />
       {errorMessage && (
         <Box className="error-box">
-          <p>Error at LogIn Page...{errorMessage}</p>
+          <p>{errorMessage}</p>
         </Box>
       )}
     </Box>

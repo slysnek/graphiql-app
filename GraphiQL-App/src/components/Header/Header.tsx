@@ -109,7 +109,7 @@ export default function Header() {
           )}
           {isUserLogged && (
             <Button onClick={handleExitByClick} color="secondary">
-              Exit
+              Log Out
             </Button>
           )}
         </Box>

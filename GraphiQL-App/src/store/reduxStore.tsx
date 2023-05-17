@@ -2,14 +2,15 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import userReducer from './slices/userSlice';
 import docPaneStateSlice from './slices/docPaneStateSlice';
+import setSuccessSlice from './slices/setSuccessSlice';
 
 const rootReducer = combineReducers({
   userAuth: userReducer,
-	docPaneState: docPaneStateSlice,
+  docPaneState: docPaneStateSlice,
 });
 
 export const store = configureStore({
-  reducer: rootReducer,    
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
