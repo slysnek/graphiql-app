@@ -9,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Box, Typography } from '@mui/material';
 
 import Form from '../Form/Form';
+import { useTranslation } from 'react-i18next';
 
 function LogIn() {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ function LogIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [user, loading, error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -86,18 +88,18 @@ function LogIn() {
     >
       <Box sx={{ m: 'auto', mt: '40px', mb: '2rem' }}>
         <Typography variant="h6" component="h2" color="steelblue">
-          Log In form
+          {t('loginForm.header')}
         </Typography>
       </Box>
       {isLoading && (
         <Box className="loader">
-          <p>Loading...</p>
+          <p>{t('loginForm.loading')}</p>
         </Box>
       )}
       <Form typeForm="login" onclickSubmit={handleLogin} />
       {errorMessage && (
         <Box className="error-box">
-          <p>Error at LogIn Page...{errorMessage}</p>
+          <p>{t('loginForm.error')}{errorMessage}</p>
         </Box>
       )}
     </Box>

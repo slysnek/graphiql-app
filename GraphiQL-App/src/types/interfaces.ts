@@ -12,3 +12,7 @@ export interface FormProps {
 export interface DocPaneState {
   visible: boolean;
 }
+
+export interface LangState {
+  language: string;
+}

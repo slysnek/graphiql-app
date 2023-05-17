@@ -6,12 +6,14 @@ import { query, collection, getDocs, where } from 'firebase/firestore';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setName, UserState } from '../../store/slices/userSlice';
+import { useTranslation } from 'react-i18next';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
 
   const [user] = useAuthState(auth);
   const initialData = useAppSelector((state) => state.userAuth);
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     if (!user) dispatch(exitUser());
@@ -47,17 +49,21 @@ function WelcomePage() {
     <div className="margin-sticky" style={{ minHeight: '300px' }}>
       <h3>
         {userName ? (
-          <span>Hello dear {userName}</span>
+          <span>{t('welcomePage.greeting')} {userName}!</span>
         ) : (
-          <span>Please, logged In for get access to QL editor</span>
+          <span>{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
-      <p>Here will be some info about authors</p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vero exercitationem
-        nulla molestiae quis excepturi. Nam est blanditiis ipsa iusto rem ipsum voluptatem magnam
-        eveniet consectetur aliquid beatae, autem similique.
-      </p>
+      <p>//TODO: add description (completed tasks)</p>
+      <p>{t('welcomePage.authors')}</p>
+      <ul>
+        <li>Slysnek</li>
+        <p>{t('welcomePage.author_1')}</p>
+        <li>Skuzema</li>
+        <p>{t('welcomePage.author_2')}</p>
+        <li>Sergik</li>
+        <p>{t('welcomePage.author_3')}</p>
+      </ul>
 
       <button type="button">
         <NavLink to="/home">Start QL</NavLink>

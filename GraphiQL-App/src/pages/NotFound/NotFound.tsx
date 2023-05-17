@@ -4,8 +4,10 @@ import HomeIcon from '@mui/icons-material/Home';
 
 import './NotFound.css';
 import NotFoundImg from '/404_img.gif';
+import { useTranslation } from 'react-i18next';
 
 function NotFound() {
+  const { t, i18n } = useTranslation()
   return (
     <main className="container_404">
       <div className="gif">
@@ -18,18 +20,18 @@ function NotFound() {
           className="main-heading"
           sx={{ backgroundColor: 'transparent', mt: '2rem' }}
         >
-          This page is gone.
+          {t('404.gone')}
         </Typography>
         <Typography
           component="p"
           variant="body1"
           sx={{ fontSize: '1.3rem', padding: '1rem 0', mb: '5px' }}
         >
-          ...maybe the page you're looking for is not found or never existed.
+          {t('404.notFound')}
         </Typography>
         <Link to="/">
           <Button variant="contained" endIcon={<HomeIcon />}>
-            Back to home
+            {t('404.back')}
           </Button>
         </Link>
       </div>

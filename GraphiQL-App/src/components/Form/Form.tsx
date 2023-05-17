@@ -8,6 +8,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { FormProps, FormDataSignUp } from '../../types/interfaces';
 import { schemaValidation, schemaValidationLogIn } from '../../helpers/schemaValidate';
+import { useTranslation } from 'react-i18next';
 
 function Form(props: FormProps) {
   const {
@@ -35,6 +36,7 @@ function Form(props: FormProps) {
 
   const [showPass, setShowPass] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
+  const { t, i18n } = useTranslation()
 
   return (
     <Grid
@@ -71,11 +73,11 @@ function Form(props: FormProps) {
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Nick name"
+                    label={t('loginForm.nickname')}
                     fullWidth
                     variant="outlined"
                     error={!!errors.nameField}
-                    helperText={errors.nameField ? errors.nameField.message : ''}
+                    helperText={errors.nameField ? t(`${errors.nameField.message}`) : ''}
                   />
                 )}
               />
@@ -89,11 +91,11 @@ function Form(props: FormProps) {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="E-mail"
+                  label={t('loginForm.email')}
                   fullWidth
                   variant="outlined"
                   error={!!errors.email}
-                  helperText={errors.email ? errors.email.message : ''}
+                  helperText={errors.email ? t(`${errors.email.message}`) : ''}
                 />
               )}
             />
@@ -106,12 +108,12 @@ function Form(props: FormProps) {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="Password"
+                  label={t('loginForm.password')}
                   fullWidth
                   type={showPass ? 'text' : 'password'}
                   variant="outlined"
                   error={!!errors.password}
-                  helperText={errors.password ? errors.password.message : ''}
+                  helperText={errors.password ? t(`${errors.password.message}`) : ''}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -135,12 +137,12 @@ function Form(props: FormProps) {
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Confirm Password"
+                    label={t('loginForm.confirmPassword')}
                     fullWidth
                     type={showPassConfirm ? 'text' : 'password'}
                     variant="outlined"
                     error={!!errors.passwordConfirm}
-                    helperText={errors.passwordConfirm ? errors.passwordConfirm.message : ''}
+                    helperText={errors.passwordConfirm ? t(`${errors.passwordConfirm.message}`) : ''}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -164,13 +166,13 @@ function Form(props: FormProps) {
                 borderRadius: 10,
               }}
             >
-              {props.typeForm !== 'login' ? 'Create User' : 'Log In'}{' '}
+              {props.typeForm !== 'login' ? t('loginForm.create') : t('loginForm.login')}{' '}
             </Button>
           </Grid>
         </form>
       </Grid>
       <Grid item xs={8} sx={{ p: '3px', m: 'auto', color: 'steelblue' }}>
-        <span>OR</span>
+        <span>{t('loginForm.or')}</span>
       </Grid>
       <Grid item xs={10}>
         <Button
@@ -186,7 +188,7 @@ function Form(props: FormProps) {
             fontSize: '1rem',
           }}
         >
-          {props.typeForm === 'login' ? 'LogIn with Google' : 'Create with Google'}
+          {props.typeForm === 'login' ? t('loginForm.googleLogin') : t('loginForm.googleCreate')}
         </Button>
       </Grid>
     </Grid>

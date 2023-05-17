@@ -69,9 +69,6 @@ function Footer() {
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Typography color="white" variant="subtitle1">
-                CopyRight &#169;
-              </Typography>
-              <Typography color="white" variant="subtitle1">
                 2023
               </Typography>
             </Box>

@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import styles from './Response.module.css';
 
-export const Response = () => (
+export const Response = () => {
+  const { t, i18n } = useTranslation()
+  return(
   <div className={styles.container}>
     <div className={styles.card}>
-      <h3>Response</h3>
+      <h3>{t('editorPage.response')}</h3>
       <svg
         className={styles.svg}
         preserveAspectRatio="none"
@@ -17,3 +20,4 @@ export const Response = () => (
     </div>
   </div>
 );
+}
