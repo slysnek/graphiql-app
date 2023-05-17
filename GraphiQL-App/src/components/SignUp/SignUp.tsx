@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
+import { useAppDispatch } from '../../store/hooksRedux';
 import { setUser, exitUser } from '../../store/slices/userSlice';
 import { auth, registerWithEmailAndPassword } from '../../helpers/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { onAuthStateChanged } from 'firebase/auth';
+import { signInWithGoogle } from '../../helpers/firebase';
 import Form from '../Form/Form';
 
 import { Grid, Typography, Alert, Snackbar } from '@mui/material';
@@ -41,7 +42,6 @@ function SignUp() {
       setIsLoading(false);
       setErrorMessage('');
     });
-
     return () => {
       listenAuth();
     };
@@ -91,6 +91,22 @@ function SignUp() {
     }
   };
 
+  const signUpGoogle = async () => {
+    try {
+      setIsLoading(true);
+      setErrorMessage('');
+      await signInWithGoogle();
+      setSuccessMessage('Success');
+      setIsLoading(false);
+    } catch (e) {
+      if (e instanceof Error) {
+        setErrorMessage(e.message);
+      } else {
+        setErrorMessage('Error! Failed sign up with Google!');
+      }
+    }
+  };
+
   return (
     <Grid container item xs={12} direction="column" justifyContent="center" alignItems="center">
       <Grid item>
@@ -99,7 +115,7 @@ function SignUp() {
         </Typography>
       </Grid>
       {isLoading && <LoadingSpinner loading={isLoading} />}
-      <Form typeForm="signUp" onclickLogIn={handleSignUp} />
+      <Form typeForm="signUp" onclickLogIn={handleSignUp} onGoogleHandler={signUpGoogle} />
       {errorMessage && (
         <Snackbar
           open={!!errorMessage}

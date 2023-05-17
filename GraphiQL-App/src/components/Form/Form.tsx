@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signInWithGoogle } from '../../helpers/firebase';
 import { InputAdornment, TextField, IconButton, Button, Grid } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { FormProps, FormDataSignUp } from '../../types/interfaces';
 import { schemaValidation, schemaValidationLogIn } from '../../helpers/schemaValidate';
+
+import GoogleIcon from '@mui/icons-material/Google';
 
 function Form(props: FormProps) {
   const {
@@ -174,9 +175,10 @@ function Form(props: FormProps) {
       </Grid>
       <Grid item xs={10}>
         <Button
+          startIcon={<GoogleIcon />}
           type="button"
           variant="contained"
-          onClick={signInWithGoogle}
+          onClick={props.onGoogleHandler}
           sx={{
             margin: '10px auto',
             borderRadius: '10px',

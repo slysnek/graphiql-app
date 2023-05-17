@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
 import { auth, logInWithEmailAndPassword } from '../../helpers/firebase';
+import { signInWithGoogle } from '../../helpers/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -74,6 +75,22 @@ function LogIn() {
       }
     }
   };
+
+  const logInGoogle = async () => {
+    try {
+      setIsLoading(true);
+      setErrorMessage('');
+      await signInWithGoogle();
+      setIsLoading(false);
+    } catch (e) {
+      if (e instanceof Error) {
+        setErrorMessage(e.message);
+      } else {
+        setErrorMessage('Error! Failed log in with Google!');
+      }
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -91,7 +108,7 @@ function LogIn() {
         </Typography>
       </Box>
       {isLoading && <LoadingSpinner loading={isLoading} />}
-      <Form typeForm="login" onclickSubmit={handleLogin} />
+      <Form typeForm="login" onclickSubmit={handleLogin} onGoogleHandler={logInGoogle} />
       {errorMessage && (
         <Box className="error-box">
           <p>{errorMessage}</p>

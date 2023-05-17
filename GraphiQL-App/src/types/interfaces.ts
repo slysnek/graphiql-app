@@ -7,6 +7,7 @@ export interface FormProps {
   typeForm: string;
   onclickSubmit?: (email: string, password: string) => Promise<void>;
   onclickLogIn?: (email: string, password: string, name: string) => Promise<void>;
+  onGoogleHandler: () => Promise<void>;
 }
 
 export interface DocPaneState {

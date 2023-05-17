@@ -10,6 +10,8 @@ import {
 } from 'firebase/auth';
 
 import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
+import { useAppDispatch } from '../store/hooksRedux';
+import { setUser } from '../store/slices/userSlice';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,

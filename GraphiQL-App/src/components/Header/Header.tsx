@@ -11,7 +11,9 @@ import './Header.css';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
-  const isUserLogged = useAppSelector((state) => state.userAuth.email);
+  const hasEmail = useAppSelector((state) => state.userAuth.email);
+  const hasName = useAppSelector((state) => state.userAuth.name);
+  const isUserLogged = !!hasEmail || !!hasName;
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
