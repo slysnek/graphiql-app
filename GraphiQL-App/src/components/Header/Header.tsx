@@ -8,15 +8,19 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { Typography, Toolbar, Box, Button } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
+import { useTranslation } from 'react-i18next';
+import { setLang } from '../../store/slices/langSlice';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
   const hasEmail = useAppSelector((state) => state.userAuth.email);
   const hasName = useAppSelector((state) => state.userAuth.name);
   const isUserLogged = !!hasEmail || !!hasName;
+  const language = useAppSelector((state) => state.langState.language);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +83,7 @@ export default function Header() {
               navigate('/home', { replace: true });
             }}
           >
-            Home
+            {t('header.editor')}
           </Button>
           <Button
             color="secondary"
@@ -87,7 +91,7 @@ export default function Header() {
               navigate('/welcome', { replace: true });
             }}
           >
-            Welcome
+            {t('header.info')}
           </Button>
           {!isUserLogged && (
             <Button
@@ -96,7 +100,7 @@ export default function Header() {
                 navigate('/login', { replace: true });
               }}
             >
-              Sign In
+              {t('header.signIn')}
             </Button>
           )}
           {!isUserLogged && (
@@ -106,14 +110,34 @@ export default function Header() {
                 navigate('/register', { replace: true });
               }}
             >
-              Sign Up
+              {t('header.signUp')}
             </Button>
           )}
           {isUserLogged && (
             <Button onClick={handleExitByClick} color="secondary">
-              Log Out
+              {t('header.exit')}
             </Button>
           )}
+        </Box>
+        <Box>
+          <Button
+            color={language === 'en' ? 'secondary' : 'primary'}
+            style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }}
+            onClick={() => {
+              dispatch(setLang('en'));
+            }}
+          >
+            EN
+          </Button>
+          <Button
+            color={language === 'ru' ? 'secondary' : 'primary'}
+            style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }}
+            onClick={() => {
+              dispatch(setLang('ru'));
+            }}
+          >
+            RU
+          </Button>
         </Box>
       </Toolbar>
     </header>

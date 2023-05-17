@@ -2,11 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import userReducer from './slices/userSlice';
 import docPaneStateSlice from './slices/docPaneStateSlice';
-import setSuccessSlice from './slices/setSuccessSlice';
+import langSlice from './slices/langSlice';
 
 const rootReducer = combineReducers({
   userAuth: userReducer,
   docPaneState: docPaneStateSlice,
+  langState: langSlice,
 });
 
 export const store = configureStore({

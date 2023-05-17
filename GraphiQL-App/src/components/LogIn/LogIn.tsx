@@ -10,6 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Box, Typography, Snackbar, Alert } from '@mui/material';
 
 import Form from '../Form/Form';
+import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function LogIn() {
@@ -19,6 +20,7 @@ function LogIn() {
   const [, , error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -116,7 +118,7 @@ function LogIn() {
     >
       <Box sx={{ m: 'auto', mt: '40px', mb: '2rem' }}>
         <Typography variant="h6" component="h2" color="steelblue">
-          Log In form
+          {t('loginForm.header')}
         </Typography>
       </Box>
       {isLoading && <LoadingSpinner loading={isLoading} />}

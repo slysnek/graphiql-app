@@ -1,0 +1,65 @@
+{
+  "header": {
+    "editor": "Editor",
+    "info": "Info",
+    "signIn": "Log In",
+    "signUp": "Sign Up",
+    "exit": "Exit"
+  },
+  "404": {
+    "gone": "There is nothing here...",
+    "notFound":"Oops! The page you're looking for is not found or never existed in the first place.",
+    "back": "Take me back!"
+  },
+  "welcomePage": {
+    "greeting": "Hello,",
+    "requestToLogIn": "Please, log in or sign up to get access to GraphQL editor.",
+    "authors": "Authors:",
+    "author_1": "( ͡° ͜ʖ ͡° )",
+    "author_2": "(´⊙ω⊙`)",
+    "author_3": "(๑´• .̫ •ू`๑)"
+  },
+  "loginPage":{
+    "haveNoAcc": "Don't have an account?",
+    "register": "Register now!"
+  },
+  "signUpPage":{
+    "haveAnAcc": "Already have account?",
+    "login": "Log in"
+  },
+  "loginForm":{
+    "header": "Log in using your credentials: ",
+    "loading": "Loading...",
+    "error": "An error has occured at Login Page. Details: ",
+    "nickname": "Create your nickname",
+    "email": "Your e-mail",
+    "password": "Password",
+    "confirmPassword": "Confirm your password",
+    "or": "or",
+    "googleLogin": "Log in via Google Account",
+    "googleCreate": "Create new account with Google",
+    "login": "Log in",
+    "create": "Create new account"
+  },
+  "errors":{
+    "nickname": "Nickname is required",
+    "nicknameMin": "Should be at least 4 characters",
+    "email": "Email is required",
+    "emailValid": "Email should be valid",
+    "password": "Password is required",
+    "passwordMin": "Should be at least 8 characters",
+    "passwordCap": "Should be at least 1 capitalized letter",
+    "passwordDigit": "Should be at least 1 digit",
+    "passwordChar": "Should be at least 1 special character",
+    "passwordMatch": "Passwords don't match"
+  },
+  "editorPage":{
+    "documentation": "Documentation",
+    "variablesHeaders": "Variables/Headers",
+    "response": "Response",
+    "showDocumentation": "Show Documentation",
+    "hideDocumentation": "Hide Documentation",
+    "operation": "Operation",
+    "query": "Make a query"
+  }
+}

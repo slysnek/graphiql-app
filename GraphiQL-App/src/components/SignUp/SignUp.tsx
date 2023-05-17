@@ -7,7 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { signInWithGoogle } from '../../helpers/firebase';
 import Form from '../Form/Form';
-
+import { useTranslation } from 'react-i18next';
 import { Grid, Typography, Alert, Snackbar } from '@mui/material';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
@@ -18,6 +18,7 @@ function SignUp() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [, , error] = useAuthState(auth);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -105,7 +106,7 @@ function SignUp() {
     <Grid container item xs={12} direction="column" justifyContent="center" alignItems="center">
       <Grid item>
         <Typography variant="h5" component="h2" color="steelblue" sx={{ mt: '40px' }}>
-          Sign Up Form
+          {t('loginForm.create')}
         </Typography>
       </Grid>
       {isLoading && <LoadingSpinner loading={isLoading} />}
