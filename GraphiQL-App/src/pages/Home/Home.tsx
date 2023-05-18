@@ -13,7 +13,6 @@ import { Operation } from '../../components/Operation/Operation';
 import { OperationBottomPane } from '../../components/OperationBottomPane/OperationBottomPane';
 import { Response } from '../../components/Response/Response';
 
-
 import styles from './Home.module.css';
 
 function Home() {
@@ -21,7 +20,7 @@ function Home() {
   const navigate = useNavigate();
   const name = useAppSelector((state) => state.userAuth.name);
 
-	const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
+  const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (user) => {
@@ -44,7 +43,7 @@ function Home() {
     return () => {
       listenAuth();
     };
-  }, []);
+  });
 
   return (
     <div className={styles.container} style={{ minHeight: 200, minWidth: 320 }}>

@@ -37,7 +37,7 @@ function Form(props: FormProps) {
 
   const [showPass, setShowPass] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Grid
@@ -143,7 +143,9 @@ function Form(props: FormProps) {
                     type={showPassConfirm ? 'text' : 'password'}
                     variant="outlined"
                     error={!!errors.passwordConfirm}
-                    helperText={errors.passwordConfirm ? t(`${errors.passwordConfirm.message}`) : ''}
+                    helperText={
+                      errors.passwordConfirm ? t(`${errors.passwordConfirm.message}`) : ''
+                    }
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">

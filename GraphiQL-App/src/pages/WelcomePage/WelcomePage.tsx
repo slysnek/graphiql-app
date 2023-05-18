@@ -13,11 +13,12 @@ function WelcomePage() {
 
   const [user] = useAuthState(auth);
   const initialData = useAppSelector((state) => state.userAuth);
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!user) dispatch(exitUser());
     setUserName(initialData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   async function setUserName(info: UserState) {
@@ -49,12 +50,14 @@ function WelcomePage() {
     <div className="margin-sticky" style={{ minHeight: '300px' }}>
       <h3>
         {userName ? (
-          <span>{t('welcomePage.greeting')} {userName}!</span>
+          <span>
+            {t('welcomePage.greeting')} {userName}!
+          </span>
         ) : (
           <span>{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
-      <p>//TODO: add description (completed tasks)</p>
+      {/* TODO: add description (completed tasks) */}
       <p>{t('welcomePage.authors')}</p>
       <ul>
         <li>Slysnek</li>

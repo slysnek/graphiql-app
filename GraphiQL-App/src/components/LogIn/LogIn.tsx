@@ -20,8 +20,7 @@ function LogIn() {
   const [, , error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const { t, i18n } = useTranslation();
-  console.log(successMessage);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -50,7 +49,7 @@ function LogIn() {
     return () => {
       listenAuth();
     };
-  }, []);
+  });
 
   useEffect(() => {
     if (!error) {

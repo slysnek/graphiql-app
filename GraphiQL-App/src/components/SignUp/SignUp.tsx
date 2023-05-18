@@ -18,7 +18,7 @@ function SignUp() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [, , error] = useAuthState(auth);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -46,7 +46,7 @@ function SignUp() {
     return () => {
       listenAuth();
     };
-  }, []);
+  });
 
   useEffect(() => {
     if (!error) {

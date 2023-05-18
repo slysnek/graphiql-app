@@ -13,9 +13,6 @@ module.exports = {
     jest: true,
     node: true,
   },
-  project: {
-
-  },
   root: true,
   parserOptions: {
     ecmaFeatures: {
@@ -23,8 +20,9 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: ['**/tsconfig.json'],
   },
-  project: ['**/tsconfig.json'],
+
   plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',

@@ -7,7 +7,7 @@ import NotFoundImg from '/404_img.gif';
 import { useTranslation } from 'react-i18next';
 
 function NotFound() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
   return (
     <main className="container_404">
       <div className="gif">
