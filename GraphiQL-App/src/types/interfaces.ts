@@ -15,3 +15,9 @@ export interface QueryParameters {
   variables?: string;
   headers?: string;
 }
+
+export interface ErrorObject {
+  error: boolean;
+  name?: string;
+  message?: string;
+}

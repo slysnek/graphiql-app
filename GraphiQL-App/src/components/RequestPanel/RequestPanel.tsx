@@ -11,15 +11,9 @@ import styles from './RequestPanel.module.css';
 export function RequestPanel() {
   const dispatch = useAppDispatch();
   const queryParameters = useAppSelector((state) => state.queryParameters);
-  const isRequested = useAppSelector((state) => state.queryParameters.isRequested);
+  const isLoaded = useAppSelector((state) => state.queryParameters.isLoaded);
   const [bodyError, setBodyError] = useState(false);
   const [bodyTextError, setBodyTextError] = useState('');
-
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(isRequested);
-  }, [isRequested]);
 
   const handleRequestFieldChange = (value: string) => {
     if (value !== '') {
@@ -33,7 +27,7 @@ export function RequestPanel() {
       })
     );
   };
-  const handleGqlRequest = (value: boolean) => {
+  const handleGqlRequest = () => {
     if (queryParameters.body === '') {
       setBodyError(true);
       setBodyTextError('Please enter request body!');
@@ -45,13 +39,13 @@ export function RequestPanel() {
     dispatch(
       setQueryParameters({
         ...queryParameters,
-        isRequested: value,
+        isRequested: true,
       })
     );
   };
 
-  console.log('RequestPanel queryParameters.isRequested', isRequested);
-  console.log('RequestPanel loading', loading);
+  //console.log('RequestPanel queryParameters.isRequested', queryParameters.isRequested);
+  //console.log('RequestPanel isLoaded', isLoaded);
 
   return (
     <div className={styles.container}>
@@ -69,10 +63,10 @@ export function RequestPanel() {
             <LoadingButton
               size="large"
               variant="contained"
-              loading={isRequested}
+              loading={isLoaded}
               startIcon={<PlayArrowIcon />}
               onClick={() => {
-                handleGqlRequest(true);
+                handleGqlRequest();
               }}
             >
               <span>Run</span>

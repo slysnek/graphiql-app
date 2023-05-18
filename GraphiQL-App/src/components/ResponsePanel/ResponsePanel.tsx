@@ -1,96 +1,107 @@
 import { useEffect, useState } from 'react';
-import { DocumentNode, gql, useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { CircularProgress, TextField } from '@mui/material';
 
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-import { ErrorPanel } from '../ErrorPanel/ErrorPanel';
 
+import { ErrorObject } from '../../types/interfaces';
 import styles from './ResponsePanel.module.css';
+
+function getErrorMessage(error: unknown): ErrorObject {
+  if (error instanceof Error)
+    return {
+      error: true,
+      name: error.name,
+      message: error.message,
+    };
+  return {
+    error: true,
+    name: '',
+    message: String(error),
+  };
+}
 
 export const ResponsePanel = () => {
   const dispatch = useAppDispatch();
   const queryParameters = useAppSelector((state) => state.queryParameters);
   const isRequested: boolean = useAppSelector((state) => state.queryParameters.isRequested);
   const [results, setResults] = useState<string | undefined>();
-  const [queryVars, setQueryVars] = useState('');
+  const [err, setErr] = useState<ErrorObject>();
 
-  const [request, setRequest] = useState<DocumentNode>();
-
-  const initReq = gql`
+  const errInit = { error: false, name: '', message: '' };
+  const initQuery = gql`
     {
-      field {
-        subField
+      table {
+        field
       }
     }
   `;
 
-  const [gqlRequest, { called, loading, error, data }] = useLazyQuery(initReq);
-  let tryCatchError = false;
-
-  let tmpReq = undefined;
-  let tmpVar = '';
-  let ifError = false;
+  const [gqlQuery, { loading, error, data }] = useLazyQuery(initQuery);
 
   useEffect(() => {
-    tryCatchError = false;
-    if (!isRequested) {
-      return;
-    }
-    try {
-      setRequest(gql`
-        ${queryParameters.body}
-      `);
-      // tmpReq = gql`
-      //   ${queryParameters.body}
-      // `;
-      // gqlRequest({
-      //   query: tmpReq,
-      //   variables: queryParameters.variables,
-      // });
-      //console.log('Try', request, queryVars);
-    } catch (e: Error) {
-      tryCatchError = true;
-      const value = JSON.stringify(e, null, '\t');
-      setResults(value);
-      //tmpVar = JSON.parse(queryParameters.variables);
-      //console.log('Try error', value);
-
-      return;
-    }
-
-    console.log('gqlRequest', tmpReq, queryParameters.variables);
-
-    if (called && loading) {
-      dispatch(
-        setQueryParameters({
-          ...queryParameters,
-          isLoaded: true,
-        })
-      );
-    } else {
-      dispatch(
-        setQueryParameters({
-          ...queryParameters,
-          isLoaded: false,
-          isRequested: false,
-        })
-      );
+    console.log('ResponsePanel useEffect isRequested start', isRequested);
+    if (isRequested) {
+      console.log('ResponsePanel useEffect isRequested after', isRequested);
+      setErr({ ...errInit });
+      setResults('');
+      try {
+        console.log('ResponsePanel queryParameters.body', queryParameters.body);
+        console.log('ResponsePanel  queryParameters.variables', queryParameters.variables);
+        gqlQuery({
+          query: gql`
+            ${queryParameters.body}
+          `,
+          variables: JSON.parse(
+            queryParameters.variables === '' ? '{}' : queryParameters.variables
+          ),
+        });
+      } catch (e) {
+        setErr({
+          ...getErrorMessage(e),
+        });
+        setResults(JSON.stringify(e, null, '\t'));
+        console.log('Try catch error', JSON.stringify(e, null, '\t'));
+      }
     }
 
-    //JSON.parse(queryParameters.variables),
-    if (data) {
-      const value = JSON.stringify(data, null, '\t');
-      setResults((value) => value);
-      console.log('Data', value);
-    } else {
+    dispatch(
+      setQueryParameters({
+        ...queryParameters,
+        isRequested: false,
+        isLoaded: loading,
+      })
+    );
+
+    //if (err?.error) return;
+
+    if (error || err?.error) {
       const value = JSON.stringify(error, null, '\t');
+      console.log('ResponsePanel error', value);
+      setErr({
+        error: true,
+        name: error?.name,
+        message: error?.message,
+      });
       setResults(value);
-      console.log('Error', value);
+    } else if (data) {
+      const value = JSON.stringify(data, null, '\t');
+      console.log('ResponsePanel data', value);
+      setErr({
+        error: false,
+        name: '',
+        message: '',
+      });
+      setResults(value);
+    } else {
+      setResults('');
     }
-  }, [isRequested, data, request, results, called, loading, gqlRequest]);
+  }, [isRequested, loading, error, data]);
 
-  if (called && loading) {
+  //console.log('ResponsePanel render start...');
+
+  if (loading) {
     return (
       <div
         style={{
@@ -105,24 +116,16 @@ export const ResponsePanel = () => {
     );
   }
 
-  console.log('JSX');
-  console.log('JSX results', results);
-  console.log('JSX data', data);
-  console.log('JSX error', error);
-  // const tmp_result = error
-  //   ? JSON.stringify(error, null, '\t')
-  //   : data
-  //   ? JSON.stringify(data, null, '\t')
-  //   : '';
-  tryCatchError = tryCatchError || error;
+  console.log('ResponsePanel render result', results);
+  console.log('ResponsePanel render err', err);
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <h3>Response</h3>
-        <h3 style={{ backgroundColor: tryCatchError ? 'red' : 'green', color: 'white' }}>
-          {tryCatchError ? error.name + ':' + error.message : data ? 'Success' : ''}
+        <h3 style={{ backgroundColor: err?.error ? 'red' : 'green', color: 'white' }}>
+          {err?.error ? err.name + ':' + err.message : data ? 'Success' : ''}
         </h3>
-        <div>{results}</div>
         <TextField
           value={results}
           id="standard-basic"
