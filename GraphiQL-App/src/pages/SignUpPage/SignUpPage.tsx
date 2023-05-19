@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid/Grid';
 import { useTranslation } from 'react-i18next';
 
 function SignUpPage() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Grid
       sx={{

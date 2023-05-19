@@ -20,7 +20,7 @@ export default function Header() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {

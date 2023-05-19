@@ -18,7 +18,7 @@ function SignUp() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [, , error] = useAuthState(auth);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -36,7 +36,7 @@ function SignUp() {
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 1000);
+        }, 1700);
       }
       dispatch(exitUser());
       setSuccessMessage('');
@@ -74,7 +74,7 @@ function SignUp() {
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 1000);
+        }, 1700);
       }
     } catch (e) {
       setIsLoading(false);

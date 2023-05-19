@@ -20,7 +20,7 @@ function LogIn() {
   const [, , error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   console.log(successMessage);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function LogIn() {
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 1000);
+        }, 1700);
       }
       dispatch(exitUser());
       setIsLoading(false);
@@ -78,7 +78,7 @@ function LogIn() {
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 1000);
+        }, 1700);
       }
     } catch (e) {
       setIsLoading(false);

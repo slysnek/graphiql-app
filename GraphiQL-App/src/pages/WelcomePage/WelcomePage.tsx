@@ -13,7 +13,7 @@ function WelcomePage() {
 
   const [user] = useAuthState(auth);
   const initialData = useAppSelector((state) => state.userAuth);
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!user) dispatch(exitUser());
@@ -49,12 +49,14 @@ function WelcomePage() {
     <div className="margin-sticky" style={{ minHeight: '300px' }}>
       <h3>
         {userName ? (
-          <span>{t('welcomePage.greeting')} {userName}!</span>
+          <span>
+            {t('welcomePage.greeting')} {userName}!
+          </span>
         ) : (
           <span>{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
-      <p>//TODO: add description (completed tasks)</p>
+      {/* <p>TODO: add description (completed tasks)</p> */}
       <p>{t('welcomePage.authors')}</p>
       <ul>
         <li>Slysnek</li>
