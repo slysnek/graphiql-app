@@ -45,7 +45,7 @@ function LogIn() {
       setSuccessMessage('');
       setErrorMessage('');
     });
-    console.log('called LogInUseEffect');
+
     return () => {
       listenAuth();
     };

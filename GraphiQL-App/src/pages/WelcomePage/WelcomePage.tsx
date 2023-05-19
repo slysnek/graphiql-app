@@ -16,8 +16,6 @@ function WelcomePage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log('serUserName');
-
     if (!user) {
       dispatch(exitUser());
       return;
