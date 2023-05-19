@@ -43,7 +43,7 @@ function Home() {
     return () => {
       listenAuth();
     };
-  });
+  }, []);
 
   return (
     <div className={styles.container} style={{ minHeight: 200, minWidth: 320 }}>

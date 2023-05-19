@@ -50,7 +50,7 @@ export default function Header() {
     return () => {
       listenLogged();
     };
-  });
+  }, []);
 
   const handleExitByClick = () => {
     dispatch(exitUser());

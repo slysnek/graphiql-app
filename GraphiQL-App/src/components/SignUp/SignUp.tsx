@@ -46,7 +46,7 @@ function SignUp() {
     return () => {
       listenAuth();
     };
-  });
+  }, []);
 
   useEffect(() => {
     if (!error) {

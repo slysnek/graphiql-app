@@ -50,7 +50,7 @@ function LogIn() {
     return () => {
       listenAuth();
     };
-  });
+  }, []);
 
   useEffect(() => {
     if (!error) {
