@@ -16,8 +16,15 @@ function WelcomePage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (!user) dispatch(exitUser());
-    setUserName(initialData);
+    console.log('serUserName');
+
+    if (!user) {
+      dispatch(exitUser());
+      return;
+    } else {
+      setUserName(initialData);
+      return;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 

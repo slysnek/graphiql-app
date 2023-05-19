@@ -21,7 +21,6 @@ function LogIn() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const { t } = useTranslation();
-  console.log(successMessage);
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -46,11 +45,11 @@ function LogIn() {
       setSuccessMessage('');
       setErrorMessage('');
     });
-
+    console.log('called LogInUseEffect');
     return () => {
       listenAuth();
     };
-  }, []);
+  }, [dispatch, navigate, t]);
 
   useEffect(() => {
     if (!error) {
