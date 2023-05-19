@@ -57,7 +57,7 @@ function WelcomePage() {
           <span>{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
-      {/* TODO: add description (completed tasks) */}
+      {/* <p>TODO: add description (completed tasks)</p> */}
       <p>{t('welcomePage.authors')}</p>
       <ul>
         <li>Slysnek</li>

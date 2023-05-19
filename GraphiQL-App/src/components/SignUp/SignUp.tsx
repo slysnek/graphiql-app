@@ -36,7 +36,7 @@ function SignUp() {
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 1000);
+        }, 1700);
       }
       dispatch(exitUser());
       setSuccessMessage('');
@@ -74,7 +74,7 @@ function SignUp() {
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
-        }, 1000);
+        }, 1700);
       }
     } catch (e) {
       setIsLoading(false);
