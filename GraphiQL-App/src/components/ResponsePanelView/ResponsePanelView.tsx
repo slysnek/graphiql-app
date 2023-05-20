@@ -1,4 +1,5 @@
-import { TextField } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { TextField, Snackbar, Alert } from '@mui/material';
 import styles from './ResponsePanelView.module.css';
 
 interface ResponsePanelViewProps {
@@ -9,6 +10,26 @@ interface ResponsePanelViewProps {
 }
 
 export const ResponsePanelView = (props: ResponsePanelViewProps) => {
+  const [openError, setOpenError] = useState(true);
+  const [openSuccess, setOpenSuccess] = useState(true);
+
+  const handleErrorClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    setOpenError(false);
+  };
+
+  const handleSuccessClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    setOpenSuccess(false);
+  };
+
+  useEffect(() => {
+    if (props.error) {
+      setOpenError(true);
+    }
+    if (!props.error && props.result !== '' && props.result !== undefined && !openSuccess) {
+      setOpenSuccess(true);
+    }
+  }, [props]);
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
@@ -30,6 +51,36 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
           >
             {props.error ? props.error_message : props.result ? 'Success' : ''}
           </span>
+          {props.error && (
+            <Snackbar
+              open={openError}
+              autoHideDuration={3000}
+              onClose={handleErrorClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+            >
+              <Alert variant="filled" severity="error">
+                {props.error_message}
+              </Alert>
+            </Snackbar>
+          )}
+          {!props.error && props.result !== undefined && props.result !== '' && (
+            <Snackbar
+              open={openSuccess}
+              autoHideDuration={3000}
+              onClose={handleSuccessClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+            >
+              <Alert variant="filled" severity="success">
+                Success
+              </Alert>
+            </Snackbar>
+          )}
         </div>
         <TextField
           value={props.result}

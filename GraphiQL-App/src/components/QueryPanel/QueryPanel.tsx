@@ -10,7 +10,7 @@ import { QueryHeadersPane } from '../QueryHeaders/QueryHeadersPane';
 import { QueryVariablesPane } from '../QueryVariables/QueryVariablesPane';
 
 import { useAppSelector } from '../../store/hooksRedux';
-import { arraysAreEqual } from '../../utils/Utils';
+import { arraysAreEqual } from '../../helpers/Utils';
 
 import config from '../../config/config.json';
 import { QueryPanelState } from '../../types/interfaces';
