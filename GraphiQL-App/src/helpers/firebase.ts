@@ -57,6 +57,9 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
       throw new Error(
         err.message.replace(/Firebase:|Error|auth\/|\(|\)/gi, '').replace(/-/gi, ' ')
       );
+    else {
+      throw new Error('User was blocked to many wrong attempts log in');
+    }
   }
 };
 

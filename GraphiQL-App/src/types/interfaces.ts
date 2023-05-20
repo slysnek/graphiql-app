@@ -17,3 +17,7 @@ export interface DocPaneState {
 export interface LangState {
   language: string;
 }
+
+export interface LoadingSpinnerProps {
+  loading: boolean;
+}

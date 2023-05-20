@@ -32,7 +32,7 @@ function SignUp() {
             name: '',
           })
         );
-        setSuccessMessage(`User's still logged in. Redirecting...`);
+        setSuccessMessage(t('loginForm.successStillLogged') as string);
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
@@ -46,7 +46,7 @@ function SignUp() {
     return () => {
       listenAuth();
     };
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, t]);
 
   useEffect(() => {
     if (!error) {
@@ -70,7 +70,7 @@ function SignUp() {
           })
         );
         setIsLoading(false);
-        setSuccessMessage('Success!');
+        setSuccessMessage(t('loginForm.successMessage') as string);
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
@@ -81,7 +81,7 @@ function SignUp() {
       if (e instanceof Error) {
         setErrorMessage(e.message);
       } else {
-        setErrorMessage('Failed register. Check your data!');
+        setErrorMessage(t('loginForm.errorRegister') as string);
       }
     }
   };
@@ -91,13 +91,13 @@ function SignUp() {
       setIsLoading(true);
       await signInWithGoogle();
       setErrorMessage('');
-      setSuccessMessage('Success');
+      setSuccessMessage(t('loginForm.successMessage') as string);
       setIsLoading(false);
     } catch (e) {
       if (e instanceof Error) {
         setErrorMessage(e.message);
       } else {
-        setErrorMessage('Error! Failed sign up with Google!');
+        setErrorMessage(t('loginForm.errorGoogle') as string);
       }
     }
   };
@@ -109,7 +109,7 @@ function SignUp() {
           {t('loginForm.create')}
         </Typography>
       </Grid>
-      {isLoading && <LoadingSpinner loading={isLoading} />}
+      {isLoading ? <LoadingSpinner loading={isLoading} /> : ''}
       <Form typeForm="signUp" onclickLogIn={handleSignUp} onGoogleHandler={signUpGoogle} />
       {errorMessage && (
         <Snackbar

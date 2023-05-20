@@ -13,9 +13,9 @@ import { setLang } from '../../store/slices/langSlice';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
-  const hasEmail = useAppSelector((state) => state.userAuth.email);
-  const hasName = useAppSelector((state) => state.userAuth.name);
-  const isUserLogged = !!hasEmail || !!hasName;
+  const userEmail = useAppSelector((state) => state.userAuth.email);
+  const userName = useAppSelector((state) => state.userAuth.name);
+  const isUserLogged = !!userEmail || !!userName;
   const language = useAppSelector((state) => state.langState.language);
 
   const navigate = useNavigate();

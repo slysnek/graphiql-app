@@ -1,10 +1,7 @@
 import RingLoader from 'react-spinners/RingLoader';
 
 import './LoadingSpinner.css';
-
-interface LoadingSpinnerProps {
-  loading: boolean;
-}
+import { LoadingSpinnerProps } from '../../types/interfaces';
 
 function LoadingSpinner(props: LoadingSpinnerProps) {
   const isLoading = props.loading;

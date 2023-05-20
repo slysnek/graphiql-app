@@ -34,7 +34,7 @@ function LogIn() {
             name: '',
           })
         );
-        setSuccessMessage(t('loginForm.successStillLogged').toString());
+        setSuccessMessage(t('loginForm.successStillLogged') as string);
         setIsLoading(false);
         setTimeout(() => {
           navigate('/welcome', { replace: true });
@@ -73,7 +73,7 @@ function LogIn() {
           })
         );
         setIsLoading(false);
-        setSuccessMessage(t('loginForm.successMessage').toString());
+        setSuccessMessage(t('loginForm.successMessage') as string);
         setErrorMessage('');
         setTimeout(() => {
           navigate('/welcome', { replace: true });
@@ -84,7 +84,7 @@ function LogIn() {
       if (e instanceof Error) {
         setErrorMessage(`${e.message}`);
       } else {
-        setErrorMessage(t('loginForm.undefinedError').toString());
+        setErrorMessage(t('loginForm.undefinedError') as string);
       }
     }
   };
@@ -94,13 +94,13 @@ function LogIn() {
       setIsLoading(true);
       await signInWithGoogle();
       setErrorMessage('');
-      setSuccessMessage(t('loginForm.successMessage').toString());
+      setSuccessMessage(t('loginForm.successMessage') as string);
       setIsLoading(false);
     } catch (e) {
       if (e instanceof Error) {
-        setErrorMessage(e.message);
+        setErrorMessage(e.message as string);
       } else {
-        setErrorMessage(t('loginForm.errorGoogle').toString());
+        setErrorMessage(t('loginForm.errorGoogle') as string);
       }
     }
   };
@@ -121,7 +121,7 @@ function LogIn() {
           {t('loginForm.header')}
         </Typography>
       </Box>
-      {isLoading && <LoadingSpinner loading={isLoading} />}
+      {isLoading ? <LoadingSpinner loading={isLoading} /> : ''}
       <Form typeForm="login" onclickSubmit={handleLogin} onGoogleHandler={logInGoogle} />
 
       {errorMessage && (
