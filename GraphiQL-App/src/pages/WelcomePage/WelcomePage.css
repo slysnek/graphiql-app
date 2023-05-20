@@ -1,0 +1,8 @@
+.AppWelcome {
+  width: 700px;
+  min-height: 700px;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

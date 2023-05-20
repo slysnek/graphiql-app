@@ -7,6 +7,9 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setName, UserState } from '../../store/slices/userSlice';
 import { useTranslation } from 'react-i18next';
+import UserCard from '../../components/UserCard/UserCard';
+
+import './WelcomePage.css';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
@@ -52,8 +55,8 @@ function WelcomePage() {
   });
 
   return (
-    <div className="margin-sticky" style={{ minHeight: '300px' }}>
-      <h3>
+    <div className="margin-sticky welcome" style={{ minHeight: '300px' }}>
+      <h3 className="welcome__title">
         {userName ? (
           <span>
             {t('welcomePage.greeting')} {userName}!
@@ -62,19 +65,29 @@ function WelcomePage() {
           <span>{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
-      {/* <p>TODO: add description (completed tasks)</p> */}
-      <p>{t('welcomePage.authors')}</p>
-      <ul>
-        <li>Slysnek</li>
-        <p>{t('welcomePage.author_1')}</p>
-        <li>Skuzema</li>
+
+      <div className="AppWelcome">
+        <UserCard />
+      </div>
+
+      <p className="welcome__authors">{t('welcomePage.authors')}</p>
+      <p className="welcome__animation">Here will be animation</p>
+      <div className="welcome__info authors">
+        <h4 className="authors__name">Slysnek</h4>
+        <p className="authors__content">{t('welcomePage.author_1')}</p>
+        <figure className="authors__avarar avatar">
+          <img className="avatar__img" src="" alt="author avatar" />
+          <figcaption className="avatar__description">avatar description</figcaption>
+        </figure>
+
+        <h4>Skuzema</h4>
         <p>{t('welcomePage.author_2')}</p>
-        <li>Sergik</li>
+        <h4>Sergik</h4>
         <p>{t('welcomePage.author_3')}</p>
-      </ul>
+      </div>
 
       <button type="button">
-        <NavLink to="/home">Start QL</NavLink>
+        <NavLink to="/home">Open editor</NavLink>
       </button>
     </div>
   );

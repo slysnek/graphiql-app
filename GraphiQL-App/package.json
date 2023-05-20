@@ -22,6 +22,7 @@
     "@mui/material": "^5.13.0",
     "@mui/styled-engine-sc": "^5.12.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/react-transition-group": "^4.4.6",
     "allotment": "^1.19.0",
     "cm6-graphql": "^0.0.6",
     "codemirror": "^6.0.1",
@@ -41,6 +42,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
     "react-spinners": "^0.13.8",
+    "react-transition-group": "^4.4.5",
     "sort-by": "^0.0.2",
     "styled-components": "^5.3.10",
     "yup": "^1.1.1"
