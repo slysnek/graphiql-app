@@ -13,12 +13,14 @@ import { setLang } from '../../store/slices/langSlice';
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);
-  const isUserLogged = useAppSelector((state) => state.userAuth.email);
-  const language = useAppSelector((state) => state.langState.language)
+  const userEmail = useAppSelector((state) => state.userAuth.email);
+  const userName = useAppSelector((state) => state.userAuth.name);
+  const isUserLogged = !!userEmail || !!userName;
+  const language = useAppSelector((state) => state.langState.language);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +50,7 @@ export default function Header() {
     return () => {
       listenLogged();
     };
-  }, []);
+  }, [dispatch]);
 
   const handleExitByClick = () => {
     dispatch(exitUser());
@@ -118,8 +120,24 @@ export default function Header() {
           )}
         </Box>
         <Box>
-          <Button color={language === 'en' ? 'secondary' : 'primary'} style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('en')) }}>EN</Button>
-          <Button color={language === 'ru' ? 'secondary' : 'primary'} style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }} onClick={() => { dispatch(setLang('ru')) }}>RU</Button>
+          <Button
+            color={language === 'en' ? 'secondary' : 'primary'}
+            style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }}
+            onClick={() => {
+              dispatch(setLang('en'));
+            }}
+          >
+            EN
+          </Button>
+          <Button
+            color={language === 'ru' ? 'secondary' : 'primary'}
+            style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }}
+            onClick={() => {
+              dispatch(setLang('ru'));
+            }}
+          >
+            RU
+          </Button>
         </Box>
       </Toolbar>
     </header>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signInWithGoogle } from '../../helpers/firebase';
 import { InputAdornment, TextField, IconButton, Button, Grid } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -9,6 +8,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { FormProps, FormDataSignUp } from '../../types/interfaces';
 import { schemaValidation, schemaValidationLogIn } from '../../helpers/schemaValidate';
 import { useTranslation } from 'react-i18next';
+
+import GoogleIcon from '@mui/icons-material/Google';
 
 function Form(props: FormProps) {
   const {
@@ -36,7 +37,7 @@ function Form(props: FormProps) {
 
   const [showPass, setShowPass] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Grid
@@ -142,7 +143,9 @@ function Form(props: FormProps) {
                     type={showPassConfirm ? 'text' : 'password'}
                     variant="outlined"
                     error={!!errors.passwordConfirm}
-                    helperText={errors.passwordConfirm ? t(`${errors.passwordConfirm.message}`) : ''}
+                    helperText={
+                      errors.passwordConfirm ? t(`${errors.passwordConfirm.message}`) : ''
+                    }
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -176,9 +179,10 @@ function Form(props: FormProps) {
       </Grid>
       <Grid item xs={10}>
         <Button
+          startIcon={<GoogleIcon />}
           type="button"
           variant="contained"
-          onClick={signInWithGoogle}
+          onClick={props.onGoogleHandler}
           sx={{
             margin: '10px auto',
             borderRadius: '10px',

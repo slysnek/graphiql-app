@@ -5,7 +5,7 @@ import { LangState } from '../../types/interfaces';
 import i18n from '../../i18n';
 
 const initialState: LangState = {
-  language: 'en'
+  language: 'en',
 };
 
 export const langSlice = createSlice({
@@ -14,7 +14,7 @@ export const langSlice = createSlice({
   reducers: {
     setLang: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
-      i18n.changeLanguage(state.language)
+      i18n.changeLanguage(state.language);
     },
   },
 });

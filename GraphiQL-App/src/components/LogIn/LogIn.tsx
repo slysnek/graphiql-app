@@ -3,21 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
 import { auth, logInWithEmailAndPassword } from '../../helpers/firebase';
+import { signInWithGoogle } from '../../helpers/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Snackbar, Alert } from '@mui/material';
 
 import Form from '../Form/Form';
 import { useTranslation } from 'react-i18next';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function LogIn() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [user, loading, error] = useAuthState(auth);
+  const [, , error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
-  const { t, i18n } = useTranslation()
+  const [successMessage, setSuccessMessage] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -31,24 +34,28 @@ function LogIn() {
             name: '',
           })
         );
+        setSuccessMessage(t('loginForm.successStillLogged') as string);
         setIsLoading(false);
-        navigate('/welcome', { replace: true });
+        setTimeout(() => {
+          navigate('/welcome', { replace: true });
+        }, 1700);
       }
       dispatch(exitUser());
       setIsLoading(false);
+      setSuccessMessage('');
+      setErrorMessage('');
     });
 
     return () => {
       listenAuth();
     };
-  }, []);
+  }, [dispatch, navigate, t]);
 
   useEffect(() => {
     if (!error) {
       setErrorMessage('');
       return;
     }
-    setErrorMessage(error.message);
   }, [error]);
 
   const handleLogin = async (email: string, password: string) => {
@@ -66,15 +73,38 @@ function LogIn() {
           })
         );
         setIsLoading(false);
-        navigate('/welcome', { replace: true });
+        setSuccessMessage(t('loginForm.successMessage') as string);
+        setErrorMessage('');
+        setTimeout(() => {
+          navigate('/welcome', { replace: true });
+        }, 1700);
       }
     } catch (e) {
       setIsLoading(false);
       if (e instanceof Error) {
-        setErrorMessage(`Failed LogIn. ${e.message}`);
+        setErrorMessage(`${e.message}`);
+      } else {
+        setErrorMessage(t('loginForm.undefinedError') as string);
       }
     }
   };
+
+  const logInGoogle = async () => {
+    try {
+      setIsLoading(true);
+      await signInWithGoogle();
+      setErrorMessage('');
+      setSuccessMessage(t('loginForm.successMessage') as string);
+      setIsLoading(false);
+    } catch (e) {
+      if (e instanceof Error) {
+        setErrorMessage(e.message as string);
+      } else {
+        setErrorMessage(t('loginForm.errorGoogle') as string);
+      }
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -91,16 +121,54 @@ function LogIn() {
           {t('loginForm.header')}
         </Typography>
       </Box>
-      {isLoading && (
-        <Box className="loader">
-          <p>{t('loginForm.loading')}</p>
-        </Box>
-      )}
-      <Form typeForm="login" onclickSubmit={handleLogin} />
+      {isLoading ? <LoadingSpinner loading={isLoading} /> : ''}
+      <Form typeForm="login" onclickSubmit={handleLogin} onGoogleHandler={logInGoogle} />
+
       {errorMessage && (
-        <Box className="error-box">
-          <p>{t('loginForm.error')}{errorMessage}</p>
-        </Box>
+        <Snackbar
+          open={!!errorMessage}
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          autoHideDuration={6000}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+        >
+          <Alert
+            variant="filled"
+            severity="error"
+            onClose={() => {
+              setErrorMessage('');
+            }}
+          >
+            {errorMessage}
+          </Alert>
+        </Snackbar>
+      )}
+      {successMessage && (
+        <Snackbar
+          open={!!successMessage}
+          onClose={() => {
+            setSuccessMessage('');
+          }}
+          autoHideDuration={3000}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+        >
+          <Alert
+            variant="filled"
+            severity="success"
+            onClose={() => {
+              setSuccessMessage('');
+            }}
+          >
+            {successMessage}
+          </Alert>
+        </Snackbar>
       )}
     </Box>
   );

@@ -5,9 +5,9 @@ import LogIn from '../../components/LogIn/LogIn';
 import { useTranslation } from 'react-i18next';
 
 function LoginPage() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation();
   return (
-    <Container component="main" maxWidth="xl" className="margin-sticky">
+    <Container component="main" maxWidth="xl" className="margin-sticky" sx={{ minHeight: '500px' }}>
       <Box
         sx={{
           display: 'flex',
@@ -23,7 +23,7 @@ function LoginPage() {
         <LogIn />
         <Box sx={{ fontWeight: '500', fontSize: '1.2rem', width: '100%', mt: '20px' }}>
           <Typography variant="h6" component="p">
-          {t('loginPage.haveNoAcc')} <Link to="/register">{t('loginPage.register')}</Link>
+            {t('loginPage.haveNoAcc')} <Link to="/register">{t('loginPage.register')}</Link>
           </Typography>
         </Box>
       </Box>

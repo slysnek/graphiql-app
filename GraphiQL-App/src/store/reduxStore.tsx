@@ -6,12 +6,12 @@ import langSlice from './slices/langSlice';
 
 const rootReducer = combineReducers({
   userAuth: userReducer,
-	docPaneState: docPaneStateSlice,
+  docPaneState: docPaneStateSlice,
   langState: langSlice,
 });
 
 export const store = configureStore({
-  reducer: rootReducer,    
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
