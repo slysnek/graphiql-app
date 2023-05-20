@@ -8,9 +8,6 @@ export default function useCodeMirror() {
   const [, setView] = useState<EditorView>();
 
   useEffect(() => {
-    // const log = (event) => console.log(event);
-    // editor.current.addEventListener('input', log);
-
     const state = EditorState.create({
       doc: ' ',
       extensions: [basicSetup, graphql()],
@@ -19,7 +16,6 @@ export default function useCodeMirror() {
     setView(createdView);
     return () => {
       createdView.destroy();
-      // editor.current.removeEventListener('input', log);
     };
   }, []);
 

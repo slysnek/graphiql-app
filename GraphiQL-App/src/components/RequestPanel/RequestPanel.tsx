@@ -45,9 +45,6 @@ export function RequestPanel() {
     );
   };
 
-  //console.log('RequestPanel queryParameters.isRequested', queryParameters.isRequested);
-  //console.log('RequestPanel isLoaded', isLoaded);
-
   return (
     <div className={styles.container}>
       <div className={styles.card}>

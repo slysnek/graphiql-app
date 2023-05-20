@@ -28,7 +28,6 @@ export const ResponsePanel = () => {
   const queryParameters = useAppSelector((state) => state.queryParameters);
   const isRequested: boolean = useAppSelector((state) => state.queryParameters.isRequested);
   const isLoaded: boolean = useAppSelector((state) => state.queryParameters.isLoaded);
-  //const [results, setResults] = useState<string | undefined>();
 
   const errInit: ErrorObject = { error: false, name: '', message: '', body: '' };
   const [err, setErr] = useState<ErrorObject>(errInit);
@@ -42,30 +41,22 @@ export const ResponsePanel = () => {
   `;
 
   const [gqlQuery, { loading, error, data }] = useLazyQuery(initQuery, {
-    errorPolicy: 'none',
     fetchPolicy: 'no-cache',
   });
 
-  //console.log('ResponsePanel err?.error 1', err?.error);
   useEffect(() => {
-    //console.log('ResponsePanel useEffect isRequested start', isRequested);
     if (isRequested) {
-      //console.log('ResponsePanel useEffect isRequested:', isRequested);
       setErr({ ...errInit });
-      //setResults('');
       try {
-        //console.log('ResponsePanel body:', queryParameters.body);
-        //console.log('ResponsePanel variables:', queryParameters.variables);
         gqlQuery({
           query: gql`
             ${queryParameters.body}
           `,
           variables: JSON.parse(
-            queryParameters.variables === '' || undefined ? '{}' : queryParameters.variables
+            queryParameters.variables === '' || queryParameters.variables === undefined ? '{}' : queryParameters.variables
           ),
         });
       } catch (e) {
-        //console.log('Try catch error', JSON.stringify(e, null, '\t'));
         setErr({
           ...getErrorMessage(e),
           body: JSON.stringify(e, null, '\t'),
@@ -81,14 +72,6 @@ export const ResponsePanel = () => {
       })
     );
   }, [isRequested, isLoaded, err, loading, error, data]);
-
-  // console.log('ResponsePanel error:', error);
-  // console.log('ResponsePanel err?.error:', err?.error);
-  // console.log('ResponsePanel data:', data);
-
-  // if (!(err.error || error) && data) {
-  //   setErr({ ...errInit });
-  // }
 
   if (loading) {
     return (
