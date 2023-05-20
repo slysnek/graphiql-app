@@ -40,6 +40,7 @@ export function RequestPanel() {
       setQueryParameters({
         ...queryParameters,
         isRequested: true,
+        isLoaded: true,
       })
     );
   };
@@ -73,7 +74,11 @@ export function RequestPanel() {
             </LoadingButton>
           </div>
         </div>
-        <div>
+        <div
+          style={{
+            marginTop: '10px',
+          }}
+        >
           <TextField
             value={queryParameters.body}
             id="outlined-multiline-flexible"

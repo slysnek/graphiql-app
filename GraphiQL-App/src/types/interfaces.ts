@@ -20,4 +20,5 @@ export interface ErrorObject {
   error: boolean;
   name?: string;
   message?: string;
+  body?: string;
 }

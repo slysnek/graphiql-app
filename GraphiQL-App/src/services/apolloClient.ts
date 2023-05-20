@@ -6,7 +6,7 @@ export const client = new ApolloClient({
   cache: new InMemoryCache(),
   // headers: {
   //    authorization: localStorage.getItem('token'),
-  //    'client-name': 'WidgetX Ecom [web]',
+  //    'client-name': 'WidgetX com [web]',
   //    'client-version': '1.0.0'
   // },
 });
