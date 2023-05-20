@@ -1,11 +1,9 @@
-.card {
-  height: 100%;
-  width: 100%;
-
+.author_card {
   position: relative;
-  border-radius: 5px;
-  border: 2px solid white;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
 
   transform-style: preserve-3d;
   user-select: none;
@@ -13,35 +11,253 @@
   transition: transform 0.8s;
 }
 
-.card:hover {
-  transform: rotateY(180deg);
+.author_card:hover,
+.author_card:target,
+.author_card:focus {
   cursor: pointer;
 }
 
-.card-front,
-.card-back {
+.author_card-front,
+.author_card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: transparent;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  font-family: 'Roboto', Verdana, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.author_card-front {
+  background-color: transparent;
+}
+
+.author_card-back {
+  background-color: transparent;
+  transform: rotateY(180deg);
+  text-align: center;
+  overflow: hidden;
+}
+
+/*CSS transition automatically add enter and exit subclasses*/
+
+.flip-exit {
+  transform: rotateY(0deg);
+}
+
+.flip-exit-active {
+  transform: rotateY(180deg);
+  transition: transform 0.4s;
+  transition-timing-function: cubic-bezier(0.6, 0.2, 0.7, 1.25);
+}
+
+.flip-exit-done {
+  transform: rotateY(180deg);
+}
+
+.flip-enter {
+  transform: rotateY(180deg);
+}
+
+.flip-enter-active {
+  transform: rotateY(0deg);
+  transition: transform 0.4s;
+  transition-timing-function: cubic-bezier(0.6, 0.2, 0.7, 1.25);
+}
+
+.flip-enter-done {
+  transform: rotateY(0deg);
+}
+
+.card {
+  height: 200px;
+  position: relative;
+  width: 250px;
+}
+
+.card:hover {
+  height: 350px;
+}
+
+.card__line {
+  position: absolute;
+  inset: 0;
+  background-color: #012444;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card__line::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 120px;
+  background: linear-gradient(transparent, #45f3ff, #45f3ff, #45f3ff, transparent);
+  animation: borderGo 3s linear infinite;
+}
+
+@keyframes borderGo {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.card__line::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: rgb(4, 7, 8);
+  border-radius: 10px;
+}
+
+.card__avatar {
+  position: absolute;
+  border-radius: 10px;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  background: rgb(20, 36, 33);
+  transition: 0.5s;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.card:hover .card__avatar {
+  width: 200px;
+  height: 200px;
+}
+
+.card__avatar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(transparent, #fc37d1, #fc37d1, #fc37d1, transparent);
+  animation: borderAvatarGo 5s linear infinite;
+}
+
+@keyframes borderAvatarGo {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.card__avatar::after {
+  content: '';
+  position: absolute;
+  background: rgb(20, 36, 33);
+  border-radius: 10px;
+  inset: 2px;
+}
+
+.card__avatar_img {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
+
+.card__content {
+  position: absolute;
+  z-index: 5;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.7s;
+  transform: translateY(105px);
+}
+
+.card__content_name {
+  font-size: 1.5rem;
+  color: #2dfff5;
+  line-height: 2rem;
+}
+
+.card:hover .card__content {
+  transform: translateY(5px);
+}
+
+.card-back {
+  height: 350px;
+  width: 250px;
+  background-color: gray;
+  transition: all 0.7s;
+  border-radius: 10px;
+  background-image: url('/BackCardBG.jpg');
+  background-size: cover;
+  z-index: 15;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
 
+.media-group__block {
+  position: relative;
+  padding-left: 40px;
+  padding-top: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.media-icon_img {
   position: absolute;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  z-index: 20;
+  top: 6px;
+  left: 0;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
 
-  font-family: 'Roboto', Verdana sans-serif;
-  font-size: 24px;
+.card-back__title {
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #000;
+  line-height: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.media-group_link {
+  text-decoration: none;
+  color: inherit;
+  transition: all ease 0.2s;
 }
 
-.card-front {
-  background-color: aqua;
-}
-
-.card-back {
-  background-color: orange;
-  transform: rotateY(180deg);
+.media-group_link:hover,
+.media-group_link:target,
+.media-group_link:focus {
+  color: steelblue;
+  transform: scale(1.03);
 }
