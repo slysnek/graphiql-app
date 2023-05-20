@@ -43,7 +43,8 @@
     "login": "Log in",
     "create": "Create new account",
     "errorGoogle": "Error! Failed log in with Google!",
-    "undefinedError": "Error via log in. Check your data!"
+    "undefinedError": "Error via log in. Check your data!",
+    "errorRegister": "Failed register. Check your data!"
   },
   "errors": {
     "nickname": "Nickname is required",
