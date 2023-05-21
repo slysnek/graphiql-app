@@ -9,9 +9,12 @@ import styles from './ToolBar.module.css';
 import { useTranslation } from 'react-i18next';
 
 export const ToolBar = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
-  const tooltipTitle = docPanVisible ? 'Hide documentation explorer' : 'Show documentation explorer';
+  const tooltipTitle = docPanVisible
+    ? t('editorPage.hideDocumentation')
+    : t('editorPage.showDocumentation');
 
   return (
     <div className={styles.container}>
