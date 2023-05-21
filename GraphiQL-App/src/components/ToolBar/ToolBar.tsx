@@ -6,6 +6,7 @@ import { setDocPaneState } from '../../store/slices/docPaneStateSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 
 import styles from './ToolBar.module.css';
+import { useTranslation } from 'react-i18next';
 
 export const ToolBar = () => {
   const dispatch = useAppDispatch();
