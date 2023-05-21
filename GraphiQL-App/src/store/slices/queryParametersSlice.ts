@@ -9,6 +9,10 @@ const initialState: QueryParameters = {
   body: '',
   variables: '',
   headers: '',
+  error: false,
+  error_name: '',
+  error_message: '',
+  result: '',
 };
 
 export const queryParametersSlice = createSlice({

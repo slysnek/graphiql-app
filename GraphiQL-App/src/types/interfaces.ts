@@ -14,6 +14,10 @@ export interface QueryParameters {
   body?: string;
   variables?: string;
   headers?: string;
+  error: boolean;
+  error_name?: string;
+  error_message?: string;
+  result?: string;
 }
 
 export interface ErrorObject {

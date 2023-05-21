@@ -1,21 +1,14 @@
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 
-import { setQueryParameters } from '../../store/slices/queryParametersSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-
+import config from '../../config/config.json';
 import styles from './QueryHeadersPane.module.css';
 
 export function QueryHeadersPane() {
-  const dispatch = useAppDispatch();
-  const queryParameters = useAppSelector((state) => state.queryParameters);
-
+  const [localHeader, setLocalHeader] = useState(localStorage.getItem(config.HEADERS_QRY));
   const handleRequestFieldChange = (value: string) => {
-    dispatch(
-      setQueryParameters({
-        ...queryParameters,
-        headers: value,
-      })
-    );
+    localStorage.setItem(config.HEADERS_QRY, value);
+    setLocalHeader(value);
   };
 
   return (
@@ -23,7 +16,7 @@ export function QueryHeadersPane() {
       <div className={styles.card}>
         <h3>Headers</h3>
         <TextField
-          value={queryParameters.headers}
+          value={localHeader}
           id="outlined-multiline-flexible"
           multiline
           fullWidth
