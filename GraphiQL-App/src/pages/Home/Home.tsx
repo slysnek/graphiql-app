@@ -1,7 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../helpers/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
+import { exitUser, setUser } from '../../store/slices/userSlice';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
 import 'allotment/dist/style.css';
+import { arraysAreEqual } from '../../helpers/Utils';
 
 import { ToolBar } from '../../components/ToolBar/ToolBar';
 import { Documentation } from '../../components/Documentation/Documentation';
@@ -10,9 +16,6 @@ import { QueryPanel } from '../../components/QueryPanel/QueryPanel';
 import { ResponsePanel } from '../../components/ResponsePanel/ResponsePanel';
 
 import { setQueryPanelState } from '../../store/slices/queryPanelStateSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-
-import { arraysAreEqual } from '../../helpers/Utils';
 
 import styles from './Home.module.css';
 import config from '../../config/config.json';
@@ -20,7 +23,34 @@ import { QueryPanelState } from '../../types/interfaces';
 
 function Home() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const name = useAppSelector((state) => state.userAuth.name);
+
   const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
+
+  useEffect(() => {
+    const listenAuth = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        dispatch(exitUser());
+        navigate('/login', { replace: true });
+      }
+      if (user) {
+        dispatch(
+          setUser({
+            email: user && user.email ? user.email : '',
+            token: user ? user.refreshToken : '',
+            id: user ? user.uid : '',
+            name: name,
+          })
+        );
+      }
+    });
+
+    return () => {
+      listenAuth();
+    };
+  }, [dispatch, name, navigate]);
+
   const queryPanelState = useAppSelector((state) => state.queryPanelState);
   const ref = useRef<AllotmentHandle>(null!);
   const [isMobile, setIsMobile] = useState(false);
