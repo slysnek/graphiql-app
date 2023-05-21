@@ -53,7 +53,9 @@ export const ResponsePanel = () => {
             ${queryParameters.body}
           `,
           variables: JSON.parse(
-            queryParameters.variables === '' || queryParameters.variables === undefined ? '{}' : queryParameters.variables
+            queryParameters.variables === '' || queryParameters.variables === undefined
+              ? '{}'
+              : queryParameters.variables
           ),
         });
       } catch (e) {
