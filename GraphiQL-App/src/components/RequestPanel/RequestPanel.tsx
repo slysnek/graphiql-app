@@ -59,7 +59,7 @@ export function RequestPanel() {
             justifyContent: 'space-between',
           }}
         >
-          <h3>t('editorPage.requestBody')</h3>
+          <h3>{t('editorPage.requestBody')}</h3>
           <div>
             <LoadingButton
               size="large"
@@ -70,7 +70,7 @@ export function RequestPanel() {
                 handleGqlRequest();
               }}
             >
-              <span>t('editorPage.run')</span>
+              <span>{t('editorPage.run')}</span>
             </LoadingButton>
           </div>
         </div>

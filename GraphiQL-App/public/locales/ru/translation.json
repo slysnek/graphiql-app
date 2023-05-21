@@ -60,7 +60,8 @@
   },
   "editorPage": {
     "documentation": "Документация",
-    "variablesHeaders": "Переменные",
+    "variables": "Переменные",
+    "headers": "Заголовки",
     "response": "Ответ",
     "showDocumentation": "Показать документацию",
     "hideDocumentation": "Скрыть документацию",
@@ -69,6 +70,8 @@
     "successMessage": "Успешно",
     "enterRequestBody": "Пожалуйста введите тело запроса!",
     "requestBody": "Тело запроса",
-    "run": "Выполнить"
+    "run": "Выполнить",
+    "showVarHeaderPanel": "Показать панель Переменных/Заголовков",
+    "hideVarHeaderPanel": "Скрыть панель Переменных/Заголовков"
   }
 }

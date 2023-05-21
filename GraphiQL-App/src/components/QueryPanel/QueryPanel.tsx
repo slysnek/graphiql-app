@@ -4,6 +4,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { Tooltip } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import styles from './QueryPanel.module.css';
 import { QueryHeadersPane } from '../QueryHeaders/QueryHeadersPane';
@@ -20,6 +21,7 @@ interface QueryPanelProps {
 }
 
 export const QueryPanel = ({ onChange }: QueryPanelProps) => {
+  const { t } = useTranslation();
   const queryPanelState = useAppSelector((state) => state.queryPanelState);
 
   const [value, setValue] = React.useState('1');
@@ -34,7 +36,13 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
 
   const ButtonInTabs = ({ onClick, children }: ButtonInTabsProps) => {
     return (
-      <Tooltip title={queryPanelState.isOpened ? 'Hide editor tools' : 'Show editor tools'}>
+      <Tooltip
+        title={
+          queryPanelState.isOpened
+            ? t('editorPage.hideVarHeaderPanel')
+            : t('editorPage.showVarHeaderPanel')
+        }
+      >
         <IconButton onClick={onClick} children={children} />
       </Tooltip>
     );
@@ -85,8 +93,8 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
               }}
             >
               <TabList onChange={handleChange} aria-label="query panel">
-                <Tab label="Variables" value="1" />
-                <Tab label="Headers" value="2" />
+                <Tab label={t('editorPage.variables')} value="1" />
+                <Tab label={t('editorPage.headers')} value="2" />
                 <ButtonInTabs
                   onClick={() => {
                     OpenPanel();
