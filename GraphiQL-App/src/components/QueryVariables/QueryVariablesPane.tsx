@@ -2,10 +2,12 @@ import TextField from '@mui/material/TextField';
 
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
+import { useTranslation } from 'react-i18next';
 
 import styles from './QueryVariablesPane.module.css';
 
 export function QueryVariablesPane() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const queryParameters = useAppSelector((state) => state.queryParameters);
 
@@ -21,7 +23,7 @@ export function QueryVariablesPane() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h3>Variables</h3>
+        <h3>{t('editorPage.variables')}</h3>
         <TextField
           value={queryParameters.variables}
           id="outlined-multiline-flexible"

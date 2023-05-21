@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TextField, Snackbar, Alert } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
 import styles from './ResponsePanelView.module.css';
 
 interface ResponsePanelViewProps {
@@ -10,6 +12,7 @@ interface ResponsePanelViewProps {
 }
 
 export const ResponsePanelView = (props: ResponsePanelViewProps) => {
+  const { t } = useTranslation();
   const [openError, setOpenError] = useState(true);
   const [openSuccess, setOpenSuccess] = useState(true);
 
@@ -38,7 +41,7 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
             margin: '1rem',
           }}
         >
-          Response
+          {t('editorPage.response')}
         </h3>
         <div>
           <span
@@ -49,7 +52,7 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
               marginLeft: '1rem',
             }}
           >
-            {props.error ? props.error_message : props.result ? 'Success' : ''}
+            {props.error ? props.error_message : props.result ? t('editorPage.successMessage') : ''}
           </span>
           {props.error && (
             <Snackbar
@@ -77,7 +80,7 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
               }}
             >
               <Alert variant="filled" severity="success">
-                Success
+                {t('editorPage.successMessage')}
               </Alert>
             </Snackbar>
           )}

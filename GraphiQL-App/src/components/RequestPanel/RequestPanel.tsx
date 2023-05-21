@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { LoadingButton } from '@mui/lab';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import TextField from '@mui/material/TextField';
+import { useTranslation } from 'react-i18next';
 
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
@@ -9,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import styles from './RequestPanel.module.css';
 
 export function RequestPanel() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const queryParameters = useAppSelector((state) => state.queryParameters);
   const isLoaded = useAppSelector((state) => state.queryParameters.isLoaded);
@@ -29,8 +31,9 @@ export function RequestPanel() {
   };
   const handleGqlRequest = () => {
     if (queryParameters.body === '') {
+      const enterRequestBody = t('editorPage.enterRequestBody');
       setBodyError(true);
-      setBodyTextError('Please enter request body!');
+      setBodyTextError(enterRequestBody);
       return;
     } else {
       setBodyError(false);
@@ -56,7 +59,7 @@ export function RequestPanel() {
             justifyContent: 'space-between',
           }}
         >
-          <h3>Request body</h3>
+          <h3>t('editorPage.requestBody')</h3>
           <div>
             <LoadingButton
               size="large"
@@ -67,7 +70,7 @@ export function RequestPanel() {
                 handleGqlRequest();
               }}
             >
-              <span>Run</span>
+              <span>t('editorPage.run')</span>
             </LoadingButton>
           </div>
         </div>
