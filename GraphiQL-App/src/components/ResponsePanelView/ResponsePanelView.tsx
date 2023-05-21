@@ -16,11 +16,11 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
   const [openError, setOpenError] = useState(true);
   const [openSuccess, setOpenSuccess] = useState(true);
 
-  const handleErrorClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleErrorClose = () => {
     setOpenError(false);
   };
 
-  const handleSuccessClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleSuccessClose = () => {
     setOpenSuccess(false);
   };
 
@@ -31,7 +31,7 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
     if (!props.error && props.result !== '' && props.result !== undefined && !openSuccess) {
       setOpenSuccess(true);
     }
-  }, [props]);
+  }, [openSuccess, props]);
 
   return (
     <div className={styles.container}>

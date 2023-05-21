@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Tab, IconButton, Button } from '@mui/material';
+import { Box, Tab, IconButton } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -43,7 +43,7 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
             : t('editorPage.showVarHeaderPanel')
         }
       >
-        <IconButton onClick={onClick} children={children} />
+        <IconButton onClick={onClick}>{children}</IconButton>
       </Tooltip>
     );
   };
@@ -99,8 +99,9 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
                   onClick={() => {
                     OpenPanel();
                   }}
-                  children={queryPanelState.isOpened ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-                />
+                >
+                  {queryPanelState.isOpened ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                </ButtonInTabs>
               </TabList>
             </Box>
             <TabPanel value="1">

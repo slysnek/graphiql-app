@@ -45,7 +45,7 @@ function Home() {
           );
         }
       }, 100),
-    []
+    [dispatch, queryPanelState]
   );
 
   const handleQueryPanelSizeChange = (newQueryPanelState: QueryPanelState) => {
@@ -56,7 +56,7 @@ function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= config.MOBILE_WIDTH_SIZE);
     };
     handleResize();
     window.addEventListener('resize', handleResize);

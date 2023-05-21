@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 
 import { ErrorObject } from '../../types/interfaces';
 import { ResponsePanelView } from '../ResponsePanelView/ResponsePanelView';
-import styles from './ResponsePanel.module.css';
 
 function getErrorMessage(error: unknown): ErrorObject {
   if (error instanceof Error)
@@ -29,6 +28,7 @@ export const ResponsePanel = () => {
   const isRequested: boolean = useAppSelector((state) => state.queryParameters.isRequested);
   const isLoaded: boolean = useAppSelector((state) => state.queryParameters.isLoaded);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const errInit: ErrorObject = { error: false, name: '', message: '', body: '' };
   const [err, setErr] = useState<ErrorObject>(errInit);
 
@@ -73,7 +73,18 @@ export const ResponsePanel = () => {
         isLoaded: loading,
       })
     );
-  }, [isRequested, isLoaded, err, loading, error, data]);
+  }, [
+    isRequested,
+    isLoaded,
+    err,
+    loading,
+    error,
+    data,
+    dispatch,
+    queryParameters,
+    errInit,
+    gqlQuery,
+  ]);
 
   if (loading) {
     return (

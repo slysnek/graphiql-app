@@ -2,5 +2,6 @@
   "BASE_URL": "https://swapi-graphql.netlify.app/.netlify/functions/index",
   "QUERY_PANEL_INIT_SIZE": 50,
   "QUERY_PANEL_HEIGHT": 300,
-  "HEADERS_QRY": "graphql"
+  "HEADERS_QRY": "graphql",
+  "MOBILE_WIDTH_SIZE": 768
 }
