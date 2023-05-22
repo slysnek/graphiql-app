@@ -65,7 +65,6 @@ function Home() {
           if (arraysAreEqual(initQueryPanelState.prev_sizes, [0, 0])) {
             initQueryPanelState.prev_sizes = [...sizes];
           }
-
           dispatch(
             setQueryPanelState({
               isOpened: initQueryPanelState.isOpened,

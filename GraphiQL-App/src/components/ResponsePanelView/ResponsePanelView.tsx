@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { TextField, Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
@@ -11,10 +11,10 @@ interface ResponsePanelViewProps {
   result?: string;
 }
 
-export const ResponsePanelView = (props: ResponsePanelViewProps) => {
+const ResponsePanelView = (props: ResponsePanelViewProps) => {
   const { t } = useTranslation();
-  const [openError, setOpenError] = useState(true);
-  const [openSuccess, setOpenSuccess] = useState(true);
+  const [openError, setOpenError] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
 
   const handleErrorClose = () => {
     setOpenError(false);
@@ -31,7 +31,8 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
     if (!props.error && props.result !== '' && props.result !== undefined && !openSuccess) {
       setOpenSuccess(true);
     }
-  }, [openSuccess, props]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props]);
 
   return (
     <div className={styles.container}>
@@ -106,3 +107,5 @@ export const ResponsePanelView = (props: ResponsePanelViewProps) => {
     </div>
   );
 };
+
+export default memo(ResponsePanelView);

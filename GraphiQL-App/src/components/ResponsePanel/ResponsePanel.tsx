@@ -6,7 +6,7 @@ import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 
 import { ErrorObject } from '../../types/interfaces';
-import { ResponsePanelView } from '../ResponsePanelView/ResponsePanelView';
+import ResponsePanelView from '../ResponsePanelView/ResponsePanelView';
 
 function getErrorMessage(error: unknown): ErrorObject {
   if (error instanceof Error)

@@ -11,7 +11,6 @@ import { QueryHeadersPane } from '../QueryHeaders/QueryHeadersPane';
 import { QueryVariablesPane } from '../QueryVariables/QueryVariablesPane';
 
 import { useAppSelector } from '../../store/hooksRedux';
-import { arraysAreEqual } from '../../helpers/Utils';
 
 import config from '../../config/config.json';
 import { QueryPanelState } from '../../types/interfaces';
@@ -49,28 +48,18 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
   };
 
   const OpenPanel = () => {
-    let newPanelState: QueryPanelState = { ...queryPanelState };
+    const newPanelState: QueryPanelState = { ...queryPanelState };
     if (queryPanelState.sizes !== undefined) {
-      if (arraysAreEqual(queryPanelState.sizes, queryPanelState.prev_sizes)) {
-        const new_sizes = queryPanelState.isOpened
-          ? [
-              queryPanelState.sizes[0] + queryPanelState.sizes[1] - config.QUERY_PANEL_INIT_SIZE,
-              config.QUERY_PANEL_INIT_SIZE,
-            ]
-          : [
-              queryPanelState.sizes[0] - config.QUERY_PANEL_HEIGHT,
-              queryPanelState.sizes[1] + config.QUERY_PANEL_HEIGHT,
-            ];
-        newPanelState.sizes = [...new_sizes];
-      } else {
-        const sizes = [...queryPanelState.sizes];
-        const prev_sizes = [...queryPanelState.sizes];
-        newPanelState = {
-          ...queryPanelState,
-          sizes: prev_sizes,
-          prev_sizes: sizes,
-        };
-      }
+      const new_sizes = queryPanelState.isOpened
+        ? [
+            queryPanelState.sizes[0] + queryPanelState.sizes[1] - config.QUERY_PANEL_INIT_SIZE,
+            config.QUERY_PANEL_INIT_SIZE,
+          ]
+        : [
+            queryPanelState.sizes[0] - config.QUERY_PANEL_HEIGHT,
+            queryPanelState.sizes[1] + config.QUERY_PANEL_HEIGHT,
+          ];
+      newPanelState.sizes = [...new_sizes];
       onChange(newPanelState);
     }
   };
@@ -93,8 +82,8 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
               }}
             >
               <TabList onChange={handleChange} aria-label="query panel">
-                <Tab label={t('editorPage.variables')} value="1" />
-                <Tab label={t('editorPage.headers')} value="2" />
+                <Tab label={t('editorPage.variables')} value="1" sx={{ fontWeight: '800' }} />
+                <Tab label={t('editorPage.headers')} value="2" sx={{ fontWeight: '800' }} />
                 <ButtonInTabs
                   onClick={() => {
                     OpenPanel();
