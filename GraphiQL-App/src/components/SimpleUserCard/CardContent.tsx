@@ -3,14 +3,7 @@ import EMailImg from '/icons/EmLogo.png';
 import GHubImg from '/icons/GhLogo.png';
 import TGImg from '/icons/TgLogo.png';
 
-interface CardContentProps {
-  onClick: () => void;
-  avatar: string;
-  name: string;
-  GHLink: string;
-  EMLink: string;
-  TGLink: string;
-}
+import { CardContentProps } from '../../types/interfaces';
 
 function CardContent(props: CardContentProps) {
   const { onClick, avatar, name, GHLink, EMLink, TGLink } = props;

@@ -21,3 +21,23 @@ export interface LangState {
 export interface LoadingSpinnerProps {
   loading: boolean;
 }
+
+export interface CardContentProps {
+  onClick: () => void;
+  avatar: string;
+  name: string;
+  GHLink: string;
+  EMLink: string;
+  TGLink: string;
+}
+
+export interface SimpleUserCardProps {
+  avatar: string;
+  name: string;
+  GHLink: string;
+  EMLink: string;
+  TGLink: string;
+  author: string;
+  positionAvatar: string;
+  positionContent: string;
+}

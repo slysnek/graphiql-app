@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setName, UserState } from '../../store/slices/userSlice';
 import { useTranslation } from 'react-i18next';
-import UserCard from '../../components/UserCard/UserCard';
+import UserCards from '../../components/UserCards/UserCards';
 
 import './WelcomePage.css';
 
@@ -58,36 +58,33 @@ function WelcomePage() {
     <div className="margin-sticky welcome" style={{ minHeight: '300px' }}>
       <h3 className="welcome__title">
         {userName ? (
-          <span>
+          <span className="welcome__title_register">
             {t('welcomePage.greeting')} {userName}!
           </span>
         ) : (
-          <span>{t('welcomePage.requestToLogIn')}</span>
+          <span className="welcome__title_unregister">{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
 
-      <div className="AppWelcome">
-        <UserCard />
+      <p className="welcome__greeting">{t('welcomePage.authors')}</p>
+      <p className="welcome__members">{t('welcomePage.members')}</p>
+      <div className="welcome__info">
+        <UserCards />
+      </div>
+      <div className="welcome__stack">
+        <img src="" alt="React" className="welcome__stack_image" />
+        <img src="" alt="TypeScript" className="welcome__stack_image" />
+        <img src="" alt="CSS3" className="welcome__stack_image" />
+        <img src="" alt="HTML5" className="welcome__stack_image" />
+        <img src="" alt="MUI" className="welcome__stack_image" />
+        <img src="" alt="GraphQL" className="welcome__stack_image" />
+        <img src="" alt="Apollo" className="welcome__stack_image" />
       </div>
 
-      <p className="welcome__authors">{t('welcomePage.authors')}</p>
-      <p className="welcome__animation">Here will be animation</p>
-      <div className="welcome__info authors">
-        <h4 className="authors__name">Slysnek</h4>
-        <p className="authors__content">{t('welcomePage.author_1')}</p>
-        <figure className="authors__avarar avatar">
-          <img className="avatar__img" src="" alt="author avatar" />
-          <figcaption className="avatar__description">avatar description</figcaption>
-        </figure>
-
-        <h4>Skuzema</h4>
-        <p>{t('welcomePage.author_2')}</p>
-        <h4>Sergik</h4>
-        <p>{t('welcomePage.author_3')}</p>
-      </div>
-
-      <button type="button">
-        <NavLink to="/home">Open editor</NavLink>
+      <button type="button" className="button__editor">
+        <NavLink className="editor__link" to="/home">
+          Open editor
+        </NavLink>
       </button>
     </div>
   );

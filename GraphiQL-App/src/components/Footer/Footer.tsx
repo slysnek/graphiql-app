@@ -17,7 +17,6 @@ function Footer() {
         minHeight: '40px',
         height: '60px',
         m: 'auto',
-        mt: '1.5%',
         backgroundColor: 'rgba(63, 174, 196, 0.7)',
         borderRadius: '6px',
       }}

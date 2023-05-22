@@ -3,3 +3,69 @@
   align-items: center;
   justify-content: center;
 }
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url(/bgWelcome.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+}
+
+.welcome__title {
+  font-size: 1.8rem;
+  line-height: 2rem;
+  margin: 1% auto;
+}
+.welcome__title_unregister {
+  color: rgb(214, 165, 1);
+}
+
+.welcome__title_register {
+  color: rgb(19, 235, 66);
+}
+
+.welcome__greeting {
+  font-size: 1.6rem;
+  line-height: 1.7rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.welcome__members {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  font-style: bold;
+  margin-bottom: 1rem;
+}
+
+.welcome__info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__editor {
+  margin: 20px 0;
+  width: 30%;
+  padding: 8px 15px;
+  background-color: rgba(33, 255, 162, 0.8);
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all ease 0.3s;
+}
+
+.button__editor:hover,
+.button__editor:target,
+.button__editor:focus {
+  background-color: rgba(33, 255, 162, 1);
+  transform: scale(1.03);
+}
+
+.editor__link {
+  text-decoration: none;
+}

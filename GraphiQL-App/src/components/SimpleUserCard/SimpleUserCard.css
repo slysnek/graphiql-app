@@ -1,0 +1,50 @@
+.author-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 90%;
+  margin-bottom: 15px;
+}
+
+.author__name {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-style: bold;
+  margin-bottom: 1rem;
+  color: rgb(14, 33, 49);
+}
+
+.author__content {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  width: 70%;
+  height: 100%;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.left_content {
+  padding-right: 2rem;
+}
+
+.right_content {
+  padding-left: 2rem;
+}
+
+.author__card {
+  position: absolute;
+  z-index: 2;
+}
+.right_card {
+  top: -5px;
+  right: -80px;
+}
+
+.left_card {
+  top: -5px;
+  left: -80px;
+}
