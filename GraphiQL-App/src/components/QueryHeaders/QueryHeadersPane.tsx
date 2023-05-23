@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
-
 import config from '../../config/config.json';
 import styles from './QueryHeadersPane.module.css';
 
@@ -12,7 +11,6 @@ export function QueryHeadersPane() {
     localStorage.setItem(config.HEADERS_QRY, value);
     setLocalHeader(value);
   };
-
   return (
     <div className={styles.container}>
       <div className={styles.card}>

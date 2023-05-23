@@ -1,9 +1,7 @@
 import TextField from '@mui/material/TextField';
-
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { useTranslation } from 'react-i18next';
-
 import styles from './QueryVariablesPane.module.css';
 
 export function QueryVariablesPane() {

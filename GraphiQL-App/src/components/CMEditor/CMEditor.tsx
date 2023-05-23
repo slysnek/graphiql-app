@@ -3,7 +3,7 @@ import { EditorView, basicSetup } from 'codemirror';
 import { EditorState } from '@codemirror/state';
 import { graphql } from 'cm6-graphql';
 
-export default function useCodeMirror() {
+export default function CMEditor() {
   const editor = useRef<HTMLDivElement>(null);
   const [, setView] = useState<EditorView>();
 

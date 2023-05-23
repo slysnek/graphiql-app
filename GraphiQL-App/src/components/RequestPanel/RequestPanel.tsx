@@ -3,10 +3,8 @@ import { LoadingButton } from '@mui/lab';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
-
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-
 import styles from './RequestPanel.module.css';
 
 export function RequestPanel() {

@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
 import { CircularProgress } from '@mui/material';
-
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
-
 import { ErrorObject } from '../../types/interfaces';
 import ResponsePanelView from '../ResponsePanelView/ResponsePanelView';
 
@@ -27,7 +25,6 @@ export const ResponsePanel = () => {
   const queryParameters = useAppSelector((state) => state.queryParameters);
   const isRequested: boolean = useAppSelector((state) => state.queryParameters.isRequested);
   const isLoaded: boolean = useAppSelector((state) => state.queryParameters.isLoaded);
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const errInit: ErrorObject = { error: false, name: '', message: '', body: '' };
   const [err, setErr] = useState<ErrorObject>(errInit);

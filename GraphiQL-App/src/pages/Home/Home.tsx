@@ -6,26 +6,22 @@ import { exitUser, setUser } from '../../store/slices/userSlice';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
-import 'allotment/dist/style.css';
 import { arraysAreEqual } from '../../helpers/Utils';
-
 import { ToolBar } from '../../components/ToolBar/ToolBar';
 import { Documentation } from '../../components/Documentation/Documentation';
 import { RequestPanel } from '../../components/RequestPanel/RequestPanel';
 import { QueryPanel } from '../../components/QueryPanel/QueryPanel';
 import { ResponsePanel } from '../../components/ResponsePanel/ResponsePanel';
-
 import { setQueryPanelState } from '../../store/slices/queryPanelStateSlice';
-
+import { QueryPanelState } from '../../types/interfaces';
 import styles from './Home.module.css';
 import config from '../../config/config.json';
-import { QueryPanelState } from '../../types/interfaces';
+import 'allotment/dist/style.css';
 
 function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const name = useAppSelector((state) => state.userAuth.name);
-
   const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
 
   useEffect(() => {
@@ -166,5 +162,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

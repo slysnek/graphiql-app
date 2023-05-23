@@ -1,15 +1,8 @@
 import { memo, useEffect, useState } from 'react';
 import { TextField, Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-
+import { ResponsePanelViewProps } from '../../types/interfaces';
 import styles from './ResponsePanelView.module.css';
-
-interface ResponsePanelViewProps {
-  error: boolean;
-  error_name?: string;
-  error_message?: string;
-  result?: string;
-}
 
 const ResponsePanelView = (props: ResponsePanelViewProps) => {
   const { t } = useTranslation();
@@ -107,5 +100,4 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
     </div>
   );
 };
-
 export default memo(ResponsePanelView);

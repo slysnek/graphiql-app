@@ -46,3 +46,19 @@ export interface ErrorObject {
   message?: string;
   body?: string;
 }
+
+export interface ResponsePanelViewProps {
+  error: boolean;
+  error_name?: string;
+  error_message?: string;
+  result?: string;
+}
+
+export interface QueryPanelProps {
+  onChange: (newQueryPanelState: QueryPanelState) => void;
+}
+
+export interface ButtonInTabsProps {
+  onClick: React.MouseEventHandler;
+  isPanelOpened: boolean | undefined;
+}
