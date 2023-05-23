@@ -6,7 +6,16 @@ import { QueryParameters } from '../../types/interfaces';
 const initialState: QueryParameters = {
   isRequested: false,
   isLoaded: false,
-  body: '',
+  body: `# Star Wars example query
+  #query ExampleQuery($first: Int) {
+  #allFilms(first: $first) {
+  #  films {
+  #    title,
+  #    created,
+  #    producers
+  #  }
+  # }
+  #}`,
   variables: '',
   headers: '',
   error: false,

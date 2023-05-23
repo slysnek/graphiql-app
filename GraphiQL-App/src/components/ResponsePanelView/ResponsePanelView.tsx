@@ -1,7 +1,12 @@
 import { memo, useEffect, useState } from 'react';
-import { TextField, Snackbar, Alert } from '@mui/material';
+import { Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ResponsePanelViewProps } from '../../types/interfaces';
+import CodeMirror from '@uiw/react-codemirror';
+import { EditorView } from 'codemirror';
+import { EditorState } from '@codemirror/state';
+import { bbedit } from '@uiw/codemirror-theme-bbedit';
+import { json } from '@codemirror/lang-json';
 import styles from './ResponsePanelView.module.css';
 
 const ResponsePanelView = (props: ResponsePanelViewProps) => {
@@ -79,22 +84,10 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
             </Snackbar>
           )}
         </div>
-        <TextField
+        <CodeMirror
           value={props.result}
-          id="standard-basic"
-          variant="outlined"
-          multiline
-          fullWidth
-          disabled
-          sx={{
-            '& fieldset': { border: 'none' },
-            '& .MuiInputBase-input.Mui-disabled': {
-              WebkitTextFillColor: '#000000',
-            },
-          }}
-          inputProps={{
-            style: { fontSize: 20 },
-          }}
+          theme={bbedit}
+          extensions={[EditorView.editable.of(false), EditorState.readOnly.of(true), json()]}
         />
       </div>
     </div>
