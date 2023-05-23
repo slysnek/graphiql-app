@@ -2,16 +2,19 @@ import './CardContent.css';
 import EMailImg from '/icons/EmLogo.png';
 import GHubImg from '/icons/GhLogo.png';
 import TGImg from '/icons/TgLogo.png';
+import { useTranslation } from 'react-i18next';
 
 import { CardContentProps } from '../../types/interfaces';
 
 function CardContent(props: CardContentProps) {
-  const { onClick, avatar, name, GHLink, EMLink, TGLink } = props;
+  const { onClick, author, avatar, GHLink, EMLink, TGLink } = props;
+
+  const { t } = useTranslation();
 
   return (
     <div className="author_card" onClick={onClick}>
       <div className="author_card-back card-back">
-        <div className="card-back__title">My contacts</div>
+        <div className="card-back__title">{t('welcomePage.authorContacts')}</div>
         <div className="card-back__contacts media-group">
           <div className="media-group__block">
             <div className="media-group__block_icon media-icon">
@@ -31,7 +34,7 @@ function CardContent(props: CardContentProps) {
             </div>
             <div className="media-group__block_name">
               <a className="media-group_link" href={GHLink} target="_blank" rel="noreferrer">
-                Link to github
+                {t('welcomePage.authorGitHub')}
               </a>
             </div>
           </div>
@@ -40,9 +43,9 @@ function CardContent(props: CardContentProps) {
       <div className="author_card-front card">
         <div className="card__line">
           <div className="card__content">
-            <div className="card__content_name">{name}</div>
-            <div className="card__content_description">Junior Frontend Developer</div>
-            <div className="card__content_about">I am open to work! Click on card to find me!</div>
+            <div className="card__content_name">{t(`welcomePage.authorName_${author}`)}</div>
+            <div className="card__content_description">{t('welcomePage.authorCardTitle')}</div>
+            <div className="card__content_about">{t('welcomePage.authorCardContent')}</div>
           </div>
         </div>
         <div className="card__avatar">

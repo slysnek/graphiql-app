@@ -10,6 +10,13 @@ import { useTranslation } from 'react-i18next';
 import UserCards from '../../components/UserCards/UserCards';
 
 import './WelcomePage.css';
+import ReactIcon from '/icons/ReactIcon.png';
+import TSIcon from '/icons/TSIcon.png';
+import CSS3Icon from '/icons/CSS3Icon.png';
+import HTML5Icon from '/icons/HTML5Icon.png';
+import MUIIcon from '/icons/MUIIcon.png';
+import GraphQLIcon from '/icons/GraphQLIcon.png';
+import ApolloIcon from '/icons/ApolloIcon.png';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
@@ -72,18 +79,21 @@ function WelcomePage() {
         <UserCards />
       </div>
       <div className="welcome__stack">
-        <img src="" alt="React" className="welcome__stack_image" />
-        <img src="" alt="TypeScript" className="welcome__stack_image" />
-        <img src="" alt="CSS3" className="welcome__stack_image" />
-        <img src="" alt="HTML5" className="welcome__stack_image" />
-        <img src="" alt="MUI" className="welcome__stack_image" />
-        <img src="" alt="GraphQL" className="welcome__stack_image" />
-        <img src="" alt="Apollo" className="welcome__stack_image" />
+        <p className="welcome__stack_title">{t('welcomePage.usedStack')}</p>
+        <div className="welcome__stack_logos">
+          <img src={ReactIcon} alt="React" className="welcome__stack_image" />
+          <img src={TSIcon} alt="TypeScript" className="welcome__stack_image" />
+          <img src={CSS3Icon} alt="CSS3" className="welcome__stack_image" />
+          <img src={HTML5Icon} alt="HTML5" className="welcome__stack_image" />
+          <img src={MUIIcon} alt="MUI" className="welcome__stack_image" />
+          <img src={GraphQLIcon} alt="GraphQL" className="welcome__stack_image" />
+          <img src={ApolloIcon} alt="Apollo" className="welcome__stack_image" />
+        </div>
       </div>
 
       <button type="button" className="button__editor">
         <NavLink className="editor__link" to="/home">
-          Open editor
+          {t('welcomePage.editorButton')}
         </NavLink>
       </button>
     </div>

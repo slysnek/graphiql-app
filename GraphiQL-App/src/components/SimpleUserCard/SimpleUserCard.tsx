@@ -11,11 +11,11 @@ function SimpleUserCard(props: SimpleUserCardProps) {
 
   const { t } = useTranslation();
 
-  const { author, avatar, name, GHLink, EMLink, TGLink, positionAvatar, positionContent } = props;
+  const { author, avatar, GHLink, EMLink, TGLink, positionAvatar, positionContent } = props;
 
   return (
     <div className="author-block">
-      <h4 className="author__name">{name}</h4>
+      <h4 className="author__name">{t(`welcomePage.authorName_${author}`)}</h4>
       <p className={`author__content ${positionContent}_content`}>
         {t(`welcomePage.author_${author}`)}
       </p>
@@ -24,7 +24,7 @@ function SimpleUserCard(props: SimpleUserCardProps) {
           <CSSTransition in={showBack} timeout={400} classNames="flip">
             <CardContent
               avatar={avatar}
-              name={name}
+              author={author}
               GHLink={GHLink}
               EMLink={EMLink}
               TGLink={TGLink}

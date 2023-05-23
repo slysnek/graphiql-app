@@ -25,7 +25,7 @@ export interface LoadingSpinnerProps {
 export interface CardContentProps {
   onClick: () => void;
   avatar: string;
-  name: string;
+  author: string;
   GHLink: string;
   EMLink: string;
   TGLink: string;
@@ -33,7 +33,6 @@ export interface CardContentProps {
 
 export interface SimpleUserCardProps {
   avatar: string;
-  name: string;
   GHLink: string;
   EMLink: string;
   TGLink: string;

@@ -40,11 +40,11 @@
   z-index: 2;
 }
 .right_card {
-  top: -5px;
-  right: -80px;
+  top: 5px;
+  right: -70px;
 }
 
 .left_card {
-  top: -5px;
-  left: -80px;
+  top: 5px;
+  left: -70px;
 }

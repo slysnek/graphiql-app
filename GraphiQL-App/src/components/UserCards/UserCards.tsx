@@ -14,7 +14,6 @@ function UserCards() {
         TGLink="@sampleAccount"
         avatar={avatarSlysnek}
         author="1"
-        name="Kirill"
         positionAvatar="right"
         positionContent="left"
       />
@@ -24,7 +23,6 @@ function UserCards() {
         TGLink="@sampleAccount"
         avatar={avatarSkuzema}
         author="2"
-        name="Sergei"
         positionAvatar="left"
         positionContent="right"
       />
@@ -34,7 +32,6 @@ function UserCards() {
         TGLink="@sampleAccount"
         avatar={avatarSergik}
         author="3"
-        name="Sergei"
         positionAvatar="right"
         positionContent="left"
       />
