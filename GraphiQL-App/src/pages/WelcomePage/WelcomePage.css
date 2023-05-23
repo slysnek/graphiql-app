@@ -102,3 +102,79 @@
   height: 64px;
   margin: 10px;
 }
+
+@media screen and (max-width: 950px) {
+  .welcome__title {
+    font-size: 1.7rem;
+    line-height: 1.9rem;
+    width: 80%;
+  }
+
+  .welcome__greeting {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    width: 70%;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  .welcome__members {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    width: 80%;
+    text-align: center;
+  }
+
+  .welcome__stack_title {
+    font-size: 1.7rem;
+    line-height: 1.8rem;
+    margin-bottom: 1%;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .welcome__stack_title {
+    font-size: 1.5rem;
+    line-height: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .welcome__title,
+  .welcome__greeting,
+  .welcome__members {
+    width: 90%;
+  }
+
+  .welcome__title {
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+  }
+
+  .welcome__stack_title {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+  }
+
+  .button__editor {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .welcome__greeting {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+  }
+
+  .welcome__members {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .welcome__title {
+    margin-top: 10px;
+  }
+}

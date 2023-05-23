@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { db, auth } from '../../helpers/firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
-
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setName, UserState } from '../../store/slices/userSlice';
@@ -10,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import UserCards from '../../components/UserCards/UserCards';
 
 import './WelcomePage.css';
+
 import ReactIcon from '/icons/ReactIcon.png';
 import TSIcon from '/icons/TSIcon.png';
 import CSS3Icon from '/icons/CSS3Icon.png';

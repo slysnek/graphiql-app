@@ -276,3 +276,138 @@
   color: steelblue;
   transform: scale(1.03);
 }
+
+@media screen and (max-width: 730px) {
+  .author_card-front,
+  .author_card-back {
+    font-size: 0.8rem;
+  }
+
+  .card {
+    height: 160px;
+    width: 160px;
+  }
+
+  .card:hover {
+    height: 200px;
+  }
+
+  .card__avatar {
+    top: -40px;
+    width: 85px;
+    height: 85px;
+  }
+
+  .card:hover .card__avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card__content {
+    padding: 10px;
+    transform: translateY(65px);
+  }
+
+  .card__content_name {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    padding-top: 10px;
+  }
+
+  .card:hover .card__content {
+    transform: translateY(5px);
+  }
+
+  .card-back {
+    height: 200px;
+    width: 160px;
+  }
+
+  .media-group__block {
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+  }
+
+  .media-icon_img {
+    width: 27px;
+    height: 27px;
+  }
+
+  .card-back__title {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    margin-bottom: 1.3rem;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .author_card-front,
+  .author_card-back {
+    font-size: 1rem;
+  }
+
+  .card {
+    height: 200px;
+    width: 250px;
+  }
+
+  .card:hover {
+    height: 250px;
+  }
+
+  .card__avatar {
+    top: -50px;
+    width: 110px;
+    height: 110px;
+  }
+
+  .card:hover .card__avatar {
+    width: 130px;
+    height: 130px;
+  }
+
+  .card__content {
+    padding: 25px;
+    transform: translateY(70px);
+  }
+
+  .card__content_name {
+    padding-top: 10px;
+  }
+
+  .card:hover .card__content {
+    transform: translateY(5px);
+  }
+
+  .card-back {
+    height: 250px;
+    width: 240px;
+  }
+
+  .media-group__block {
+    font-size: 1.1rem;
+    margin: 20px 0;
+  }
+
+  .media-icon_img {
+    width: 40px;
+    height: 40px;
+    top: -13px;
+  }
+
+  .card-back__title {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    margin-bottom: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+}
+
+@media screen and (max-width: 321px) {
+}
