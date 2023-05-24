@@ -1,22 +1,47 @@
 .login-form__wrapper {
-  min-height: 400px;
+  min-height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 40%;
 }
 
 .login-form__title {
   margin: 2rem auto;
 }
 
+@media screen and (max-width: 1000px) {
+  .login-form__wrapper {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .login-form__wrapper {
+    width: 55%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .login-form__wrapper {
+    width: 60%;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .login-form__wrapper {
     min-height: 300px;
+    width: 70%;
   }
 
   .login-form__title {
     margin: 1.2rem auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .login-form__wrapper {
+    width: 90%;
   }
 }

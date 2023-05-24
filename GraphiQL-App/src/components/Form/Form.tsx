@@ -179,7 +179,7 @@ function Form(props: FormProps) {
       <Grid item xs={10} sx={{ p: '3px', m: 'auto', color: 'steelblue' }}>
         <span>{t('loginForm.or')}</span>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item>
         <Button
           startIcon={<GoogleIcon />}
           type="button"
@@ -194,7 +194,9 @@ function Form(props: FormProps) {
             fontSize: '1rem',
           }}
         >
-          {props.typeForm === 'login' ? t('loginForm.googleLogin') : t('loginForm.googleCreate')}
+          <span className="with-google__link">
+            {props.typeForm === 'login' ? t('loginForm.googleLogin') : t('loginForm.googleCreate')}
+          </span>
         </Button>
       </Grid>
     </Grid>

@@ -52,3 +52,14 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .year__created {
+    font-size: 0.9rem;
+  }
+
+  .footer_logo {
+    width: 40px;
+    height: 40px;
+  }
+}

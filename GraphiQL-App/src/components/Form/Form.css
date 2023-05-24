@@ -6,4 +6,8 @@
   .form__inside {
     width: 80%;
   }
+
+  .with-google__link {
+    font-size: 0.8rem;
+  }
 }

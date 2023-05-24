@@ -23,7 +23,8 @@ function SignUpPage() {
       <Grid
         className="forms-change__link"
         item
-        xs={12}
+        xs={10}
+        lg={11}
         sx={{ fontWeight: '500', fontSize: '1.2rem', mt: '0.7rem', mb: '0.7rem' }}
       >
         <p>

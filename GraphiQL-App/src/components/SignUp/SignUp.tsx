@@ -106,11 +106,13 @@ function SignUp() {
     <Grid
       container
       item
-      xs={12}
+      xs={10}
+      sm={7}
+      md={5}
+      lg={4}
       direction="column"
       justifyContent="center"
       alignItems="center"
-      className="form__container"
     >
       <Grid item>
         <Typography variant="h5" component="h2" color="steelblue" sx={{ mt: '40px' }}>

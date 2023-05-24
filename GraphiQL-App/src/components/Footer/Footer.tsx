@@ -44,14 +44,14 @@ function Footer() {
               </Button>
             </div>
           </Grid>
-          <Grid item xs={3} md={4} sm={3}>
+          <Grid item xs={2} md={4} sm={3}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography color="white" variant="subtitle1">
+              <Typography className="year__created" color="white" variant="subtitle1">
                 2023
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={2} md={4} sm={3} sx={{ textAlign: 'center' }}>
+          <Grid item xs={3} md={4} sm={3} sx={{ textAlign: 'center' }}>
             <Button href="https://rs.school/react/" sx={{ pt: 0, pb: 0 }}>
               <img src={RSLogo} alt="React Course" className="footer_logo" />
             </Button>

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { auth, logout } from '../../helpers/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import { Typography, Toolbar, Box, Button } from '@mui/material';
+import { Typography, Toolbar, Button, Grid } from '@mui/material';
 import logoImg from '/graphql.svg';
 import './Header.css';
 import { useTranslation } from 'react-i18next';
@@ -62,78 +62,83 @@ export default function Header() {
       <Toolbar
         sx={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
-        <Box
-          className="header-logo__box"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '',
-          }}
-          onClick={() => {
-            navigate('/', { replace: true });
-          }}
-        >
-          <img className="header-logo" src={logoImg} alt="GraphiQL Logo" />
-          <Typography
-            variant="h6"
-            className="header-logo_text"
-            component="h1"
-            sx={{ backgroundColor: 'inherit' }}
-          >
-            GraphiQL
-          </Typography>
-        </Box>
-        <Box>
-          {!isUserLogged && (
-            <Button
-              className="header__navigation"
-              color="secondary"
-              onClick={() => {
-                navigate('/login', { replace: true });
-              }}
-            >
-              <span className="header__navigation_text">{t('header.signIn')}</span>
-            </Button>
-          )}
-          {!isUserLogged && (
-            <Button
-              className="header__navigation"
-              color="secondary"
-              onClick={() => {
-                navigate('/register', { replace: true });
-              }}
-            >
-              <span className="header__navigation_text">{t('header.signUp')}</span>
-            </Button>
-          )}
-          {isUserLogged && (
-            <Button className="header__navigation" onClick={handleExitByClick} color="secondary">
-              <span className="header__navigation_text">{t('header.exit')}</span>
-            </Button>
-          )}
-        </Box>
-        <Box>
-          <Button
-            className="header__language"
-            color={language === 'en' ? 'secondary' : 'primary'}
-            style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }}
+        <Grid container xs={12} className="header__container">
+          <Grid
+            item
+            container
+            xs={3}
+            className="header-logo__box"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '',
+            }}
             onClick={() => {
-              dispatch(setLang('en'));
+              navigate('/', { replace: true });
             }}
           >
-            <span className="header__language_variant">EN</span>
-          </Button>
-          <Button
-            className="header__language"
-            color={language === 'ru' ? 'secondary' : 'primary'}
-            style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }}
-            onClick={() => {
-              dispatch(setLang('ru'));
-            }}
-          >
-            <span className="header__language_variant">RU</span>
-          </Button>
-        </Box>
+            <img className="header-logo" src={logoImg} alt="GraphiQL Logo" />
+            <Typography
+              variant="h6"
+              className="header-logo_text"
+              component="h1"
+              sx={{ backgroundColor: 'inherit' }}
+            >
+              GraphiQL
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            {!isUserLogged && (
+              <Button
+                className="header__navigation"
+                color="secondary"
+                onClick={() => {
+                  navigate('/login', { replace: true });
+                }}
+              >
+                <span className="header__navigation_text">{t('header.signIn')}</span>
+              </Button>
+            )}
+            {!isUserLogged && (
+              <Button
+                className="header__navigation"
+                color="secondary"
+                onClick={() => {
+                  navigate('/register', { replace: true });
+                }}
+              >
+                <span className="header__navigation_text">{t('header.signUp')}</span>
+              </Button>
+            )}
+            {isUserLogged && (
+              <Button className="header__navigation" onClick={handleExitByClick} color="secondary">
+                <span className="header__navigation_text">{t('header.exit')}</span>
+              </Button>
+            )}
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              className="header__language"
+              color={language === 'en' ? 'secondary' : 'primary'}
+              style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }}
+              onClick={() => {
+                dispatch(setLang('en'));
+              }}
+            >
+              <span className="header__language_variant">EN</span>
+            </Button>
+            <Button
+              className="header__language"
+              color={language === 'ru' ? 'secondary' : 'primary'}
+              style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }}
+              onClick={() => {
+                dispatch(setLang('ru'));
+              }}
+            >
+              <span className="header__language_variant">RU</span>
+            </Button>
+          </Grid>
+        </Grid>
       </Toolbar>
     </header>
   );

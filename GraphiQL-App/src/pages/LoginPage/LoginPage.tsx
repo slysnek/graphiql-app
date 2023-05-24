@@ -8,11 +8,11 @@ import './LoginPage.css';
 function LoginPage() {
   const { t } = useTranslation();
   return (
-    <Container component="main" className="margin-sticky forms__bg" sx={{ minHeight: '500px' }}>
+    <Container maxWidth={false} component="main" className="margin-sticky forms__bg">
       <Box className="login__page">
         <LogIn />
         <Box
-          sx={{ fontWeight: '500', fontSize: '1.2rem', width: '100%', mt: '0.7rem', mb: '0.7rem' }}
+          sx={{ fontWeight: '500', fontSize: '1.2rem', width: '90%', mt: '0.7rem', mb: '0.7rem' }}
         >
           <Typography variant="h6" component="p">
             {t('loginPage.haveNoAcc')} <Link to="/register">{t('loginPage.register')}</Link>
