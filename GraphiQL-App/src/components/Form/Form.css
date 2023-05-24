@@ -1,0 +1,9 @@
+.form__inside {
+  width: 60%;
+}
+
+@media screen and (max-width: 600px) {
+  .form__inside {
+    width: 80%;
+  }
+}

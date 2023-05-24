@@ -1,0 +1,22 @@
+.login-form__wrapper {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-form__title {
+  margin: 2rem auto;
+}
+
+@media screen and (max-width: 600px) {
+  .login-form__wrapper {
+    min-height: 300px;
+  }
+
+  .login-form__title {
+    margin: 1.2rem auto;
+  }
+}

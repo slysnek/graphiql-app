@@ -103,7 +103,15 @@ function SignUp() {
   };
 
   return (
-    <Grid container item xs={12} direction="column" justifyContent="center" alignItems="center">
+    <Grid
+      container
+      item
+      xs={12}
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      className="form__container"
+    >
       <Grid item>
         <Typography variant="h5" component="h2" color="steelblue" sx={{ mt: '40px' }}>
           {t('loginForm.create')}

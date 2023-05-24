@@ -12,6 +12,7 @@ import { Box, Typography, Snackbar, Alert } from '@mui/material';
 import Form from '../Form/Form';
 import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import './Login.css';
 
 function LogIn() {
   const dispatch = useAppDispatch();
@@ -106,17 +107,8 @@ function LogIn() {
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        width: '100%',
-        minHeight: '400px',
-      }}
-    >
-      <Box sx={{ m: 'auto', mt: '40px', mb: '2rem' }}>
+    <div className="login-form__wrapper">
+      <Box className="login-form__title">
         <Typography variant="h6" component="h2" color="steelblue">
           {t('loginForm.header')}
         </Typography>
@@ -170,7 +162,7 @@ function LogIn() {
           </Alert>
         </Snackbar>
       )}
-    </Box>
+    </div>
   );
 }
 

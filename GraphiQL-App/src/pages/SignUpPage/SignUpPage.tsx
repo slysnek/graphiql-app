@@ -3,6 +3,8 @@ import SignUp from '../../components/SignUp/SignUp';
 import Grid from '@mui/material/Grid/Grid';
 import { useTranslation } from 'react-i18next';
 
+import './SignUpPage.css';
+
 function SignUpPage() {
   const { t } = useTranslation();
   return (
@@ -11,17 +13,19 @@ function SignUpPage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 'auto',
-        mt: '60px',
         textAlign: 'center',
-        width: '60%',
       }}
       component="main"
-      className="margin-sticky"
+      className="margin-sticky forms__bg"
       container
     >
       <SignUp />
-      <Grid item xs={12} sx={{ fontWeight: '500', fontSize: '1.2rem' }}>
+      <Grid
+        className="forms-change__link"
+        item
+        xs={12}
+        sx={{ fontWeight: '500', fontSize: '1.2rem', mt: '0.7rem', mb: '0.7rem' }}
+      >
         <p>
           {t('signUpPage.haveAnAcc')} <Link to="/login">{t('signUpPage.login')}</Link>
         </p>
