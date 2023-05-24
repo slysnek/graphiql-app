@@ -6,3 +6,9 @@ h1 {
 .margin-sticky {
   margin-top: 60px;
 }
+
+@media screen and (max-width: 540px) {
+  .margin-sticky {
+    margin-top: 50px;
+  }
+}

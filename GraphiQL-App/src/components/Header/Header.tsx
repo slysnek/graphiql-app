@@ -59,7 +59,9 @@ export default function Header() {
 
   return (
     <header className={sticky ? 'header isSticky' : 'header'}>
-      <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Toolbar
+        sx={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+      >
         <Box
           className="header-logo__box"
           sx={{
@@ -72,71 +74,64 @@ export default function Header() {
           }}
         >
           <img className="header-logo" src={logoImg} alt="GraphiQL Logo" />
-          <Typography variant="h6" component="h1" sx={{ backgroundColor: 'inherit' }}>
+          <Typography
+            variant="h6"
+            className="header-logo_text"
+            component="h1"
+            sx={{ backgroundColor: 'inherit' }}
+          >
             GraphiQL
           </Typography>
         </Box>
         <Box>
-          <Button
-            color="secondary"
-            onClick={() => {
-              navigate('/home', { replace: true });
-            }}
-          >
-            {t('header.editor')}
-          </Button>
-          <Button
-            color="secondary"
-            onClick={() => {
-              navigate('/welcome', { replace: true });
-            }}
-          >
-            {t('header.info')}
-          </Button>
           {!isUserLogged && (
             <Button
+              className="header__navigation"
               color="secondary"
               onClick={() => {
                 navigate('/login', { replace: true });
               }}
             >
-              {t('header.signIn')}
+              <span className="header__navigation_text">{t('header.signIn')}</span>
             </Button>
           )}
           {!isUserLogged && (
             <Button
+              className="header__navigation"
               color="secondary"
               onClick={() => {
                 navigate('/register', { replace: true });
               }}
             >
-              {t('header.signUp')}
+              <span className="header__navigation_text">{t('header.signUp')}</span>
             </Button>
           )}
           {isUserLogged && (
-            <Button onClick={handleExitByClick} color="secondary">
-              {t('header.exit')}
+            <Button className="header__navigation" onClick={handleExitByClick} color="secondary">
+              <span className="header__navigation_text">{t('header.exit')}</span>
             </Button>
           )}
         </Box>
         <Box>
           <Button
+            className="header__language"
             color={language === 'en' ? 'secondary' : 'primary'}
             style={{ fontWeight: language === 'en' ? 'bold' : 'normal' }}
             onClick={() => {
               dispatch(setLang('en'));
             }}
           >
-            EN
+            <span className="header__language_variant">EN</span>
           </Button>
           <Button
+            className="header__language"
             color={language === 'ru' ? 'secondary' : 'primary'}
             style={{ fontWeight: language === 'ru' ? 'bold' : 'normal' }}
             onClick={() => {
               dispatch(setLang('ru'));
             }}
           >
-            RU
+            <span className="header__language_variant">RU</span>
           </Button>
         </Box>
       </Toolbar>

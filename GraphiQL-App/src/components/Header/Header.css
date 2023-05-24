@@ -39,3 +39,47 @@
   backdrop-filter: blur(10px);
   transition: background-color ease-in 0.3s;
 }
+
+@media screen and (max-width: 620px) {
+  .header-logo__box {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .header {
+    height: 50px;
+  }
+
+  .header-logo_text {
+    display: none;
+  }
+  .header-logo__box {
+    padding: 5px 5px;
+  }
+
+  .header-logo {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+  }
+
+  .isSticky {
+    height: 50px;
+  }
+
+  .header__navigation {
+    padding: 0;
+  }
+
+  .header__navigation_text {
+    font-size: 0.7rem;
+    line-height: 1rem;
+    padding: 0;
+  }
+
+  .header__language_variant {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+}
