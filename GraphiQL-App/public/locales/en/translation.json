@@ -70,11 +70,18 @@
   },
   "editorPage": {
     "documentation": "Documentation",
-    "variablesHeaders": "Variables/Headers",
+    "variables": "Variables",
+    "headers": "Headers",
     "response": "Response",
     "showDocumentation": "Show Documentation",
     "hideDocumentation": "Hide Documentation",
     "operation": "Operation",
-    "query": "Make a query"
+    "query": "Make a query",
+    "successMessage": "Success",
+    "enterRequestBody": "Please enter request body!",
+    "requestBody": "Request body",
+    "run": "Run",
+    "showVarHeaderPanel": "Show Variable/Headers Panel",
+    "hideVarHeaderPanel": "Hide Variable/Headers Panel"
   }
 }

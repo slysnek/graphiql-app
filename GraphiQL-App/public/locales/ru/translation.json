@@ -70,11 +70,18 @@
   },
   "editorPage": {
     "documentation": "Документация",
-    "variablesHeaders": "Переменные/Заголовки",
+    "variables": "Переменные",
+    "headers": "Заголовки",
     "response": "Ответ",
     "showDocumentation": "Показать документацию",
     "hideDocumentation": "Скрыть документацию",
     "operation": "Операция",
-    "query": "Выполнить запрос"
+    "query": "Выполнить запрос",
+    "successMessage": "Успешно",
+    "enterRequestBody": "Пожалуйста введите тело запроса!",
+    "requestBody": "Тело запроса",
+    "run": "Выполнить",
+    "showVarHeaderPanel": "Показать панель Переменных/Заголовков",
+    "hideVarHeaderPanel": "Скрыть панель Переменных/Заголовков"
   }
 }
