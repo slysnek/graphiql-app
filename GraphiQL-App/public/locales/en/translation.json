@@ -72,6 +72,8 @@
     "requestBody": "Request body",
     "run": "Run",
     "showVarHeaderPanel": "Show Variable/Headers Panel",
-    "hideVarHeaderPanel": "Hide Variable/Headers Panel"
+    "hideVarHeaderPanel": "Hide Variable/Headers Panel",
+    "help": "Enter data in JSON format",
+    "helpGql": "Enter data in GraphQL format"
   }
 }

@@ -13,6 +13,11 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
   const { t } = useTranslation();
   const [openError, setOpenError] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
+  const options = {
+    lineNumbers: false,
+    foldGutter: false,
+    highlightActiveLine: false,
+  };
 
   const handleErrorClose = () => {
     setOpenError(false);
@@ -88,6 +93,7 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
           value={props.result}
           theme={bbedit}
           extensions={[EditorView.editable.of(false), EditorState.readOnly.of(true), json()]}
+          basicSetup={options}
         />
       </div>
     </div>
