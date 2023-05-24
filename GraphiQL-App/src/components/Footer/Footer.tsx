@@ -6,33 +6,12 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        pt: '0.5rem',
-        pb: '0.5rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        minHeight: '40px',
-        height: '60px',
-        m: 'auto',
-        backgroundColor: 'rgba(63, 174, 196, 0.7)',
-        borderRadius: '6px',
-      }}
-    >
+    <footer className="footer">
       <CssBaseline />
       <Container maxWidth="lg">
         <Grid container direction="row" alignItems="center">
-          <Grid item xs={4} sx={{ textAlign: 'center' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
+          <Grid item xs={7} md={4} sm={6} sx={{ textAlign: 'center' }}>
+            <div className="footer__accounts">
               <Button
                 className="GH_link"
                 href="https://github.com/slysnek"
@@ -63,23 +42,23 @@ function Footer() {
               >
                 <span className="non_visible">Sergik</span>
               </Button>
-            </Box>
+            </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3} md={4} sm={3}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Typography color="white" variant="subtitle1">
                 2023
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={4} sx={{ textAlign: 'center' }}>
+          <Grid item xs={2} md={4} sm={3} sx={{ textAlign: 'center' }}>
             <Button href="https://rs.school/react/" sx={{ pt: 0, pb: 0 }}>
               <img src={RSLogo} alt="React Course" className="footer_logo" />
             </Button>
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </footer>
   );
 }
 
