@@ -3,7 +3,7 @@ import { auth } from '../../helpers/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
 import { arraysAreEqual } from '../../helpers/Utils';
@@ -17,6 +17,7 @@ import { QueryPanelState } from '../../types/interfaces';
 import styles from './Home.module.css';
 import config from '../../config/config.json';
 import 'allotment/dist/style.css';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -100,7 +101,9 @@ function Home() {
             </Allotment.Pane>
             <Allotment.Pane preferredSize={'15%'} visible={docPanVisible}>
               <div style={{ overflowY: 'auto', height: '100%' }}>
-                <Documentation />
+                <Suspense fallback={<LoadingSpinner loading={true} />}>
+                  <Documentation />
+                </Suspense>
               </div>
             </Allotment.Pane>
             <Allotment.Pane minSize={50} preferredSize={'45%'}>
