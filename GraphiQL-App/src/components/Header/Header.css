@@ -7,8 +7,8 @@
   left: 0;
   min-height: 50px;
   transition: all easy 1s;
-  border-radius: 5px;
   background-color: rgba(63, 174, 196, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px -3px 6px -1px;
 }
 
 .header__container {
@@ -88,7 +88,7 @@
   }
 
   .header__navigation_text {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     line-height: 1rem;
     padding: 0;
   }

@@ -8,7 +8,7 @@
   height: 60px;
   margin: auto;
   background-color: rgba(63, 174, 196, 0.7);
-  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px -3px 6px -1px;
 }
 
 .footer_logo {

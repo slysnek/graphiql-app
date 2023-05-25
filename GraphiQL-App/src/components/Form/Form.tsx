@@ -44,6 +44,7 @@ function Form(props: FormProps) {
     <Grid
       container
       direction="column"
+      flexWrap="nowrap"
       justifyContent="center"
       className="form__inside"
       sx={{
@@ -57,6 +58,7 @@ function Form(props: FormProps) {
       <Grid
         container
         direction="column"
+        flexWrap="nowrap"
         item
         sx={{
           display: 'flex',

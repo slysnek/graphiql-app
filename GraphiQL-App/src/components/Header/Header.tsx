@@ -62,7 +62,7 @@ export default function Header() {
       <Toolbar
         sx={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
-        <Grid container xs={12} className="header__container">
+        <Grid container className="header__container">
           <Grid
             item
             container

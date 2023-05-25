@@ -14,7 +14,7 @@ function LoginPage() {
         <Box
           sx={{ fontWeight: '500', fontSize: '1.2rem', width: '90%', mt: '0.7rem', mb: '0.7rem' }}
         >
-          <Typography variant="h6" component="p">
+          <Typography variant="h6" component="p" sx={{ mb: '70px' }}>
             {t('loginPage.haveNoAcc')} <Link to="/register">{t('loginPage.register')}</Link>
           </Typography>
         </Box>

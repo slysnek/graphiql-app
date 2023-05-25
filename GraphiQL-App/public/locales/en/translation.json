@@ -20,14 +20,14 @@
     "authorCardContent": "I am open to work! Click on card to find me!",
     "authorContacts": "My contacts",
     "authorGitHub": "Git Hub Link",
-    "members": "See at the members of this command project",
+    "members": "Our team who worked on the project",
     "requestToLogIn": "Please, log in or sign up to get access to GraphQL editor.",
     "authors": "Welcome to our application, based on graphQL API",
-    "author_1": "Here will be some information about our TeamLeader. He's a FrontEnd Developer, who learned JS, React, HTML, CSS and another technologies from visual side of web pages. I'm team lead of this project",
-    "author_2": "Junior Front-end React developer in creating user interfaces with the React library. As well as a systems analyst with experience in the design and development of financial systems.",
-    "author_3": "I'm a junior front end Developer. I have learnt Java Script, React, html, css. Now I'm finishing RS School and hope my participation in this command project help me to find my first job as a Web Developer. Click on my card to look at my contacts. See you guests!",
+    "author_1": "Team Lead of this project, a frontend developer with freelance experience and knowledge of modern web technologies such as React, JS, HTML, CSS.",
+    "author_2": "Junior Front-end React developer, who specializes in creating user interfaces with the React library. As well as a systems analyst with experience in the design and development of financial systems.",
+    "author_3": "I'm a Junior Frontend Developer. I have been learning JavaScript, React, HTML, CSS. Now I'm finishing RS School and hope my participation in this team project will help me to find my first job as a Web Developer. Click on my card to see my contacts. See you!",
     "editorButton": "OPEN EDITOR",
-    "usedStack": "We used the next stack"
+    "usedStack": "We used the following technology stack"
   },
   "loginPage": {
     "haveNoAcc": "Don't have an account?",

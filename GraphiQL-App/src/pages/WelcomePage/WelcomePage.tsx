@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { db, auth } from '../../helpers/firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
@@ -20,6 +20,7 @@ import ApolloIcon from '/icons/ApolloIcon.png';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [user] = useAuthState(auth);
   const initialData = useAppSelector((state) => state.userAuth);
@@ -81,20 +82,46 @@ function WelcomePage() {
       <div className="welcome__stack">
         <p className="welcome__stack_title">{t('welcomePage.usedStack')}</p>
         <div className="welcome__stack_logos">
-          <img src={ReactIcon} alt="React" className="welcome__stack_image" />
-          <img src={TSIcon} alt="TypeScript" className="welcome__stack_image" />
-          <img src={CSS3Icon} alt="CSS3" className="welcome__stack_image" />
-          <img src={HTML5Icon} alt="HTML5" className="welcome__stack_image" />
-          <img src={MUIIcon} alt="MUI" className="welcome__stack_image" />
-          <img src={GraphQLIcon} alt="GraphQL" className="welcome__stack_image" />
-          <img src={ApolloIcon} alt="Apollo" className="welcome__stack_image" />
+          <a href="https://react.dev/" target="_blank" rel="noreferrer">
+            <img src={ReactIcon} alt="React" className="welcome__stack_image" />
+          </a>
+          <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
+            <img src={TSIcon} alt="TypeScript" className="welcome__stack_image" />
+          </a>
+          <a
+            href="https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/CSS_basics"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={CSS3Icon} alt="CSS3" className="welcome__stack_image" />
+          </a>
+          <a
+            href="https://developer.mozilla.org/ru/docs/Glossary/HTML5"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={HTML5Icon} alt="HTML5" className="welcome__stack_image" />
+          </a>
+          <a href="https://mui.com/" target="_blank" rel="noreferrer">
+            <img src={MUIIcon} alt="MUI" className="welcome__stack_image" />
+          </a>
+          <a href="https://graphql.org/" target="_blank" rel="noreferrer">
+            <img src={GraphQLIcon} alt="GraphQL" className="welcome__stack_image" />
+          </a>
+          <a href="https://www.apollo.io/" target="_blank" rel="noreferrer">
+            <img src={ApolloIcon} alt="Apollo" className="welcome__stack_image" />
+          </a>
         </div>
       </div>
 
-      <button type="button" className="button__editor">
-        <NavLink className="editor__link" to="/home">
-          {t('welcomePage.editorButton')}
-        </NavLink>
+      <button
+        type="button"
+        className="button__editor"
+        onClick={() => {
+          navigate('/home', { replace: true });
+        }}
+      >
+        {t('welcomePage.editorButton')}
       </button>
     </div>
   );

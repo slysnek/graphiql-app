@@ -22,7 +22,7 @@
   text-align: center;
 }
 .welcome__title_unregister {
-  color: rgb(214, 165, 1);
+  color: rgb(209, 1, 29);
 }
 
 .welcome__title_register {
@@ -64,11 +64,8 @@
 .button__editor:target,
 .button__editor:focus {
   background-color: rgba(33, 255, 162, 1);
+  cursor: pointer;
   transform: scale(1.03);
-}
-
-.editor__link {
-  text-decoration: none;
 }
 
 .welcome__stack {
@@ -101,6 +98,16 @@
   width: 64px;
   height: 64px;
   margin: 10px;
+  transition: all ease 0.4s;
+}
+
+.welcome__stack_image:hover,
+.welcome__stack_image:target,
+.welcome__stack_image:focus {
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0px 0px 22px 5px rgba(212, 121, 121, 0.75);
+  border-radius: 12px;
 }
 
 @media screen and (max-width: 950px) {
