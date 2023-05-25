@@ -62,7 +62,7 @@ function WelcomePage() {
   });
 
   return (
-    <div className=" welcome" style={{ minHeight: '300px' }}>
+    <div className=" welcome margin-sticky" style={{ minHeight: '300px' }}>
       <h3 className="welcome__title">
         {userName ? (
           <span className="welcome__title_register">
