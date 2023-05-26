@@ -13,6 +13,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: rgb(255, 255, 255);
+  height: 100%;
 }
 
 .welcome__title {
@@ -50,7 +51,7 @@
 }
 
 .button__editor {
-  margin: 20px 0;
+  margin: 20px 0 90px 0;
   width: 30%;
   padding: 8px 15px;
   background-color: rgba(33, 255, 162, 0.8);

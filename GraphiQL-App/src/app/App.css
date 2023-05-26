@@ -7,6 +7,17 @@ h1 {
   margin-top: 60px;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.body {
+  height: 100vh;
+}
+
 @media screen and (max-width: 540px) {
   .margin-sticky {
     margin-top: 55px;
