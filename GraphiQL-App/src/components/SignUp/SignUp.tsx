@@ -94,6 +94,7 @@ function SignUp() {
       setSuccessMessage(t('loginForm.successMessage') as string);
       setIsLoading(false);
     } catch (e) {
+      setIsLoading(false);
       if (e instanceof Error) {
         setErrorMessage(e.message);
       } else {
