@@ -1,3 +1,5 @@
+import { getIntrospectionQuery } from 'graphql';
+
 export const arraysAreEqual = (
   array1: number[] | undefined,
   array2: number[] | undefined
@@ -10,3 +12,16 @@ export const arraysAreEqual = (
     );
   }
 };
+
+export async function getSDLSchemaTypes() {
+  const introspectionQuery = getIntrospectionQuery();
+  const res = await fetch('https://swapi-graphql.netlify.app/.netlify/functions/index', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: introspectionQuery }),
+  });
+  const { data } = await res.json();
+  const allTypes = data.__schema.types;
+  console.log('got scheme');
+  return allTypes;
+}
