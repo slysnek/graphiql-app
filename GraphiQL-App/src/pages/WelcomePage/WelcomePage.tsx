@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { db, auth } from '../../helpers/firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
@@ -6,9 +6,21 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setName, UserState } from '../../store/slices/userSlice';
 import { useTranslation } from 'react-i18next';
+import UserCards from '../../components/UserCards/UserCards';
+
+import './WelcomePage.css';
+
+import ReactIcon from '/icons/ReactIcon.png';
+import TSIcon from '/icons/TSIcon.png';
+import CSS3Icon from '/icons/CSS3Icon.png';
+import HTML5Icon from '/icons/HTML5Icon.png';
+import MUIIcon from '/icons/MUIIcon.png';
+import GraphQLIcon from '/icons/GraphQLIcon.png';
+import ApolloIcon from '/icons/ApolloIcon.png';
 
 function WelcomePage() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [user] = useAuthState(auth);
   const initialData = useAppSelector((state) => state.userAuth);
@@ -51,29 +63,65 @@ function WelcomePage() {
   });
 
   return (
-    <div className="margin-sticky" style={{ minHeight: '300px' }}>
-      <h3>
+    <div className=" welcome margin-sticky" style={{ minHeight: '300px' }}>
+      <h3 className="welcome__title">
         {userName ? (
-          <span>
+          <span className="welcome__title_register">
             {t('welcomePage.greeting')} {userName}!
           </span>
         ) : (
-          <span>{t('welcomePage.requestToLogIn')}</span>
+          <span className="welcome__title_unregister">{t('welcomePage.requestToLogIn')}</span>
         )}
       </h3>
-      {/* <p>TODO: add description (completed tasks)</p> */}
-      <p>{t('welcomePage.authors')}</p>
-      <ul>
-        <li>Slysnek</li>
-        <p>{t('welcomePage.author_1')}</p>
-        <li>Skuzema</li>
-        <p>{t('welcomePage.author_2')}</p>
-        <li>Sergik</li>
-        <p>{t('welcomePage.author_3')}</p>
-      </ul>
 
-      <button type="button">
-        <NavLink to="/home">Start QL</NavLink>
+      <p className="welcome__greeting">{t('welcomePage.authors')}</p>
+      <p className="welcome__members">{t('welcomePage.members')}</p>
+      <div className="welcome__info">
+        <UserCards />
+      </div>
+      <div className="welcome__stack">
+        <p className="welcome__stack_title">{t('welcomePage.usedStack')}</p>
+        <div className="welcome__stack_logos">
+          <a href="https://react.dev/" target="_blank" rel="noreferrer">
+            <img src={ReactIcon} alt="React" className="welcome__stack_image" />
+          </a>
+          <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
+            <img src={TSIcon} alt="TypeScript" className="welcome__stack_image" />
+          </a>
+          <a
+            href="https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/CSS_basics"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={CSS3Icon} alt="CSS3" className="welcome__stack_image" />
+          </a>
+          <a
+            href="https://developer.mozilla.org/ru/docs/Glossary/HTML5"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={HTML5Icon} alt="HTML5" className="welcome__stack_image" />
+          </a>
+          <a href="https://mui.com/" target="_blank" rel="noreferrer">
+            <img src={MUIIcon} alt="MUI" className="welcome__stack_image" />
+          </a>
+          <a href="https://graphql.org/" target="_blank" rel="noreferrer">
+            <img src={GraphQLIcon} alt="GraphQL" className="welcome__stack_image" />
+          </a>
+          <a href="https://www.apollo.io/" target="_blank" rel="noreferrer">
+            <img src={ApolloIcon} alt="Apollo" className="welcome__stack_image" />
+          </a>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="button__editor"
+        onClick={() => {
+          navigate('/home', { replace: true });
+        }}
+      >
+        {t('welcomePage.editorButton')}
       </button>
     </div>
   );

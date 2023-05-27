@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import SignUp from '../../components/SignUp/SignUp';
 import Grid from '@mui/material/Grid/Grid';
+import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+
+import './SignUpPage.css';
 
 function SignUpPage() {
   const { t } = useTranslation();
@@ -9,22 +12,27 @@ function SignUpPage() {
     <Grid
       sx={{
         display: 'flex',
+        flexFirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 'auto',
-        mt: '60px',
         textAlign: 'center',
-        width: '60%',
+        height: '100vh',
       }}
       component="main"
-      className="margin-sticky"
+      className="margin-sticky forms__bg"
       container
     >
       <SignUp />
-      <Grid item xs={12} sx={{ fontWeight: '500', fontSize: '1.2rem' }}>
-        <p>
+      <Grid
+        className="forms-change__link"
+        item
+        xs={10}
+        lg={11}
+        sx={{ fontWeight: '500', fontSize: '1.2rem', mt: '0.7rem' }}
+      >
+        <Typography variant="h6" component="p" sx={{ mb: '70px' }}>
           {t('signUpPage.haveAnAcc')} <Link to="/login">{t('signUpPage.login')}</Link>
-        </p>
+        </Typography>
       </Grid>
     </Grid>
   );

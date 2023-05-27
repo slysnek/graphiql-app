@@ -10,6 +10,7 @@ import { schemaValidation, schemaValidationLogIn } from '../../helpers/schemaVal
 import { useTranslation } from 'react-i18next';
 
 import GoogleIcon from '@mui/icons-material/Google';
+import './Form.css';
 
 function Form(props: FormProps) {
   const {
@@ -43,11 +44,13 @@ function Form(props: FormProps) {
     <Grid
       container
       direction="column"
+      flexWrap="nowrap"
       justifyContent="center"
+      className="form__inside"
       sx={{
         m: '1%',
-        width: '50%',
         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px',
+        backgroundColor: 'rgba(192, 252, 225, 0.8)',
         p: '1%',
         borderRadius: '10px',
       }}
@@ -55,6 +58,7 @@ function Form(props: FormProps) {
       <Grid
         container
         direction="column"
+        flexWrap="nowrap"
         item
         sx={{
           display: 'flex',
@@ -160,7 +164,7 @@ function Form(props: FormProps) {
               />
             </Grid>
           )}
-          <Grid item xs={10} sx={{ padding: '5px 0', justifyContent: 'center', m: 'auto' }}>
+          <Grid item xs={12} sx={{ padding: '5px 0', justifyContent: 'center', m: 'auto' }}>
             <Button
               type="submit"
               variant="contained"
@@ -174,10 +178,10 @@ function Form(props: FormProps) {
           </Grid>
         </form>
       </Grid>
-      <Grid item xs={8} sx={{ p: '3px', m: 'auto', color: 'steelblue' }}>
+      <Grid item xs={10} sx={{ p: '3px', m: 'auto', color: 'steelblue' }}>
         <span>{t('loginForm.or')}</span>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item>
         <Button
           startIcon={<GoogleIcon />}
           type="button"
@@ -192,7 +196,9 @@ function Form(props: FormProps) {
             fontSize: '1rem',
           }}
         >
-          {props.typeForm === 'login' ? t('loginForm.googleLogin') : t('loginForm.googleCreate')}
+          <span className="with-google__link">
+            {props.typeForm === 'login' ? t('loginForm.googleLogin') : t('loginForm.googleCreate')}
+          </span>
         </Button>
       </Grid>
     </Grid>
