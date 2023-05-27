@@ -8,6 +8,7 @@ import DisplayTextBox from './DisplayTextBox';
 
 const Documentation = () => {
   const [currObj, setCurrObj] = useState(undefined);
+  const [previousObjs, setPreviousObjs] = useState([]);
   const [currHistoryStrings, setCurrHistoryStrings] = useState<any>([]);
   const allTypes = useRef(null);
 
@@ -23,34 +24,40 @@ const Documentation = () => {
     getAllTypes();
   }, []);
 
+  useEffect(() => {
+    console.log('------------');
+    console.log(currObj, 'current');
+    console.log(previousObjs, 'previous');
+    console.log(currHistoryStrings, 'history');
+    console.log('------------');
+  }, [currHistoryStrings, currObj, previousObjs]);
+
   const handleClickinDisplay = (newObject: any) => {
     setCurrHistoryStrings((currHistoryStrings) => {
       currHistoryStrings.push(newObject.name);
       return currHistoryStrings;
     });
     setCurrObj(newObject);
+    setPreviousObjs((previousObjs) => [...previousObjs, currObj]);
   };
 
   const handleHistoryReturn = () => {
     setCurrHistoryStrings((currHistoryStrings) => {
       if (currHistoryStrings.length > 1) {
-        currHistoryStrings.pop();
+        const newHistory = [...currHistoryStrings];
+        newHistory.pop();
+        return newHistory;
       }
       return currHistoryStrings;
     });
-    setCurrObj(() => {
-      console.log(currHistoryStrings);
-      //TODO: fix 2
-      if (currHistoryStrings.length === 1) {
-        return currObj;
+    setCurrObj(previousObjs[previousObjs.length - 1]);
+    setPreviousObjs((previousObjs) => {
+      if (previousObjs.length > 1) {
+        const newPreviousObjs = [...previousObjs];
+        newPreviousObjs.pop();
+        return newPreviousObjs;
       }
-      if (currHistoryStrings.length > 1) {
-        const previousObjName = currHistoryStrings[currHistoryStrings.length - 2];
-        console.log(previousObjName);
-        const previousObj = allTypes.current.find((el) => el.name === previousObjName);
-        console.log(previousObj);
-        return previousObj;
-      }
+      return previousObjs;
     });
   };
 
@@ -59,7 +66,8 @@ const Documentation = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <h3>{t('editorPage.documentation')}</h3>
-        <h2>{currObj?.name}</h2>
+        <h2>{currObj?.name} - current</h2>
+        <h2>{previousObjs.map((el) => `${el.name}/`)} - previous</h2>
         <QueryHistory
           historyReturn={handleHistoryReturn}
           currentHistory={currHistoryStrings}
