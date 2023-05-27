@@ -23,6 +23,9 @@ function Home() {
   const navigate = useNavigate();
   const name = useAppSelector((state) => state.userAuth.name);
   const docPanVisible = useAppSelector((state) => state.docPaneState.visible);
+  const queryPanelState = useAppSelector((state) => state.queryPanelState);
+  const ref = useRef<AllotmentHandle>(null!);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (user) => {
@@ -41,15 +44,10 @@ function Home() {
         );
       }
     });
-
     return () => {
       listenAuth();
     };
   }, [dispatch, name, navigate]);
-
-  const queryPanelState = useAppSelector((state) => state.queryPanelState);
-  const ref = useRef<AllotmentHandle>(null!);
-  const [isMobile, setIsMobile] = useState(false);
 
   const handleChange = useMemo(
     () =>
@@ -95,19 +93,24 @@ function Home() {
       <Allotment
         key={isMobile.toString()}
         vertical={isMobile}
-        defaultSizes={isMobile ? [1, 1, 1, 1] : [1, 1, 2, 3]}
+        defaultSizes={isMobile ? [1, 2, 6, 2] : [1, 3, 4, 4]}
         minSize={50}
       >
         <Allotment.Pane minSize={100} maxSize={100}>
           <ToolBar />
         </Allotment.Pane>
-        <Allotment.Pane preferredSize={'15%'} visible={docPanVisible}>
+        <Allotment.Pane preferredSize={'30%'} visible={docPanVisible}>
           <div style={{ overflowY: 'auto', height: '100%' }}>
             <Documentation />
           </div>
         </Allotment.Pane>
-        <Allotment.Pane preferredSize={'40%'} minSize={250}>
-          <Allotment vertical defaultSizes={[1000, 1]} onChange={handleChange} ref={ref}>
+        <Allotment.Pane preferredSize={'50%'} minSize={250}>
+          <Allotment
+            vertical
+            defaultSizes={isMobile ? [100, 1] : [100, 1]}
+            onChange={handleChange}
+            ref={ref}
+          >
             <Allotment.Pane minSize={50} preferredSize={'45%'}>
               <div style={{ overflowY: 'auto', height: '100%' }}>
                 <RequestPanel />
@@ -123,7 +126,7 @@ function Home() {
             </Allotment.Pane>
           </Allotment>
         </Allotment.Pane>
-        <Allotment.Pane minSize={50}>
+        <Allotment.Pane preferredSize={'50%'} minSize={50}>
           <div style={{ overflowY: 'auto', height: '100%' }}>
             <ResponsePanel />
           </div>
