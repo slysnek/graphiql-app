@@ -6,7 +6,7 @@ import { exitUser, setUser } from '../../store/slices/userSlice';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
-import { arraysAreEqual } from '../../helpers/utils';
+import { arraysAreEqual } from '../../helpers/Utils';
 import { ToolBar } from '../../components/ToolBar/ToolBar';
 import { Documentation } from '../../components/Documentation/Documentation';
 import { RequestPanel } from '../../components/RequestPanel/RequestPanel';
