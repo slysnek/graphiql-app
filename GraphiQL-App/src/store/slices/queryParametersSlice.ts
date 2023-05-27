@@ -6,17 +6,19 @@ import { QueryParameters } from '../../types/interfaces';
 const initialState: QueryParameters = {
   isRequested: false,
   isLoaded: false,
-  body: `#Star Wars GraphQL example query
-#query ExampleQuery($first: Int) {
-#  allFilms(first: $first) {
-#    films {
-#      title,
-#      created,
-#      producers
-#    }
-#  }
-#}`,
-  variables: '',
+  body: `#Star Wars GraphQL query example
+query ExampleQuery($first: Int) {
+ allFilms(first: $first) {
+   films {
+     title,
+     created,
+     producers
+   }
+ }
+}`,
+  variables: `{
+  "first": 5
+}`,
   headers: '',
   error: false,
   error_name: '',

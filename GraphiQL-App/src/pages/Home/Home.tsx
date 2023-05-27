@@ -6,7 +6,7 @@ import { exitUser, setUser } from '../../store/slices/userSlice';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
-import { arraysAreEqual } from '../../helpers/Utils';
+import { arraysAreEqual } from '../../helpers/utils';
 import { ToolBar } from '../../components/ToolBar/ToolBar';
 import { Documentation } from '../../components/Documentation/Documentation';
 import { RequestPanel } from '../../components/RequestPanel/RequestPanel';
@@ -92,73 +92,43 @@ function Home() {
 
   return (
     <div className={styles.container} style={{ minHeight: 200, minWidth: 200 }}>
-      {isMobile ? (
-        <div className={styles.container} style={{ minHeight: 200, minWidth: 200 }}>
-          <Allotment vertical defaultSizes={[1, 1, 1, 1]} minSize={50}>
-            <Allotment.Pane minSize={100} maxSize={100}>
-              <ToolBar />
-            </Allotment.Pane>
-            <Allotment.Pane preferredSize={'15%'} visible={docPanVisible}>
-              <div style={{ overflowY: 'auto', height: '100%' }}>
-                <Documentation />
-              </div>
-            </Allotment.Pane>
+      <Allotment
+        key={isMobile.toString()}
+        vertical={isMobile}
+        defaultSizes={isMobile ? [1, 1, 1, 1] : [1, 1, 2, 3]}
+        minSize={50}
+      >
+        <Allotment.Pane minSize={100} maxSize={100}>
+          <ToolBar />
+        </Allotment.Pane>
+        <Allotment.Pane preferredSize={'15%'} visible={docPanVisible}>
+          <div style={{ overflowY: 'auto', height: '100%' }}>
+            <Documentation />
+          </div>
+        </Allotment.Pane>
+        <Allotment.Pane preferredSize={'40%'} minSize={250}>
+          <Allotment vertical defaultSizes={[1000, 1]} onChange={handleChange} ref={ref}>
             <Allotment.Pane minSize={50} preferredSize={'45%'}>
               <div style={{ overflowY: 'auto', height: '100%' }}>
                 <RequestPanel />
               </div>
             </Allotment.Pane>
-            <Allotment.Pane preferredSize={'40%'}>
-              <Allotment vertical defaultSizes={[300, 1]} onChange={handleChange} ref={ref}>
-                <Allotment.Pane>
-                  <div style={{ overflowY: 'auto', height: '100%' }}>
-                    <ResponsePanel />
-                  </div>
-                </Allotment.Pane>
-                <Allotment.Pane
-                  minSize={config.QUERY_PANEL_INIT_SIZE}
-                  preferredSize={config.QUERY_PANEL_INIT_SIZE}
-                >
-                  <div style={{ overflowY: 'auto', height: '100%' }}>
-                    <QueryPanel onChange={handleQueryPanelSizeChange} />
-                  </div>
-                </Allotment.Pane>
-              </Allotment>
+            <Allotment.Pane
+              minSize={config.QUERY_PANEL_INIT_SIZE}
+              preferredSize={config.QUERY_PANEL_INIT_SIZE}
+            >
+              <div style={{ overflowY: 'auto', height: '100%' }}>
+                <QueryPanel onChange={handleQueryPanelSizeChange} />
+              </div>
             </Allotment.Pane>
           </Allotment>
-        </div>
-      ) : (
-        <Allotment defaultSizes={[1, 1, 2, 3]} minSize={50}>
-          <Allotment.Pane minSize={100} maxSize={100}>
-            <ToolBar />
-          </Allotment.Pane>
-          <Allotment.Pane preferredSize={'15%'} visible={docPanVisible}>
-            <Documentation />
-          </Allotment.Pane>
-          <Allotment.Pane preferredSize={'40%'} minSize={250}>
-            <Allotment vertical defaultSizes={[1000, 1]} onChange={handleChange} ref={ref}>
-              <Allotment.Pane minSize={50} preferredSize={'45%'}>
-                <div style={{ overflowY: 'auto', height: '100%' }}>
-                  <RequestPanel />
-                </div>
-              </Allotment.Pane>
-              <Allotment.Pane
-                minSize={config.QUERY_PANEL_INIT_SIZE}
-                preferredSize={config.QUERY_PANEL_INIT_SIZE}
-              >
-                <div style={{ overflowY: 'auto', height: '100%' }}>
-                  <QueryPanel onChange={handleQueryPanelSizeChange} />
-                </div>
-              </Allotment.Pane>
-            </Allotment>
-          </Allotment.Pane>
-          <Allotment.Pane minSize={50}>
-            <div style={{ overflowY: 'auto', height: '100%' }}>
-              <ResponsePanel />
-            </div>
-          </Allotment.Pane>
-        </Allotment>
-      )}
+        </Allotment.Pane>
+        <Allotment.Pane minSize={50}>
+          <div style={{ overflowY: 'auto', height: '100%' }}>
+            <ResponsePanel />
+          </div>
+        </Allotment.Pane>
+      </Allotment>
     </div>
   );
 }
