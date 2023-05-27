@@ -1,15 +1,11 @@
+@import "../../style/styles.module.css";
+
 .container {
   border: 1px solid rgba(128, 128, 128, 0.35);
   margin-top: 60px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   font-family: sans-serif;
-  height: 80vh;
+  height: 100vh;
   resize: both;
-  width: 98vw;
-  background-color: rgb(242, 241, 248);
-}
-
-.container.frame {
-  overflow-y: auto;
-  height: 100%
+  width: 100vw;
 }

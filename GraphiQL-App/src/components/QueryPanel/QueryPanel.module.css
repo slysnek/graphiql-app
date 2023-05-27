@@ -1,31 +1,9 @@
-:root {
-	--card-background-color: rgb(255, 255, 255);
-}
-
-*,
-::after,
-::before {
-	box-sizing: border-box;
-}
+@import "../../style/styles.module.css";
 
 .container {
-	background-color: var(--card-background-color);
-	width: 100%;
-	height: 100%;
+	padding: var(--qry-container-padding);
 }
 
 .card {
-	height: 100%;
-	padding-bottom: 0rem;
-}
-
-.svg {
-	background-color: var(--card-background-color);
-	border-color: rgba(128, 128, 128, 0.35);
-	border-radius: 0.25rem;
-	border-style: dashed;
-	border-width: 2px;
-	color: rgba(128, 128, 128, 0.35);
-	height: 100%;
-	width: 100%;
+	border-radius: var(--qry-container-radius);
 }

@@ -1,37 +1,14 @@
-:root {
-	--card-background-color: rgb(242, 241, 248);
-}
-
-*,
-::after,
-::before {
-	box-sizing: border-box;
-}
+@import "../../style/styles.module.css";
 
 .container {
-	background-color: var(--card-background-color);
-	width: 100%;
-	height: 100%;
-	padding: 0.5rem;
+	padding: var(--request-container-padding);
 }
 
 .card {
-	height: 100%;
-	padding: 1.0rem;
+	padding: var(--request-card-padding);
+	border-radius: var(--request-container-radius);
 }
 
-.card.mobile {
-	border-radius: 10px 10px;
-	box-shadow: 5px 5px 5px grey;
-}
-
-.svg {
-	background-color: var(--card-background-color);
-	border-color: rgba(128, 128, 128, 0.35);
-	border-radius: 0.25rem;
-	border-style: dashed;
-	border-width: 2px;
-	color: rgba(128, 128, 128, 0.35);
-	height: 100%;
-	width: 100%;
+.request-frame {
+	padding: var(--request-container-padding);
 }

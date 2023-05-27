@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState, useCallback } from 'react';
 import { Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ResponsePanelViewProps } from '../../types/interfaces';
@@ -13,36 +13,36 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
   const { t } = useTranslation();
   const [openError, setOpenError] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
+
   const options = {
     lineNumbers: false,
     foldGutter: false,
     highlightActiveLine: false,
   };
 
-  const handleErrorClose = () => {
+  const handleErrorClose = useCallback(() => {
     setOpenError(false);
-  };
+  }, []);
 
-  const handleSuccessClose = () => {
+  const handleSuccessClose = useCallback(() => {
     setOpenSuccess(false);
-  };
+  }, []);
 
   useEffect(() => {
     if (props.error) {
       setOpenError(true);
     }
-    if (!props.error && props.result !== '' && props.result !== undefined && !openSuccess) {
+    if (!props.error && props.result !== '' && props.result !== undefined) {
       setOpenSuccess(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props]);
+  }, [props.error, props.result]);
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <h3
           style={{
-            margin: '1rem',
+            backgroundColor: 'rgb(242, 241, 248)',
           }}
         >
           {t('editorPage.response')}
@@ -54,7 +54,6 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
               backgroundColor: props.error ? '#a42b9a' : 'rgba(63, 174, 196, 0.7)',
               color: 'white',
               fontSize: '17px',
-              margin: '1rem',
             }}
           >
             {props.error ? props.error_message : props.result ? t('editorPage.successMessage') : ''}

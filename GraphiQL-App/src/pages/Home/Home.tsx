@@ -104,18 +104,14 @@ function Home() {
             <Documentation />
           </div>
         </Allotment.Pane>
-        <Allotment.Pane preferredSize={'50%'} minSize={250}>
+        <Allotment.Pane preferredSize={'50%'} minSize={300}>
           <Allotment
             vertical
             defaultSizes={isMobile ? [100, 1] : [100, 1]}
             onChange={handleChange}
             ref={ref}
           >
-            <Allotment.Pane
-              minSize={50}
-              preferredSize={'45%'}
-              className={isMobile ? 'mobile' : 'desktop'}
-            >
+            <Allotment.Pane minSize={50} preferredSize={'45%'}>
               <div style={{ overflowY: 'auto', height: '100%' }}>
                 <RequestPanel />
               </div>
@@ -131,7 +127,7 @@ function Home() {
           </Allotment>
         </Allotment.Pane>
         <Allotment.Pane preferredSize={'50%'} minSize={50}>
-          <div style={{ overflowY: 'auto', height: '100%' }}>
+          <div style={{ overflowY: 'auto', height: '100%', backgroundColor: 'rgb(242, 241, 248)' }}>
             <ResponsePanel />
           </div>
         </Allotment.Pane>
