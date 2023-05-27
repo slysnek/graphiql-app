@@ -15,7 +15,10 @@ export default function DisplayBox(props: DisplayBoxProps) {
       <hr />
       <ul>
         {props.localHistoryState !== undefined &&
-        Object.hasOwn(props.localHistoryState, props.displayType)
+        Object.hasOwn(props.localHistoryState, props.displayType) &&
+        props.localHistoryState[props.displayType] !== null &&
+        props.localHistoryState[props.displayType] !== false &&
+        props.localHistoryState[props.displayType].length !== 0
           ? props.localHistoryState[props.displayType]?.map((el, index) => {
               return (
                 // eslint-disable-next-line react/jsx-key
