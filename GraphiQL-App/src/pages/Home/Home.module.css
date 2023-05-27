@@ -6,4 +6,10 @@
   height: 80vh;
   resize: both;
   width: 98vw;
+  background-color: rgb(242, 241, 248);
+}
+
+.container.frame {
+  overflow-y: auto;
+  height: 100%
 }

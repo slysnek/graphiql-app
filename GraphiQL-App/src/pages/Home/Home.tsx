@@ -111,7 +111,11 @@ function Home() {
             onChange={handleChange}
             ref={ref}
           >
-            <Allotment.Pane minSize={50} preferredSize={'45%'}>
+            <Allotment.Pane
+              minSize={50}
+              preferredSize={'45%'}
+              className={isMobile ? 'mobile' : 'desktop'}
+            >
               <div style={{ overflowY: 'auto', height: '100%' }}>
                 <RequestPanel />
               </div>

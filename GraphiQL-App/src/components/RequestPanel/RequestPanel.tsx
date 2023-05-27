@@ -74,12 +74,16 @@ export function RequestPanel() {
           <h3>{t('editorPage.requestBody')}</h3>
           <div>
             <LoadingButton
-              size="large"
+              size="medium"
               variant="contained"
               loading={isLoaded}
               startIcon={<PlayArrowIcon />}
               onClick={() => {
                 handleGqlRequest();
+              }}
+              sx={{
+                color: '#a42b9a',
+                backgroundColor: 'rgba(63, 174, 196, 0.7)',
               }}
             >
               <span>{t('editorPage.run')}</span>

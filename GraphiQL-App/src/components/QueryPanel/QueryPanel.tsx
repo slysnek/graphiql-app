@@ -48,7 +48,7 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
                   }}
                   label={t('editorPage.variables')}
                   value="1"
-                  sx={{ fontWeight: '800' }}
+                  sx={{ fontWeight: '500' }}
                 />
                 <Tab
                   onClick={() => {
@@ -56,7 +56,7 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
                   }}
                   label={t('editorPage.headers')}
                   value="2"
-                  sx={{ fontWeight: '800' }}
+                  sx={{ fontWeight: '500' }}
                 />
                 <QueryButtonInTabs
                   onClick={() => {

@@ -5,7 +5,7 @@ import { ResponsePanelViewProps } from '../../types/interfaces';
 import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from 'codemirror';
 import { EditorState } from '@codemirror/state';
-import { bbedit } from '@uiw/codemirror-theme-bbedit';
+import { noctisLilac } from '@uiw/codemirror-theme-noctis-lilac';
 import { json } from '@codemirror/lang-json';
 import styles from './ResponsePanelView.module.css';
 
@@ -50,10 +50,11 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
         <div>
           <span
             style={{
-              backgroundColor: props.error ? 'red' : 'green',
+              display: 'flex',
+              backgroundColor: props.error ? '#a42b9a' : 'rgba(63, 174, 196, 0.7)',
               color: 'white',
-              fontSize: '20px',
-              marginLeft: '1rem',
+              fontSize: '17px',
+              margin: '1rem',
             }}
           >
             {props.error ? props.error_message : props.result ? t('editorPage.successMessage') : ''}
@@ -91,7 +92,7 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
         </div>
         <CodeMirror
           value={props.result}
-          theme={bbedit}
+          theme={noctisLilac}
           extensions={[EditorView.editable.of(false), EditorState.readOnly.of(true), json()]}
           basicSetup={options}
         />

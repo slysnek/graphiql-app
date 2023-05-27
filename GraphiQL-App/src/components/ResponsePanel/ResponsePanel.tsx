@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { ErrorObject } from '../../types/interfaces';
 import ResponsePanelView from '../ResponsePanelView/ResponsePanelView';
 import { PanelSpinner } from './PanelSpinner';
-import { getErrorMessage } from '../../helpers/utils';
+import { getErrorMessage } from '../../helpers/Utils';
 /* eslint-disable react-hooks/exhaustive-deps */
 
 export const ResponsePanel = () => {
