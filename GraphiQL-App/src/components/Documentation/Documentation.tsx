@@ -1,50 +1,85 @@
 import { useTranslation } from 'react-i18next';
 import styles from './Documentation.module.css';
-import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql';
-import { useEffect, useState } from 'react';
+import { MouseEvent, Suspense, useEffect, useRef, useState } from 'react';
+import { addObject } from '../../store/slices/historySlice';
+import DisplayBox from './DisplayBox';
+import { getSDLSchemaTypes } from '../../helpers/Utils';
+import QueryHistory from './QueryHistory';
+import DisplayTextBox from './DisplayTextBox';
 
-
-async function getSDLSchemaString() {
-  const introspectionQuery = getIntrospectionQuery();
-  const res = await fetch('https://swapi-graphql.netlify.app/.netlify/functions/index', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: introspectionQuery }),
-  });
-  const { data } = await res.json();
-  console.log(data);
-  console.log(data.__schema.types[0]);
-  const root = data.__schema.types[0];
-  return root;
-}
-
-export const Documentation = () => {
-  const [currObj, setCurrObj] = useState();
+const Documentation = () => {
+  const [currObj, setCurrObj] = useState(undefined);
+  const [currHistoryStrings, setCurrHistoryStrings] = useState<any>([]);
+  const allTypes = useRef(null);
 
   useEffect(() => {
-    async function getRoot() {
-      const rootObject = await getSDLSchemaString();
-      setCurrObj(rootObject);
-      console.log(rootObject);
+    console.log('i work');
+    async function getAllTypes() {
+      allTypes.current = await getSDLSchemaTypes();
+      setCurrObj(allTypes.current[0]);
+      setCurrHistoryStrings((currHistoryStrings) => [
+        ...currHistoryStrings,
+        allTypes.current[0].name,
+      ]);
     }
-    getRoot();
+    getAllTypes();
   }, []);
+
+  const handleClickinDisplay = (newObject: any) => {
+    setCurrHistoryStrings((currHistoryStrings) => {
+      currHistoryStrings.push(newObject.name);
+      return currHistoryStrings;
+    });
+    setCurrObj(newObject);
+  };
+
+  const handleHistoryReturn = async () => {
+    setCurrHistoryStrings((currHistoryStrings) => {
+      currHistoryStrings.pop();
+      return currHistoryStrings;
+    });
+    setCurrObj(() => {
+      //TODO: fix 2
+      if (currHistoryStrings.length > 1) {
+        const previousObjName = currHistoryStrings[currHistoryStrings.length - 2];
+        const previousObj = allTypes.current.find((el) => el.name === previousObjName);
+        return previousObj;
+      }
+    });
+  };
 
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <h3>{t('editorPage.documentation')}</h3>
-        {/* {currObj.name ? <div>{currObj.name}</div> : ''} */}
-        <ul>
-          {currObj
-            ? currObj.fields.map((el) => {
-                // eslint-disable-next-line react/jsx-key
-                return <li>{el.name}</li>;
-              })
-            : ''}
-        </ul>
+        <QueryHistory
+          historyReturn={handleHistoryReturn}
+          currentHistory={currHistoryStrings}
+        ></QueryHistory>
+        <DisplayBox
+          header="Arguments"
+          noValue="No Arguments"
+          localHistoryState={currObj}
+          displayType="args"
+          addToHistory={handleClickinDisplay}
+        ></DisplayBox>
+        <DisplayBox
+          header="Fields"
+          noValue="No Fields"
+          localHistoryState={currObj}
+          displayType="fields"
+          addToHistory={handleClickinDisplay}
+        ></DisplayBox>
+        <DisplayTextBox
+          header="Description"
+          noValue="No Description"
+          localHistoryState={currObj}
+          displayType="description"
+        ></DisplayTextBox>
       </div>
     </div>
   );
 };
+
+export default Documentation;
