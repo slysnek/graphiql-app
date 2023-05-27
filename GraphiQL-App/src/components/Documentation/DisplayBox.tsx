@@ -2,12 +2,12 @@ interface DisplayBoxProps {
   header: string;
   noValue: string;
   displayType: string;
-  localHistoryState: any;
-  addToHistory: (element: any)=>void;
+  localHistoryState?: any;
+  addToHistory: (element: any) => void;
 }
 
 export default function DisplayBox(props: DisplayBoxProps) {
-/*   const historyState = useAppSelector((state) => state.historyState); */
+  /*   const historyState = useAppSelector((state) => state.historyState); */
 
   return (
     <div className="display-box">
@@ -25,7 +25,8 @@ export default function DisplayBox(props: DisplayBoxProps) {
                     props.addToHistory(el);
                   }}
                 >
-                  {el.name}: {<span>{el.type.name}</span>}
+                  {el.name}:{' '}
+                  {<span>{el.type.name === null ? el.type.ofType.name : el.type.name}</span>}
                 </li>
               );
             })

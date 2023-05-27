@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import styles from './Documentation.module.css';
 import { MouseEvent, Suspense, useEffect, useRef, useState } from 'react';
-import { addObject } from '../../store/slices/historySlice';
 import DisplayBox from './DisplayBox';
 import { getSDLSchemaTypes } from '../../helpers/Utils';
 import QueryHistory from './QueryHistory';
@@ -13,7 +12,6 @@ const Documentation = () => {
   const allTypes = useRef(null);
 
   useEffect(() => {
-    console.log('i work');
     async function getAllTypes() {
       allTypes.current = await getSDLSchemaTypes();
       setCurrObj(allTypes.current[0]);
@@ -33,16 +31,24 @@ const Documentation = () => {
     setCurrObj(newObject);
   };
 
-  const handleHistoryReturn = async () => {
+  const handleHistoryReturn = () => {
     setCurrHistoryStrings((currHistoryStrings) => {
-      currHistoryStrings.pop();
+      if (currHistoryStrings.length > 1) {
+        currHistoryStrings.pop();
+      }
       return currHistoryStrings;
     });
     setCurrObj(() => {
+      console.log(currHistoryStrings);
       //TODO: fix 2
+      if (currHistoryStrings.length === 1) {
+        return currObj;
+      }
       if (currHistoryStrings.length > 1) {
         const previousObjName = currHistoryStrings[currHistoryStrings.length - 2];
+        console.log(previousObjName);
         const previousObj = allTypes.current.find((el) => el.name === previousObjName);
+        console.log(previousObj);
         return previousObj;
       }
     });
@@ -53,6 +59,7 @@ const Documentation = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <h3>{t('editorPage.documentation')}</h3>
+        <h2>{currObj?.name}</h2>
         <QueryHistory
           historyReturn={handleHistoryReturn}
           currentHistory={currHistoryStrings}
@@ -76,6 +83,16 @@ const Documentation = () => {
           noValue="No Description"
           localHistoryState={currObj}
           displayType="description"
+          allFields={allTypes.current}
+          addToHistory={handleClickinDisplay}
+        ></DisplayTextBox>
+        <DisplayTextBox
+          header="Metadata"
+          noValue="No Metadata"
+          localHistoryState={currObj}
+          displayType="metadata"
+          allFields={allTypes.current}
+          addToHistory={handleClickinDisplay}
         ></DisplayTextBox>
       </div>
     </div>
