@@ -23,9 +23,10 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
         <p>{props.localHistoryState[props.displayType]}</p>
       ) : props.localHistoryState !== undefined &&
         props.displayType === 'metadata' &&
-        Object.hasOwn(props.localHistoryState, 'type') ? (
+        Object.hasOwn(props.localHistoryState, 'type') &&
+        props.localHistoryState.type.name !== null ? (
         <div>
-          <p>Metadata for {props.localHistoryState.type.name}</p>
+          <p>Metadata for {props.localHistoryState.type.name} Type</p>
           <DisplayBox
             header="Fields"
             noValue="No Fields"
@@ -33,6 +34,24 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
             addToHistory={props.addToHistory}
             localHistoryState={props.allFields.find(
               (el) => el.name === props.localHistoryState.type.name
+            )}
+          ></DisplayBox>
+        </div>
+      ) : props.localHistoryState !== undefined &&
+        props.displayType === 'metadata' &&
+        Object.hasOwn(props.localHistoryState, 'type') &&
+        props.localHistoryState.type.ofType.name !== null ? (
+        <div>
+          <p>Metadata for {props.localHistoryState.type.ofType.name} Type</p>
+          <DisplayBox
+            header="Fields"
+            noValue="No Fields"
+            displayType="fields"
+            addToHistory={props.addToHistory}
+            localHistoryState={props.allFields.find(
+              (el) =>
+                el.name === props.localHistoryState.type.name ||
+                el.name === props.localHistoryState.type.ofType.name
             )}
           ></DisplayBox>
         </div>
