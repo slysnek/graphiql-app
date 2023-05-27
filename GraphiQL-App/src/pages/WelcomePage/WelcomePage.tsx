@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import UserCards from '../../components/UserCards/UserCards';
 
 import './WelcomePage.css';
+import { Container } from '@mui/material';
 
 import ReactIcon from '/icons/ReactIcon.png';
 import TSIcon from '/icons/TSIcon.png';
@@ -63,7 +64,7 @@ function WelcomePage() {
   });
 
   return (
-    <div className=" welcome margin-sticky" style={{ minHeight: '300px' }}>
+    <Container maxWidth={false} component="main" className="margin-sticky welcome">
       <h3 className="welcome__title">
         {userName ? (
           <span className="welcome__title_register">
@@ -123,7 +124,7 @@ function WelcomePage() {
       >
         {t('welcomePage.editorButton')}
       </button>
-    </div>
+    </Container>
   );
 }
 
