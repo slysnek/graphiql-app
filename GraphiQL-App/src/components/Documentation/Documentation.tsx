@@ -6,7 +6,7 @@ export const Documentation = () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h3>{t('editorPage.documentation')}</h3>
+        <h4>{t('editorPage.documentation')}</h4>
         <svg
           className={styles.svg}
           preserveAspectRatio="none"

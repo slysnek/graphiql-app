@@ -40,13 +40,13 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h3
+        <h4
           style={{
             backgroundColor: 'rgb(242, 241, 248)',
           }}
         >
           {t('editorPage.response')}
-        </h3>
+        </h4>
         <div>
           <span
             style={{

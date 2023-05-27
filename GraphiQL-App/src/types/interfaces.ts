@@ -81,3 +81,7 @@ export interface ButtonInTabsProps {
   onClick: React.MouseEventHandler;
   isPanelOpened: boolean | undefined;
 }
+
+export interface FallbackRenderProps {
+  error: Error;
+}

@@ -21,7 +21,7 @@ export function QueryHeadersPane() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h3>{t('editorPage.headers')}</h3>
+        <h4>{t('editorPage.headers')}</h4>
         <Typography variant="body2" component="div" color="grey">
           {t('editorPage.help')}
         </Typography>

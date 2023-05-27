@@ -71,7 +71,7 @@ export function RequestPanel() {
             justifyContent: 'space-between',
           }}
         >
-          <h3>{t('editorPage.requestBody')}</h3>
+          <h4>{t('editorPage.requestBody')}</h4>
           <div>
             <LoadingButton
               size="medium"
