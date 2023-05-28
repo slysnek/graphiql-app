@@ -1,38 +1,35 @@
 import { useTranslation } from 'react-i18next';
 import styles from './Documentation.module.css';
-import { MouseEvent, Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DisplayBox from './DisplayBox';
 import { getSDLSchemaTypes } from '../../helpers/Utils';
 import QueryHistory from './QueryHistory';
 import DisplayTextBox from './DisplayTextBox';
+import { ArgsEntity, FieldsEntity, TypesEntity } from '../../types/interfaces';
 
 const Documentation = () => {
-  const [currObj, setCurrObj] = useState(undefined);
-  const [previousObjs, setPreviousObjs] = useState([]);
-  const [currHistoryStrings, setCurrHistoryStrings] = useState<any>([]);
-  const allTypes = useRef(null);
+  const [currObj, setCurrObj] = useState<TypesEntity | FieldsEntity | ArgsEntity | undefined>(
+    undefined
+  );
+  const [previousObjs, setPreviousObjs] = useState<
+    (TypesEntity | FieldsEntity | ArgsEntity | undefined)[]
+  >([]);
+  const [currHistoryStrings, setCurrHistoryStrings] = useState<string[]>([]);
+  const allTypes = useRef<TypesEntity[] | null>(null);
 
   useEffect(() => {
     async function getAllTypes() {
       allTypes.current = await getSDLSchemaTypes();
-      setCurrObj(allTypes.current[0]);
+      setCurrObj(allTypes.current![0]);
       setCurrHistoryStrings((currHistoryStrings) => [
         ...currHistoryStrings,
-        allTypes.current[0].name,
+        allTypes.current![0].name,
       ]);
     }
     getAllTypes();
   }, []);
 
-  useEffect(() => {
-    console.log('------------');
-    console.log(currObj, 'current');
-    console.log(previousObjs, 'previous');
-    console.log(currHistoryStrings, 'history');
-    console.log('------------');
-  }, [currHistoryStrings, currObj, previousObjs]);
-
-  const handleClickinDisplay = (newObject: any) => {
+  const handleClickinDisplay = (newObject: TypesEntity | FieldsEntity | ArgsEntity) => {
     setCurrHistoryStrings((currHistoryStrings) => {
       currHistoryStrings.push(newObject.name);
       return currHistoryStrings;
@@ -50,9 +47,9 @@ const Documentation = () => {
       }
       return currHistoryStrings;
     });
-    setCurrObj(previousObjs[previousObjs.length - 1]);
+    setCurrObj(previousObjs![previousObjs!.length - 1]);
     setPreviousObjs((previousObjs) => {
-      if (previousObjs.length > 1) {
+      if (previousObjs!.length > 1) {
         const newPreviousObjs = [...previousObjs];
         newPreviousObjs.pop();
         return newPreviousObjs;
@@ -66,8 +63,6 @@ const Documentation = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <h3>{t('editorPage.documentation')}</h3>
-        <h2>{currObj?.name} - current</h2>
-        <h2>{previousObjs.map((el) => `${el.name}/`)} - previous</h2>
         <QueryHistory
           historyReturn={handleHistoryReturn}
           currentHistory={currHistoryStrings}
@@ -75,21 +70,21 @@ const Documentation = () => {
         <DisplayBox
           header="Arguments"
           noValue="No Arguments"
-          localHistoryState={currObj}
+          currentEntity={currObj}
           displayType="args"
           addToHistory={handleClickinDisplay}
         ></DisplayBox>
         <DisplayBox
           header="Fields"
           noValue="No Fields"
-          localHistoryState={currObj}
+          currentEntity={currObj}
           displayType="fields"
           addToHistory={handleClickinDisplay}
         ></DisplayBox>
         <DisplayTextBox
           header="Description"
           noValue="No Description"
-          localHistoryState={currObj}
+          currentEntity={currObj}
           displayType="description"
           allFields={allTypes.current}
           addToHistory={handleClickinDisplay}
@@ -97,7 +92,7 @@ const Documentation = () => {
         <DisplayTextBox
           header="Metadata"
           noValue="No Metadata"
-          localHistoryState={currObj}
+          currentEntity={currObj}
           displayType="metadata"
           allFields={allTypes.current}
           addToHistory={handleClickinDisplay}
