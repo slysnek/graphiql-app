@@ -47,7 +47,10 @@ const Documentation = () => {
       }
       return currHistoryStrings;
     });
-    setCurrObj(previousObjs![previousObjs!.length - 1]);
+    setCurrObj((currObj) => {
+      if (previousObjs!.length === 0) return currObj;
+      return previousObjs![previousObjs!.length - 1];
+    });
     setPreviousObjs((previousObjs) => {
       if (previousObjs!.length > 1) {
         const newPreviousObjs = [...previousObjs];
