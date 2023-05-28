@@ -1,0 +1,16 @@
+.login__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+
+@media screen and (max-width: 600px) {
+  .login__page {
+    margin-top: 0;
+  }
+}

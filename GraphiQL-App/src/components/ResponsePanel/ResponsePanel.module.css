@@ -1,0 +1,10 @@
+@import "../../style/styles.module.css";
+
+.container,
+.card {
+	background-color: var(--card-background-gray-color);
+}
+
+.container {
+	padding: 1rem;
+}

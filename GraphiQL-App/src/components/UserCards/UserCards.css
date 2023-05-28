@@ -1,0 +1,11 @@
+.flippable-card-container {
+  perspective: 1000px;
+}
+
+.authors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+}

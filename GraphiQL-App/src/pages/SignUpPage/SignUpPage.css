@@ -1,0 +1,5 @@
+.forms__bg {
+  background-image: url('/formBG.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

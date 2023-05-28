@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  background-color: lightblue;
+  text-align: center;
+}
+
+.margin-sticky {
+  margin-top: 60px;
+}
+
+body {
+  min-height: 100vh;
+}
+#root {
+  margin: auto;
+  height: 100%;
+}
+
+@media screen and (max-width: 540px) {
+  .margin-sticky {
+    margin-top: 55px;
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "header": {
+    "editor": "Editor",
+    "info": "Info",
+    "mainRoute": "Main Page",
+    "signIn": "Log In",
+    "signUp": "Sign Up",
+    "exit": "Log Out"
+  },
+  "404": {
+    "gone": "There is nothing here...",
+    "notFound": "Oops! The page you're looking for is not found or never existed in the first place.",
+    "back": "Take me back!"
+  },
+  "welcomePage": {
+    "greeting": "Hello,",
+    "authorName_1": "Kirill",
+    "authorName_2": "Sergei",
+    "authorName_3": "Sergei",
+    "authorCardTitle": "Junior Frontend Developer",
+    "authorCardContent": "I am open to work! Click on card to find me!",
+    "authorContacts": "My contacts",
+    "authorGitHub": "Git Hub Link",
+    "members": "Our team who worked on the project",
+    "requestToLogIn": "Please, log in or sign up to get access to GraphQL editor.",
+    "authors": "Welcome to our application, based on graphQL API",
+    "author_1": "Team Lead of this project, a frontend developer with freelance experience and knowledge of modern web technologies such as React, JS, HTML, CSS.",
+    "author_2": "Junior Front-end React developer, who specializes in creating user interfaces with the React library. As well as a systems analyst with experience in the design and development of financial systems.",
+    "author_3": "I'm a Junior Frontend Developer. I have been learning JavaScript, React, HTML, CSS. Now I'm finishing RS School and hope my participation in this team project will help me to find my first job as a Web Developer. Click on my card to see my contacts. See you!",
+    "editorButton": "OPEN EDITOR",
+    "usedStack": "We used the following technology stack"
+  },
+  "loginPage": {
+    "haveNoAcc": "Don't have an account?",
+    "register": "Register now!"
+  },
+  "signUpPage": {
+    "haveAnAcc": "Already have account?",
+    "login": "Log in"
+  },
+  "loginForm": {
+    "header": "Log in using your credentials: ",
+    "loading": "Loading...",
+    "successMessage": "Success!",
+    "successStillLogged": "User's still logged in. Redirecting...",
+    "error": "An error has occured at Login Page. Details: ",
+    "nickname": "Create your nickname",
+    "email": "Your e-mail",
+    "password": "Password",
+    "confirmPassword": "Confirm your password",
+    "or": "or",
+    "googleLogin": "Login via Google",
+    "googleCreate": "Create with Google",
+    "login": "Log in",
+    "create": "Create new account",
+    "errorGoogle": "Error! Failed log in with Google!",
+    "undefinedError": "Error via log in. Check your data!",
+    "errorRegister": "Failed register. Check your data!"
+  },
+  "errors": {
+    "nickname": "Nickname is required",
+    "nicknameMin": "Should be at least 4 characters",
+    "email": "Email is required",
+    "emailValid": "Email should be valid",
+    "password": "Password is required",
+    "passwordMin": "Should be at least 8 characters",
+    "passwordCap": "Should be at least 1 capitalized letter",
+    "passwordDigit": "Should be at least 1 digit",
+    "passwordChar": "Should be at least 1 special character",
+    "passwordMatch": "Passwords don't match"
+  },
+  "editorPage": {
+    "documentation": "Documentation",
+    "variables": "Variables",
+    "headers": "Headers",
+    "response": "Response",
+    "showDocumentation": "Show Documentation",
+    "hideDocumentation": "Hide Documentation",
+    "operation": "Operation",
+    "query": "Make a query",
+    "successMessage": "Success",
+    "enterRequestBody": "Please enter request body!",
+    "requestBody": "Request body",
+    "run": "Run",
+    "showVarHeaderPanel": "Show Variable/Headers Panels",
+    "hideVarHeaderPanel": "Hide Variable/Headers Panels",
+    "help": "Enter data in JSON format",
+    "helpGql": "Enter data in GraphQL format"
+  }
+}
