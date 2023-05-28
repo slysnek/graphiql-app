@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import CardContent from './CardContent';
 import { CSSTransition } from 'react-transition-group';
 import { useTranslation } from 'react-i18next';
