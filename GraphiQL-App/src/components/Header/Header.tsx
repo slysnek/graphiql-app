@@ -65,7 +65,8 @@ export default function Header() {
           <Grid
             item
             container
-            xs={3}
+            xs={2}
+            sm={3}
             className="header-logo__box"
             sx={{
               display: 'flex',
@@ -86,7 +87,7 @@ export default function Header() {
               GraphiQL
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={7} sm={6}>
             {!isUserLogged && (
               <Button
                 className="header__navigation"
@@ -110,12 +111,23 @@ export default function Header() {
               </Button>
             )}
             {isUserLogged && (
+              <Button
+                className="header__navigation"
+                onClick={() => {
+                  navigate('/home', { replace: true });
+                }}
+                color="secondary"
+              >
+                <span className="header__navigation_text">{t('header.mainRoute')}</span>
+              </Button>
+            )}
+            {isUserLogged && (
               <Button className="header__navigation" onClick={handleExitByClick} color="secondary">
                 <span className="header__navigation_text">{t('header.exit')}</span>
               </Button>
             )}
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} sm={3}>
             <Button
               className="header__language"
               color={language === 'en' ? 'secondary' : 'primary'}

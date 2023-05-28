@@ -51,14 +51,12 @@
   transition: background-color ease-in 0.3s;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 630px) {
   .header-logo__box {
     padding: 10px;
     padding-right: 0;
   }
-}
 
-@media screen and (max-width: 610px) {
   .header-logo_text {
     display: none;
   }

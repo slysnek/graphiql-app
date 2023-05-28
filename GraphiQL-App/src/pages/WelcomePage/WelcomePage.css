@@ -38,13 +38,16 @@
   font-size: 1.6rem;
   line-height: 1.7rem;
   font-style: italic;
+  margin: 0 auto;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .welcome__members {
   font-size: 1.6rem;
   line-height: 1.6rem;
   font-style: bold;
+  margin: 0 auto;
   margin-bottom: 1rem;
 }
 
