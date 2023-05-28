@@ -37,14 +37,13 @@ function LogIn() {
         );
         setSuccessMessage(t('loginForm.successStillLogged') as string);
         setIsLoading(false);
-        setTimeout(() => {
-          navigate('/welcome', { replace: true });
-        }, 1700);
+        navigate('/welcome', { replace: true });
+      } else {
+        dispatch(exitUser());
+        setIsLoading(false);
+        setSuccessMessage('');
+        setErrorMessage('');
       }
-      dispatch(exitUser());
-      setIsLoading(false);
-      setSuccessMessage('');
-      setErrorMessage('');
     });
 
     return () => {

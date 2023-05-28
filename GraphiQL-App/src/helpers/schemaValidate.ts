@@ -9,7 +9,7 @@ export const schemaValidation = yup.object({
     .string()
     .required('errors.password')
     .min(8, 'errors.passwordMin')
-    .matches(/^(?=.*[A-Z]).+$/, 'errors.passwordCap')
+    .matches(/^(?=.*[A-ZА-Я]).+$/, 'errors.passwordCap')
     .matches(/^(?=.*\d).+$/, 'errors.passwordDigit')
     .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'errors.passwordChar'),
   passwordConfirm: yup.string().oneOf([yup.ref('password')], 'errors.passwordMatch'),
@@ -21,7 +21,7 @@ export const schemaValidationLogIn = yup.object({
     .string()
     .required('errors.password')
     .min(8, 'errors.passwordMin')
-    .matches(/^(?=.*[A-Z]).+$/, 'errors.passwordCap')
+    .matches(/^(?=.*[A-ZА-Я]).+$/, 'errors.passwordCap')
     .matches(/^(?=.*\d).+$/, 'errors.passwordDigit')
     .matches(/^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/, 'errors.passwordChar'),
 });

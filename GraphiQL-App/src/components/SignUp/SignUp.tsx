@@ -34,14 +34,13 @@ function SignUp() {
         );
         setSuccessMessage(t('loginForm.successStillLogged') as string);
         setIsLoading(false);
-        setTimeout(() => {
-          navigate('/welcome', { replace: true });
-        }, 1700);
+        navigate('/welcome', { replace: true });
+      } else {
+        dispatch(exitUser());
+        setSuccessMessage('');
+        setIsLoading(false);
+        setErrorMessage('');
       }
-      dispatch(exitUser());
-      setSuccessMessage('');
-      setIsLoading(false);
-      setErrorMessage('');
     });
     return () => {
       listenAuth();
