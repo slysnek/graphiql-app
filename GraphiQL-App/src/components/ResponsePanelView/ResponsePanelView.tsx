@@ -10,9 +10,11 @@ import { json } from '@codemirror/lang-json';
 import styles from './ResponsePanelView.module.css';
 
 const ResponsePanelView = (props: ResponsePanelViewProps) => {
-  const { t } = useTranslation();
-  const [openError, setOpenError] = useState(false);
-  const [openSuccess, setOpenSuccess] = useState(false);
+  // const { t } = useTranslation();
+  // const [openError, setOpenError] = useState(false);
+  // const [openSuccess, setOpenSuccess] = useState(false);
+
+  console.log('View re-render props:', props);
 
   const options = {
     lineNumbers: false,
@@ -21,22 +23,23 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
   };
 
   const handleErrorClose = () => {
-    setOpenError(false);
+    // setOpenError(false);
   };
 
   const handleSuccessClose = () => {
-    setOpenSuccess(false);
+    // setOpenSuccess(false);
   };
 
+  /*
   useEffect(() => {
     if (props.error) {
-      setOpenError(true);
+       setOpenError(true);
     }
     if (!props.error && props.result !== '' && props.result !== undefined) {
       setOpenSuccess(true);
     }
   }, [props.error, props.result]);
-
+*/
   return (
     <div className={styles.container}>
       <div className={styles.card}>
@@ -45,7 +48,8 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
             backgroundColor: 'rgb(242, 241, 248)',
           }}
         >
-          {t('editorPage.response')}
+          response
+          {/* {t('editorPage.response')} */}
         </h4>
         <div>
           <span
@@ -56,11 +60,13 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
               fontSize: '17px',
             }}
           >
-            {props.error ? props.error_message : props.result ? t('editorPage.successMessage') : ''}
+            {props.error ? props.error_message : props.result ? 'successMessage' : ''}
+            {/* {props.error ? props.error_message : props.result ? t('editorPage.successMessage') : ''} */}
           </span>
           {props.error && (
             <Snackbar
-              open={openError}
+              // open={openError}
+              open={props.error}
               autoHideDuration={3000}
               onClose={handleErrorClose}
               anchorOrigin={{
@@ -75,7 +81,8 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
           )}
           {!props.error && props.result !== undefined && props.result !== '' && (
             <Snackbar
-              open={openSuccess}
+              // open={openSuccess}
+              open={!props.error && props.result !== '' && props.result !== undefined}
               autoHideDuration={3000}
               onClose={handleSuccessClose}
               anchorOrigin={{
@@ -84,7 +91,8 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
               }}
             >
               <Alert variant="filled" severity="success">
-                {t('editorPage.successMessage')}
+                successMessage
+                {/* {t('editorPage.successMessage')} */}
               </Alert>
             </Snackbar>
           )}

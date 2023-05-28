@@ -100,7 +100,7 @@ export const ResponsePanel = () => {
   if (loading) {
     return <PanelSpinner />;
   }
-
+  console.log('ResponsePanel re-render');
   return (
     <>
       <ResponsePanelView
