@@ -2,10 +2,11 @@
 
 .container {
 	padding: 0.5rem;
+	background-color: rgb(255, 255, 255);
 }
 
 .card {
 	height: 100%;
 	padding: 0.5rem;
-	background-color: var(--card-background-color);
+	background-color: rgb(255, 255, 255);
 }

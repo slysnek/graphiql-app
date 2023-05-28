@@ -95,7 +95,7 @@ function Home() {
       <Allotment
         key={isMobile.toString()}
         vertical={isMobile}
-        defaultSizes={isMobile ? [1, 2, 6, 2] : [1, 3, 4, 4]}
+        defaultSizes={isMobile ? [1, 4, 6, 3] : [1, 3, 4, 4]}
         minSize={50}
       >
         <Allotment.Pane minSize={100} maxSize={100}>

@@ -1,9 +1,1 @@
 @import "../../style/styles.module.css";
-
-.container {
-	padding: var(--qry-container-padding);
-}
-
-.card {
-	border-radius: var(--qry-container-radius);
-}
