@@ -1,13 +1,24 @@
 import { memo, useEffect, useState } from 'react';
-import { TextField, Snackbar, Alert } from '@mui/material';
+import { Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ResponsePanelViewProps } from '../../types/interfaces';
+import CodeMirror from '@uiw/react-codemirror';
+import { EditorView } from 'codemirror';
+import { EditorState } from '@codemirror/state';
+import { noctisLilac } from '@uiw/codemirror-theme-noctis-lilac';
+import { json } from '@codemirror/lang-json';
 import styles from './ResponsePanelView.module.css';
 
 const ResponsePanelView = (props: ResponsePanelViewProps) => {
   const { t } = useTranslation();
   const [openError, setOpenError] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
+
+  const options = {
+    lineNumbers: false,
+    foldGutter: false,
+    highlightActiveLine: false,
+  };
 
   const handleErrorClose = () => {
     setOpenError(false);
@@ -21,29 +32,28 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
     if (props.error) {
       setOpenError(true);
     }
-    if (!props.error && props.result !== '' && props.result !== undefined && !openSuccess) {
+    if (!props.error && props.result !== '' && props.result !== undefined) {
       setOpenSuccess(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props]);
+  }, [props.error, props.result]);
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h3
+        <h4
           style={{
-            margin: '1rem',
+            backgroundColor: 'rgb(242, 241, 248)',
           }}
         >
           {t('editorPage.response')}
-        </h3>
+        </h4>
         <div>
           <span
             style={{
-              backgroundColor: props.error ? 'red' : 'green',
+              display: 'flex',
+              backgroundColor: props.error ? '#a42b9a' : 'rgba(63, 174, 196, 0.7)',
               color: 'white',
-              fontSize: '20px',
-              marginLeft: '1rem',
+              fontSize: '17px',
             }}
           >
             {props.error ? props.error_message : props.result ? t('editorPage.successMessage') : ''}
@@ -79,22 +89,11 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
             </Snackbar>
           )}
         </div>
-        <TextField
+        <CodeMirror
           value={props.result}
-          id="standard-basic"
-          variant="outlined"
-          multiline
-          fullWidth
-          disabled
-          sx={{
-            '& fieldset': { border: 'none' },
-            '& .MuiInputBase-input.Mui-disabled': {
-              WebkitTextFillColor: '#000000',
-            },
-          }}
-          inputProps={{
-            style: { fontSize: 20 },
-          }}
+          theme={noctisLilac}
+          extensions={[EditorView.editable.of(false), EditorState.readOnly.of(true), json()]}
+          basicSetup={options}
         />
       </div>
     </div>

@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { LoadingButton } from '@mui/lab';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import TextField from '@mui/material/TextField';
+import CodeMirror from '@uiw/react-codemirror';
+import { bbedit } from '@uiw/codemirror-theme-bbedit';
+import { graphql } from 'cm6-graphql';
 import { useTranslation } from 'react-i18next';
 import { setQueryParameters } from '../../store/slices/queryParametersSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import styles from './RequestPanel.module.css';
+import { Alert, Snackbar, Typography } from '@mui/material';
 
 export function RequestPanel() {
   const { t } = useTranslation();
@@ -15,18 +18,10 @@ export function RequestPanel() {
   const [bodyError, setBodyError] = useState(false);
   const [bodyTextError, setBodyTextError] = useState('');
 
-  const handleRequestFieldChange = (value: string) => {
-    if (value !== '') {
-      setBodyError(false);
-      setBodyTextError('');
-    }
-    dispatch(
-      setQueryParameters({
-        ...queryParameters,
-        body: value,
-      })
-    );
+  const handleBodyErrorClose = () => {
+    setBodyError(false);
   };
+
   const handleGqlRequest = () => {
     if (queryParameters.body === '') {
       const enterRequestBody = t('editorPage.enterRequestBody');
@@ -46,6 +41,25 @@ export function RequestPanel() {
     );
   };
 
+  const onChange = useCallback(
+    (value: string) => {
+      const handleRequestFieldChange = (value: string) => {
+        if (value !== '') {
+          setBodyError(false);
+          setBodyTextError('');
+        }
+        dispatch(
+          setQueryParameters({
+            ...queryParameters,
+            body: value,
+          })
+        );
+      };
+      handleRequestFieldChange(value);
+    },
+    [dispatch, queryParameters]
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
@@ -57,15 +71,19 @@ export function RequestPanel() {
             justifyContent: 'space-between',
           }}
         >
-          <h3>{t('editorPage.requestBody')}</h3>
+          <h4>{t('editorPage.requestBody')}</h4>
           <div>
             <LoadingButton
-              size="large"
+              size="medium"
               variant="contained"
               loading={isLoaded}
               startIcon={<PlayArrowIcon />}
               onClick={() => {
                 handleGqlRequest();
+              }}
+              sx={{
+                color: '#a42b9a',
+                backgroundColor: 'rgba(63, 174, 196, 0.7)',
               }}
             >
               <span>{t('editorPage.run')}</span>
@@ -77,17 +95,29 @@ export function RequestPanel() {
             marginTop: '10px',
           }}
         >
-          <TextField
+          <Typography variant="body2" component="div" color="grey">
+            {t('editorPage.helpGql')}
+          </Typography>
+          {bodyError && (
+            <Snackbar
+              open={bodyError}
+              autoHideDuration={3000}
+              onClose={handleBodyErrorClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+            >
+              <Alert variant="filled" severity="error">
+                {bodyTextError}
+              </Alert>
+            </Snackbar>
+          )}
+          <CodeMirror
             value={queryParameters.body}
-            id="outlined-multiline-flexible"
-            multiline
-            fullWidth
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              handleRequestFieldChange(event.target.value);
-            }}
-            error={bodyError}
-            helperText={bodyTextError}
-            inputProps={{ style: { fontSize: 20 } }}
+            theme={bbedit}
+            extensions={[graphql()]}
+            onChange={onChange}
           />
         </div>
       </div>

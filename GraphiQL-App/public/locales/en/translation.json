@@ -81,7 +81,9 @@
     "enterRequestBody": "Please enter request body!",
     "requestBody": "Request body",
     "run": "Run",
-    "showVarHeaderPanel": "Show Variable/Headers Panel",
-    "hideVarHeaderPanel": "Hide Variable/Headers Panel"
+    "showVarHeaderPanel": "Show Variable/Headers Panels",
+    "hideVarHeaderPanel": "Hide Variable/Headers Panels",
+    "help": "Enter data in JSON format",
+    "helpGql": "Enter data in GraphQL format"
   }
 }
