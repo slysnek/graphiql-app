@@ -1,3 +1,16 @@
+.footer {
+  width: 100%;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  height: 60px;
+  margin: auto;
+  background-color: rgba(63, 174, 196, 0.7);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px -3px 6px -1px;
+}
+
 .footer_logo {
   display: inline-block;
   width: 54px;
@@ -14,6 +27,12 @@
   box-shadow: 0px 0px 20px 0px rgba(217, 128, 210, 0.76);
 }
 
+.footer__accounts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .GH_link {
   padding: 0 5px;
   border-radius: 10px;
@@ -26,4 +45,21 @@
   cursor: pointer;
   transform: scale(1.03);
   box-shadow: 0px 0px 20px 0px rgba(217, 128, 210, 0.76);
+}
+
+@media screen and (max-width: 520px) {
+  .non_visible {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .year__created {
+    font-size: 0.9rem;
+  }
+
+  .footer_logo {
+    width: 40px;
+    height: 40px;
+  }
 }

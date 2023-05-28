@@ -22,6 +22,25 @@ export interface LoadingSpinnerProps {
   loading: boolean;
 }
 
+export interface CardContentProps {
+  onClick: () => void;
+  avatar: string;
+  author: string;
+  GHLink: string;
+  EMLink: string;
+  TGLink: string;
+}
+
+export interface SimpleUserCardProps {
+  avatar: string;
+  GHLink: string;
+  EMLink: string;
+  TGLink: string;
+  author: string;
+  positionAvatar: string;
+  positionContent: string;
+}
+
 export interface QueryPanelState {
   isOpened?: boolean;
   sizes?: number[];
@@ -61,6 +80,10 @@ export interface QueryPanelProps {
 export interface ButtonInTabsProps {
   onClick: React.MouseEventHandler;
   isPanelOpened: boolean | undefined;
+}
+
+export interface FallbackRenderProps {
+  error: Error;
 }
 
 export interface HistoryState {
