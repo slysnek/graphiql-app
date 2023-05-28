@@ -1,5 +1,5 @@
 import { getIntrospectionQuery } from 'graphql';
-import {BASE_URL} from '../config/config.json';
+import { BASE_URL } from '../config/config.json';
 
 export const arraysAreEqual = (
   array1: number[] | undefined,
