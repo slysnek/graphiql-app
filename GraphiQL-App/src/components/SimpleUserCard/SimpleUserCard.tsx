@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import CardContent from './CardContent';
 import { CSSTransition } from 'react-transition-group';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,7 @@ import './SimpleUserCard.css';
 import { SimpleUserCardProps } from '../../types/interfaces';
 
 function SimpleUserCard(props: SimpleUserCardProps) {
-  const [showBack, setShowBack] = useState(false);
+  const [showBack, setShowBack] = useState(true);
 
   const { t } = useTranslation();
 
