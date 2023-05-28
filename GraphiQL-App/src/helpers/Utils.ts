@@ -1,4 +1,5 @@
 import { getIntrospectionQuery } from 'graphql';
+import {BASE_URL} from '../config/config.json';
 
 export const arraysAreEqual = (
   array1: number[] | undefined,
@@ -15,7 +16,7 @@ export const arraysAreEqual = (
 
 export async function getSDLSchemaTypes() {
   const introspectionQuery = getIntrospectionQuery();
-  const res = await fetch('https://swapi-graphql.netlify.app/.netlify/functions/index', {
+  const res = await fetch(BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query: introspectionQuery }),
