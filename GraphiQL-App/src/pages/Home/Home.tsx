@@ -8,7 +8,6 @@ import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
 import { arraysAreEqual } from '../../helpers/Utils';
 import { ToolBar } from '../../components/ToolBar/ToolBar';
-/* import Documentation from '../../components/Documentation/Documentation'; */
 import { RequestPanel } from '../../components/RequestPanel/RequestPanel';
 import { QueryPanel } from '../../components/QueryPanel/QueryPanel';
 import { ResponsePanel } from '../../components/ResponsePanel/ResponsePanel';
@@ -102,11 +101,11 @@ function Home() {
               <ToolBar />
             </Allotment.Pane>
             <Allotment.Pane preferredSize={'15%'} visible={docPanVisible}>
-              <div style={{ overflowY: 'auto', height: '100%' }}>
-                <Suspense fallback={<h1>Loading</h1>}>
-                  <Documentation />
-                </Suspense>
-              </div>
+              <Suspense fallback={<LoadingSpinner loading={true} />}>
+                <div style={{ overflowY: 'auto', height: '100%' }}>
+                  <Documentation />;
+                </div>
+              </Suspense>
             </Allotment.Pane>
             <Allotment.Pane minSize={50} preferredSize={'45%'}>
               <div style={{ overflowY: 'auto', height: '100%' }}>
