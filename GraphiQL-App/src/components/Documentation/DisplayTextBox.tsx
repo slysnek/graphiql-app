@@ -1,57 +1,49 @@
+import { DisplayTextBoxProps } from '../../types/interfaces';
 import DisplayBox from './DisplayBox';
-
-interface DisplayTextBoxProps {
-  header: string;
-  noValue: string;
-  displayType: string;
-  localHistoryState: any;
-  allFields: any;
-  addToHistory: (element: any) => void;
-}
+import './DisplayTextBox.css';
 
 export default function DisplayTextBox(props: DisplayTextBoxProps) {
   return (
     <div className="display-text-box">
       <h4>{props.header}</h4>
-      <hr />
-      {/* description */}
-
-      {props.localHistoryState !== undefined &&
-      Object.hasOwn(props.localHistoryState, props.displayType) &&
-      props.localHistoryState[props.displayType] !== null &&
+      <hr className="line" />
+      {props.currentEntity !== undefined &&
+      props.currentEntity !== undefined &&
+      Object.hasOwn(props.currentEntity, props.displayType) &&
+      props.currentEntity[props.displayType as keyof typeof props.currentEntity] !== null &&
       props.displayType === 'description' ? (
-        <p>{props.localHistoryState[props.displayType]}</p>
-      ) : props.localHistoryState !== undefined &&
+        <p>{props.currentEntity[props.displayType]}</p>
+      ) : props.currentEntity !== undefined &&
         props.displayType === 'metadata' &&
-        Object.hasOwn(props.localHistoryState, 'type') &&
-        props.localHistoryState.type.name !== null ? (
+        Object.hasOwn(props.currentEntity, 'type') &&
+        props.currentEntity.type.name !== null ? (
         <div>
-          <p>Metadata for {props.localHistoryState.type.name} Type</p>
+          <p>Metadata for {props.currentEntity.type.name} Type</p>
           <DisplayBox
             header="Fields"
             noValue="No Fields"
             displayType="fields"
             addToHistory={props.addToHistory}
-            localHistoryState={props.allFields.find(
-              (el) => el.name === props.localHistoryState.type.name
+            currentEntity={props.allFields!.find(
+              (el) => el.name === props.currentEntity!.type.name
             )}
           ></DisplayBox>
         </div>
-      ) : props.localHistoryState !== undefined &&
+      ) : props.currentEntity !== undefined &&
         props.displayType === 'metadata' &&
-        Object.hasOwn(props.localHistoryState, 'type') &&
-        props.localHistoryState.type.ofType.name !== null ? (
+        Object.hasOwn(props.currentEntity, 'type') &&
+        props.currentEntity.type.ofType!.name !== null ? (
         <div>
-          <p>Metadata for {props.localHistoryState.type.ofType.name} Type</p>
+          <p>Metadata for {props.currentEntity.type.ofType!.name} Type</p>
           <DisplayBox
             header="Fields"
             noValue="No Fields"
             displayType="fields"
             addToHistory={props.addToHistory}
-            localHistoryState={props.allFields.find(
+            currentEntity={props.allFields!.find(
               (el) =>
-                el.name === props.localHistoryState.type.name ||
-                el.name === props.localHistoryState.type.ofType.name
+                el.name === props.currentEntity!.type.name ||
+                el.name === props.currentEntity!.type.ofType!.name
             )}
           ></DisplayBox>
         </div>
