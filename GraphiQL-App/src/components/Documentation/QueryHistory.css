@@ -18,6 +18,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-right: 4px;
+  cursor: pointer;
+}
+
+.history-element:hover{
+  background-color: #1976d285;
 }
 
 .back-button{

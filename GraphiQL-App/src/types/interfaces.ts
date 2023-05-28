@@ -161,6 +161,7 @@ export interface ArgsEntity1 {
 export interface QueryHistoryProps {
   currentHistory: string[];
   historyReturn: () => void;
+  changeHistory: (elName: string) => void;
 }
 
 export interface DisplayBoxProps {

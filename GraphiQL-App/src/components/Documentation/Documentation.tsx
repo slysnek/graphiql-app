@@ -29,6 +29,12 @@ const Documentation = () => {
     getAllTypes();
   }, []);
 
+  useEffect(() => {
+    console.log(currObj, ' - CURRENT');
+    console.log(previousObjs, ' - PREV');
+    console.log(currHistoryStrings, ' - STRINGS');
+  }, [currHistoryStrings, currObj, previousObjs]);
+
   const handleClickinDisplay = (newObject: TypesEntity | FieldsEntity | ArgsEntity) => {
     setCurrHistoryStrings((currHistoryStrings) => {
       currHistoryStrings.push(newObject.name);
@@ -58,12 +64,38 @@ const Documentation = () => {
     });
   };
 
+  const handleHistoryChange = (name: string) => {
+    setCurrObj((currObj) => {
+      if (name === currObj?.name) return currObj;
+      return previousObjs.find((el) => el?.name === name);
+    });
+    setPreviousObjs((previousObjs) => {
+      if (name === currObj?.name) return previousObjs;
+      const previousIndex = previousObjs.findIndex((el) => el!.name === name);
+      console.log(previousIndex);
+      const newPreviousObjs = [...previousObjs];
+      const slicedArray = newPreviousObjs.slice(
+        0,
+        previousIndex === 0 ? previousIndex + 1 : previousIndex
+      );
+      return slicedArray;
+    });
+    setCurrHistoryStrings((currHistoryStrings) => {
+      if (name === currObj?.name) return currHistoryStrings;
+      const previousIndex = currHistoryStrings.findIndex((el) => el === name);
+      const newHistory = [...currHistoryStrings];
+      const slicedArray = newHistory.slice(0, previousIndex + 1);
+      return slicedArray;
+    });
+  };
+
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <h3>{t('editorPage.documentation')}</h3>
         <QueryHistory
+          changeHistory={handleHistoryChange}
           historyReturn={handleHistoryReturn}
           currentHistory={currHistoryStrings}
         ></QueryHistory>

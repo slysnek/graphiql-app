@@ -14,7 +14,7 @@ export default function QueryHistory(props: QueryHistoryProps) {
       <div className="history">
         {props.currentHistory.map((el, index) => {
           return (
-            <div className="history-element" key={index}>
+            <div onClick={() => props.changeHistory(el)} className="history-element" key={index}>
               <NavigateNextIcon color="secondary"></NavigateNextIcon>
               <b>{el}</b>
             </div>
