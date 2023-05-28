@@ -1,38 +1,31 @@
-interface DisplayBoxProps {
-  header: string;
-  noValue: string;
-  displayType: string;
-  localHistoryState?: any;
-  addToHistory: (element: any) => void;
-}
+import { FieldsEntity, ArgsEntity, DisplayBoxProps } from '../../types/interfaces';
+import './DisplayBox.css';
 
 export default function DisplayBox(props: DisplayBoxProps) {
-  /*   const historyState = useAppSelector((state) => state.historyState); */
-
   return (
     <div className="display-box">
       <h4>{props.header}</h4>
-      <hr />
-      <ul>
-        {props.localHistoryState !== undefined &&
-        Object.hasOwn(props.localHistoryState, props.displayType) &&
-        props.localHistoryState[props.displayType] !== null &&
-        props.localHistoryState[props.displayType] !== false &&
-        props.localHistoryState[props.displayType].length !== 0
-          ? props.localHistoryState[props.displayType]?.map((el, index) => {
-              return (
-                // eslint-disable-next-line react/jsx-key
-                <li
-                  key={index}
-                  onClick={() => {
-                    props.addToHistory(el);
-                  }}
-                >
-                  {el.name}:{' '}
-                  {<span>{el.type.name === null ? el.type.ofType.name : el.type.name}</span>}
-                </li>
-              );
-            })
+      <hr className="line" />
+      <ul className="list">
+        {props.currentEntity !== undefined &&
+        Object.hasOwn(props.currentEntity, props.displayType) &&
+        props.currentEntity[props.displayType as keyof typeof props.currentEntity] !== null &&
+        props.currentEntity[props.displayType as keyof typeof props.currentEntity]!.length !== 0
+          ? props.currentEntity[`${props.displayType as keyof typeof props.currentEntity}`]!.map(
+              (el: ArgsEntity | FieldsEntity, index: number) => {
+                return (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      props.addToHistory(el);
+                    }}
+                  >
+                    {el.name}:{' '}
+                    {<span>{el.type.name === null ? el.type.ofType!.name : el.type.name}</span>}
+                  </li>
+                );
+              }
+            )
           : props.noValue}
       </ul>
     </div>
