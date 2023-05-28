@@ -22,6 +22,5 @@ export async function getSDLSchemaTypes() {
   });
   const { data } = await res.json();
   const allTypes = data.__schema.types;
-  console.log('got scheme');
   return allTypes;
 }
