@@ -164,11 +164,12 @@ export interface QueryHistoryProps {
 }
 
 export interface DisplayBoxProps {
+  allFields: TypesEntity[] | null;
   header: string;
   noValue: string;
   displayType: string;
   currentEntity: TypesEntity | FieldsEntity | ArgsEntity | undefined;
-  addToHistory: (element: FieldsEntity | ArgsEntity) => void;
+  addToHistory: (element: TypesEntity | FieldsEntity | ArgsEntity) => void;
 }
 
 export interface DisplayTextBoxProps {

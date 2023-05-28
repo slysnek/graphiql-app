@@ -72,6 +72,7 @@ const Documentation = () => {
           noValue="No Arguments"
           currentEntity={currObj}
           displayType="args"
+          allFields={allTypes.current}
           addToHistory={handleClickinDisplay}
         ></DisplayBox>
         <DisplayBox
@@ -79,6 +80,7 @@ const Documentation = () => {
           noValue="No Fields"
           currentEntity={currObj}
           displayType="fields"
+          allFields={allTypes.current}
           addToHistory={handleClickinDisplay}
         ></DisplayBox>
         <DisplayTextBox

@@ -25,6 +25,7 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
             header="Fields"
             noValue="No Fields"
             displayType="fields"
+            allFields={props.allFields}
             addToHistory={props.addToHistory}
             currentEntity={props.allFields!.find(
               (el) => el.name === props.currentEntity!.type.name
@@ -33,12 +34,27 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
           <DisplayBox
             header="Description"
             noValue="No Description"
+            allFields={props.allFields}
             currentEntity={props.allFields!.find(
               (el) => el.name === props.currentEntity!.type.name
             )}
             displayType="description"
             addToHistory={props.addToHistory}
           ></DisplayBox>
+          {props.currentEntity.name === 'node' ? (
+            <DisplayBox
+              header="Implementations"
+              noValue="No Implementations"
+              allFields={props.allFields}
+              currentEntity={props.allFields!.find(
+                (el) => el.name.toLowerCase() === props.currentEntity!.name
+              )}
+              displayType="implementations"
+              addToHistory={props.addToHistory}
+            ></DisplayBox>
+          ) : (
+            ''
+          )}
         </div>
       ) : props.currentEntity !== undefined &&
         props.displayType === 'metadata' &&
@@ -52,6 +68,7 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
             header="Fields"
             noValue="No Fields"
             displayType="fields"
+            allFields={props.allFields}
             addToHistory={props.addToHistory}
             currentEntity={props.allFields!.find(
               (el) =>
