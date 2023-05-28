@@ -29,12 +29,6 @@ const Documentation = () => {
     getAllTypes();
   }, []);
 
-  useEffect(() => {
-    console.log(currObj, ' - CURRENT');
-    console.log(previousObjs, ' - PREV');
-    console.log(currHistoryStrings, ' - STRINGS');
-  }, [currHistoryStrings, currObj, previousObjs]);
-
   const handleClickinDisplay = (newObject: TypesEntity | FieldsEntity | ArgsEntity) => {
     setCurrHistoryStrings((currHistoryStrings) => {
       currHistoryStrings.push(newObject.name);
@@ -72,7 +66,6 @@ const Documentation = () => {
     setPreviousObjs((previousObjs) => {
       if (name === currObj?.name) return previousObjs;
       const previousIndex = previousObjs.findIndex((el) => el!.name === name);
-      console.log(previousIndex);
       const newPreviousObjs = [...previousObjs];
       const slicedArray = newPreviousObjs.slice(
         0,
