@@ -7,7 +7,7 @@ import './SimpleUserCard.css';
 import { SimpleUserCardProps } from '../../types/interfaces';
 
 function SimpleUserCard(props: SimpleUserCardProps) {
-  const [showBack, setShowBack] = useState(false);
+  const [showBack, setShowBack] = useState(true);
 
   const { t } = useTranslation();
 

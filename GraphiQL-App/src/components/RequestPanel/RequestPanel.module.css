@@ -1,14 +1,5 @@
 @import "../../style/styles.module.css";
 
-.container {
-	padding: var(--request-container-padding);
-}
-
 .card {
 	padding: var(--request-card-padding);
-	border-radius: var(--request-container-radius);
-}
-
-.request-frame {
-	padding: var(--request-container-padding);
 }

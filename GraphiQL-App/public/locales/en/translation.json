@@ -2,6 +2,7 @@
   "header": {
     "editor": "Editor",
     "info": "Info",
+    "mainRoute": "Main Page",
     "signIn": "Log In",
     "signUp": "Sign Up",
     "exit": "Log Out"

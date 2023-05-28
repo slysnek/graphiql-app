@@ -116,32 +116,32 @@
 
 @media screen and (max-width: 470px) {
   .right_card {
-    right: 15%;
+    right: 12%;
     top: 7%;
   }
 
   .left_card {
-    left: 15%;
+    left: 12%;
     top: 7%;
   }
 }
 
 @media screen and (max-width: 390px) {
   .right_card {
-    right: 9%;
+    right: 3%;
   }
 
   .left_card {
-    left: 9%;
+    left: 3%;
   }
 }
 
-@media screen and (max-width: 321px) {
+@media screen and (max-width: 325px) {
   .right_card {
-    right: 0%;
+    right: -7%;
   }
 
   .left_card {
-    left: 0%;
+    left: -7%;
   }
 }
