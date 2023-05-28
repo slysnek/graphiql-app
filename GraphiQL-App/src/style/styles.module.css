@@ -1,0 +1,43 @@
+@media screen and (max-width: 900px) {
+	:root {
+		--request-container-padding: 0rem 0.5rem 0rem 0.5rem;
+		--request-card-padding: 1rem 1rem 1rem 1rem;
+		--request-container-radius: 0px 0px 0px 0px;
+
+		--qry-container-padding: 0rem 0.5rem 0.5rem 0.5rem;
+		--qry-container-radius: 0px 0px 10px 10px;
+	}
+}
+
+@media screen and (min-width: 901px) {
+	:root {
+		--request-container-padding: 0.5rem 0.5rem 0rem 0rem;
+		--request-card-padding: 1rem 1rem 1rem 1rem;
+		--request-container-radius: 0px 10px 0px 0px;
+
+		--qry-container-padding: 0rem 0.5rem 0.5rem 0rem;
+		--qry-container-radius: 0px 0px 10px 0px;
+	}
+}
+
+:root {
+	--card-background-color: rgb(255, 255, 255);
+	--card-background-gray-color: rgb(242, 241, 248);
+}
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+.container {
+	background-color: var(--card-background-color);
+	width: 100%;
+	height: 100%;
+}
+
+.card {
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+}

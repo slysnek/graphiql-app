@@ -17,7 +17,6 @@ export default function Header() {
   const userName = useAppSelector((state) => state.userAuth.name);
   const isUserLogged = !!userEmail || !!userName;
   const language = useAppSelector((state) => state.langState.language);
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();

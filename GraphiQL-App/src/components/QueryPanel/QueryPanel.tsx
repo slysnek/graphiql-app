@@ -17,7 +17,6 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-
   const changePanelView = () => {
     const newPanelState: QueryPanelState = { ...queryPanelState };
     if (queryPanelState.sizes !== undefined) {
@@ -41,14 +40,18 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 0, borderColor: 'divider', border: '1px' }}>
-              <TabList onChange={handleChange} aria-label="query panel">
+              <TabList
+                onChange={handleChange}
+                aria-label="query panel"
+                TabIndicatorProps={{ style: { display: 'none' } }}
+              >
                 <Tab
                   onClick={() => {
                     queryPanelState.isOpened ? null : changePanelView();
                   }}
                   label={t('editorPage.variables')}
                   value="1"
-                  sx={{ fontWeight: '800' }}
+                  sx={{ fontWeight: '500' }}
                 />
                 <Tab
                   onClick={() => {
@@ -56,7 +59,7 @@ export const QueryPanel = ({ onChange }: QueryPanelProps) => {
                   }}
                   label={t('editorPage.headers')}
                   value="2"
-                  sx={{ fontWeight: '800' }}
+                  sx={{ fontWeight: '500' }}
                 />
                 <QueryButtonInTabs
                   onClick={() => {
