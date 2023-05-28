@@ -80,7 +80,7 @@ export interface Schema {
 export interface QueryType {
   name: string;
 }
-export interface TypesEntity {
+export type TypesEntity = {
   kind: string;
   name: string;
   description?: string | null;
@@ -89,21 +89,21 @@ export interface TypesEntity {
   interfaces?: (TypeOrOfTypeOrInterfacesEntityOrPossibleTypesEntity | null)[] | null;
   enumValues?: EnumValuesEntity[] | null;
   possibleTypes?: TypeOrOfTypeOrInterfacesEntityOrPossibleTypesEntity1[] | null;
-}
-export interface FieldsEntity {
+};
+export type FieldsEntity = {
   name: string;
   description?: string | null;
   args?: (ArgsEntity | null)[] | null;
   type: Type;
   isDeprecated: boolean;
   deprecationReason?: null;
-}
-export interface ArgsEntity {
+};
+export type ArgsEntity = {
   name: string;
   description?: string | null;
   type: TypeOrOfType;
   defaultValue?: string | null;
-}
+};
 export interface TypeOrOfType {
   kind: string;
   name?: string | null;
@@ -175,7 +175,7 @@ export interface DisplayTextBoxProps {
   header: string;
   noValue: string;
   displayType: string;
-  currentEntity: TypesEntity | FieldsEntity | ArgsEntity | undefined;
+  currentEntity: FieldsEntity | ArgsEntity | undefined;
   allFields: TypesEntity[] | null;
   addToHistory: (element: TypesEntity | FieldsEntity | ArgsEntity) => void;
 }

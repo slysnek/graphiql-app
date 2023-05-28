@@ -84,7 +84,7 @@ const Documentation = () => {
         <DisplayTextBox
           header="Description"
           noValue="No Description"
-          currentEntity={currObj}
+          currentEntity={currObj as FieldsEntity | ArgsEntity}
           displayType="description"
           allFields={allTypes.current}
           addToHistory={handleClickinDisplay}
@@ -92,7 +92,7 @@ const Documentation = () => {
         <DisplayTextBox
           header="Metadata"
           noValue="No Metadata"
-          currentEntity={currObj}
+          currentEntity={currObj as FieldsEntity | ArgsEntity}
           displayType="metadata"
           allFields={allTypes.current}
           addToHistory={handleClickinDisplay}

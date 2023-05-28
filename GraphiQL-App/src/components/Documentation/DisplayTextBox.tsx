@@ -18,7 +18,9 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
         Object.hasOwn(props.currentEntity, 'type') &&
         props.currentEntity.type.name !== null ? (
         <div>
-          <p>Metadata for {props.currentEntity.type.name} Type</p>
+          <p>
+            Metadata for <b>{props.currentEntity.type.name}</b> Type
+          </p>
           <DisplayBox
             header="Fields"
             noValue="No Fields"
@@ -34,7 +36,9 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
         Object.hasOwn(props.currentEntity, 'type') &&
         props.currentEntity.type.ofType!.name !== null ? (
         <div>
-          <p>Metadata for {props.currentEntity.type.ofType!.name} Type</p>
+          <p>
+            Metadata for <b>{props.currentEntity.type.ofType!.name}</b> Type
+          </p>
           <DisplayBox
             header="Fields"
             noValue="No Fields"
@@ -48,7 +52,9 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
           ></DisplayBox>
         </div>
       ) : (
-        props.noValue
+        <span>
+          {props.noValue} for <b>{props.currentEntity?.name}</b>
+        </span>
       )}
     </div>
   );
