@@ -1,4 +1,4 @@
-import { memo, useEffect, useState, useCallback } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ResponsePanelViewProps } from '../../types/interfaces';
@@ -20,13 +20,13 @@ const ResponsePanelView = (props: ResponsePanelViewProps) => {
     highlightActiveLine: false,
   };
 
-  const handleErrorClose = useCallback(() => {
+  const handleErrorClose = () => {
     setOpenError(false);
-  }, []);
+  };
 
-  const handleSuccessClose = useCallback(() => {
+  const handleSuccessClose = () => {
     setOpenSuccess(false);
-  }, []);
+  };
 
   useEffect(() => {
     if (props.error) {
