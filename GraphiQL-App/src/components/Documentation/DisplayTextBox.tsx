@@ -30,6 +30,15 @@ export default function DisplayTextBox(props: DisplayTextBoxProps) {
               (el) => el.name === props.currentEntity!.type.name
             )}
           ></DisplayBox>
+          <DisplayBox
+            header="Description"
+            noValue="No Description"
+            currentEntity={props.allFields!.find(
+              (el) => el.name === props.currentEntity!.type.name
+            )}
+            displayType="description"
+            addToHistory={props.addToHistory}
+          ></DisplayBox>
         </div>
       ) : props.currentEntity !== undefined &&
         props.displayType === 'metadata' &&

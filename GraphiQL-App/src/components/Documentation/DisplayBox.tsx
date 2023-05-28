@@ -13,21 +13,25 @@ export default function DisplayBox(props: DisplayBoxProps) {
         Object.hasOwn(props.currentEntity, props.displayType) &&
         props.currentEntity[props.displayType as keyof typeof props.currentEntity] !== null &&
         props.currentEntity[props.displayType as keyof typeof props.currentEntity]!.length !== 0 ? (
-          (
-            props.currentEntity[props.displayType as ObjectKey] as ArgsEntity[] | FieldsEntity[]
-          ).map((el: ArgsEntity | FieldsEntity, index: number) => {
-            return (
-              <li
-                key={index}
-                onClick={() => {
-                  props.addToHistory(el);
-                }}
-              >
-                {el.name}:{' '}
-                {<span>{el.type.name === null ? el.type.ofType!.name : el.type.name}</span>}
-              </li>
-            );
-          })
+          Array.isArray(props.currentEntity[props.displayType as ObjectKey]) ? (
+            (
+              props.currentEntity[props.displayType as ObjectKey] as ArgsEntity[] | FieldsEntity[]
+            ).map((el: ArgsEntity | FieldsEntity, index: number) => {
+              return (
+                <li
+                  key={index}
+                  onClick={() => {
+                    props.addToHistory(el);
+                  }}
+                >
+                  {el.name}:{' '}
+                  {<span>{el.type.name === null ? el.type.ofType!.name : el.type.name}</span>}
+                </li>
+              );
+            })
+          ) : (
+            <p>{props.currentEntity[props.displayType as ObjectKey]}</p>
+          )
         ) : (
           <span>
             {props.noValue} for <b>{props.currentEntity?.name}</b>
