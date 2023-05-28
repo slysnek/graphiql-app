@@ -3,12 +3,11 @@ import { auth } from '../../helpers/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../../store/hooksRedux';
 import { exitUser, setUser } from '../../store/slices/userSlice';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Allotment, AllotmentHandle } from 'allotment';
 import { debounce } from 'lodash';
 import { arraysAreEqual } from '../../helpers/Utils';
 import { ToolBar } from '../../components/ToolBar/ToolBar';
-import { Documentation } from '../../components/Documentation/Documentation';
 import { RequestPanel } from '../../components/RequestPanel/RequestPanel';
 import { QueryPanel } from '../../components/QueryPanel/QueryPanel';
 import { ResponsePanel } from '../../components/ResponsePanel/ResponsePanel';
@@ -17,6 +16,9 @@ import { QueryPanelState } from '../../types/interfaces';
 import styles from './Home.module.css';
 import config from '../../config/config.json';
 import 'allotment/dist/style.css';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+
+const Documentation = lazy(() => import('../../components/Documentation/Documentation'));
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -100,9 +102,11 @@ function Home() {
           <ToolBar />
         </Allotment.Pane>
         <Allotment.Pane preferredSize={'30%'} visible={docPanVisible}>
-          <div style={{ overflowY: 'auto', height: '100%' }}>
-            <Documentation />
-          </div>
+          <Suspense fallback={<LoadingSpinner loading={true} />}>
+            <div style={{ overflowY: 'auto', height: '100%' }}>
+              <Documentation />
+            </div>
+          </Suspense>
         </Allotment.Pane>
         <Allotment.Pane preferredSize={'50%'} minSize={300}>
           <Allotment

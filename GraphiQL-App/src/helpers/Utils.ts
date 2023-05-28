@@ -1,3 +1,6 @@
+import { getIntrospectionQuery } from 'graphql';
+import { BASE_URL } from '../config/config.json';
+
 import { ErrorObject } from '../types/interfaces';
 
 export function arraysAreEqual(
@@ -25,4 +28,16 @@ export function getErrorMessage(error: unknown): ErrorObject {
     name: '',
     message: String(error),
   };
+}
+
+export async function getSDLSchemaTypes() {
+  const introspectionQuery = getIntrospectionQuery();
+  const res = await fetch(BASE_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: introspectionQuery }),
+  });
+  const { data } = await res.json();
+  const allTypes = data.__schema.types;
+  return allTypes;
 }
