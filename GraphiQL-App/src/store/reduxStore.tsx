@@ -5,8 +5,6 @@ import docPaneStateSlice from './slices/docPaneStateSlice';
 import queryPanelStateSlice from './slices/queryPanelStateSlice';
 import queryParametersSlice from './slices/queryParametersSlice';
 import langSlice from './slices/langSlice';
-import historySlice from './slices/historySlice';
-import schemaSlice from './slices/schemaSlice';
 
 const rootReducer = combineReducers({
   userAuth: userReducer,
@@ -14,8 +12,6 @@ const rootReducer = combineReducers({
   queryPanelState: queryPanelStateSlice,
   queryParameters: queryParametersSlice,
   langState: langSlice,
-  historyState: historySlice,
-  schemaState: schemaSlice,
 });
 
 export const store = configureStore({
