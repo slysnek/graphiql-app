@@ -1,0 +1,21 @@
+:root {
+	--card-background-color: rgb(255, 255, 255);
+}
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+.container {
+	background-color: rgb(255, 255, 255);
+	width: 100%;
+	height: 100%;
+}
+
+.card {
+	background-color: rgb(255, 255, 255);
+	height: 100%;
+	padding: 0rem;
+}
